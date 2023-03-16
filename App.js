@@ -7,7 +7,7 @@ export default function App() {
   return (
     <View style={Styles.container}>
       <Header />
-      <Text>Open up App.jss to start working on your app!</Text>
+      <Text>Open up App.jss to start working your app!</Text>
     </View>
   );
 }
