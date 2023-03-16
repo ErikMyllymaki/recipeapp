@@ -7,4 +7,18 @@ export default StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
     },
+
+    header: {
+        backgroundColor: 'tomato',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 40
+    },
+
+    title: {
+        color: 'white',
+        padding: 15,
+        fontSize: 23
+    },
+    
   });
