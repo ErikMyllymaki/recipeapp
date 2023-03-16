@@ -7,14 +7,14 @@ export default StyleSheet.create({
     },
 
     header: {
-        backgroundColor: 'tomato',
+        backgroundColor: '#E8E8E8',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 40
+        height: 80,
     },
 
     title: {
-        color: 'white',
+        color: '#4B702F',
         padding: 15,
         fontSize: 23
     },
