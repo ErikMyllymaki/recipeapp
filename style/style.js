@@ -10,7 +10,7 @@ export default StyleSheet.create({
         backgroundColor: '#E8E8E8',
         justifyContent: 'center',
         alignItems: 'center',
-        height: 80,
+        height: 100,
     },
     title: {
         color: '#4B702F',
