@@ -70,7 +70,8 @@ export default StyleSheet.create({
       height: 100,
       textAlign: 'center',
       fontSize: 18,
-      textAlignVertical: 'center'
+      textAlignVertical: 'center',
+      borderRadius: 15,
     }
     
   });
