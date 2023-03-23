@@ -6,6 +6,7 @@ const STORAGE_KEY = "@recipe_Key";
 
 export default function AddRecipe() {
 
+  const [recipeName, setRecipeName] = useState("");
   const [recipes, setRecipes] = useState([]);
 
   const storeData = async (value) => {
@@ -17,9 +18,16 @@ export default function AddRecipe() {
     }
   }
 
+  const saveRecipe = () => {
+    const newKey = todos.length + 1;
+    const newRecipe = {key: newKey.toString(), name: recipeName}
+    const newRecipes = [...recipes, newRecipe]
+    storeData(newRecipes)
+  }
+
   return (
     <View style={Styles.container}>
-        <Text>addrecipe</Text>
+        <Text>addrecieasdasdpe</Text>
     </View>
   )
 }
