@@ -7,7 +7,7 @@ import { ImageBackground } from 'react-native';
 
 export default function Home( {navigation} ) {
 
-  const backgroundImage = require('../images/background2.jpg');
+  const backgroundImage = require('../images/background4.jpg');
   const screenWidth = Dimensions.get('window').width;
   const screenHeight = Dimensions.get('window').height;
 
