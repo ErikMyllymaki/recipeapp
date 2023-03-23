@@ -25,7 +25,9 @@ export default StyleSheet.create({
       paddingTop: 15,
       paddingBottom: 15,
       paddingHorizontal: 15,
-      
+      paddingBottom: 80,
+      marginHorizontal: 18,
+      borderRadius: 20,
     },
     pageHeader: {
       fontSize: 30,
@@ -34,9 +36,32 @@ export default StyleSheet.create({
       paddingTop: 15,
       paddingBottom: 15,
     },
-    aboutUsIntroduction: {
-
+    contactUsHeader:{
+      fontSize: 30,
+      textAlign: 'center',
+      paddingTop: 15,
+      paddingBottom: 5,
     },
-    
+    contactInformation:{
+      fontSize: 20,
+      textAlign: 'center',
+      paddingBottom: 5,
+    },
+    aboutUsIntroduction: {
+      fontSize: 20,
+      textAlign: 'center',
+    },
+    socialIcons: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+      position: 'absolute',
+      bottom: 0,
+      width: '100%',
+      height: 60,
+    },
+    icon: {
+      marginHorizontal: 10,
+    },
     
   });
