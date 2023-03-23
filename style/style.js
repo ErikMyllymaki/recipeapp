@@ -11,10 +11,10 @@ export default StyleSheet.create({
       flexDirection: 'column'
     },
     header: {
-        backgroundColor: '#E8E8E8',
+        backgroundColor: '#eaece5',
         justifyContent: 'center',
         alignItems: 'center',
-        height: 100,
+        height: 150,
     },
     title: {
         color: '#4B702F',
@@ -36,44 +36,60 @@ export default StyleSheet.create({
     selectedCategoryTitle: {
       fontSize: 20
     },
-    //about us sivulla käytetyt tyylit. Voi käyttää muillakin sivuilla
-    textAreaBackground: {
-      backgroundColor: '#E8E8E8',
-      marginBottom: 15,
-      paddingTop: 15,
-      paddingBottom: 15,
-      paddingHorizontal: 15,
-      paddingBottom: 80,
-      marginHorizontal: 18,
-      borderRadius: 20,
-    },
-    pageHeader: {
-      fontSize: 30,
-      color: '#4B702F',
-      textAlign: 'center',
-      paddingTop: 15,
-      paddingBottom: 15,
-    },
-    contactUsHeader:{
-      fontSize: 30,
-      textAlign: 'center',
-      paddingTop: 15,
-      paddingBottom: 5,
-    },
-    contactInformation:{
-      fontSize: 20,
-      textAlign: 'center',
-      paddingBottom: 5,
-    },
-    aboutUsIntroduction: {
 
-    },
+   //about us sivulla käytetyt tyylit. Voi käyttää muillakin sivuilla
+   textAreaBackground: {
+    backgroundColor: '#E8E8E8',
+    marginBottom: 15,
+    paddingTop: 15,
+    paddingBottom: 15,
+    paddingHorizontal: 15,
+    paddingBottom: 80,
+    marginHorizontal: 18,
+    borderRadius: 20,
+  },
+  pageHeader: {
+    fontSize: 30,
+    color: '#4B702F',
+    textAlign: 'center',
+    paddingTop: 15,
+    paddingBottom: 15,
+  },
+  contactUsHeader:{
+    fontSize: 30,
+    textAlign: 'center',
+    paddingTop: 15,
+    paddingBottom: 5,
+  },
+  contactInformation:{
+    fontSize: 20,
+    textAlign: 'center',
+    paddingBottom: 5,
+  },
+  aboutUsIntroduction: {
+    fontSize: 20,
+    textAlign: 'center',
+  },
+  socialIcons: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    bottom: 10,
+    width: '100%',
+    height: 60,
+  },
+  icon: {
+    marginHorizontal: 10,
+    
+  },
     homeButton: {
-      backgroundColor: 'green',
-      paddingVertical: 10,
-      width: 250,
+      backgroundColor: '#61876ee9',
+      width: 300,
+      height: 100,
       textAlign: 'center',
-      fontSize: 18
+      fontSize: 18,
+      textAlignVertical: 'center'
     }
     
   });
