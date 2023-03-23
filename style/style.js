@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 
 export default StyleSheet.create({
     container: {
@@ -29,7 +29,9 @@ export default StyleSheet.create({
       margin: 20,
       width: 160,
       height: 160,
-      alignItems: 'center'
+      alignItems: 'center',
+      borderRadius: 15,
+      overflow: 'hidden'
     },
     categoryName: {
       fontSize: 20
@@ -93,6 +95,12 @@ export default StyleSheet.create({
       textAlign: 'center',
       fontSize: 18,
       textAlignVertical: 'center',
+      ...Platform.select({
+        ios: {
+          lineHeight: 100
+        },
+        android: {}
+      }),
       borderRadius: 15,
       color: '#ffffff',
       overflow: 'hidden'
