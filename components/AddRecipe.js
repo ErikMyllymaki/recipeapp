@@ -23,7 +23,6 @@ export default function AddRecipe() {
 
   useEffect(() => {
     getData();
-    console.log(recipes)
   }, [])
 
 
@@ -46,13 +45,14 @@ export default function AddRecipe() {
 
   const saveRecipe = () => {
     const newKey = recipes.length + 1;
-    const newRecipe = { key: newKey.toString(), name: recipeName, instructions: instructions }
+    const newRecipe = { 
+      key: newKey.toString(),
+      name: recipeName, 
+      instructions: instructions,
+      // ingredients: []
+    }
     const newRecipes = [...recipes, newRecipe]
     storeData(newRecipes)
-    // console.log(newRecipes)
-    getData();
-    setInstructions("");
-    setRecipeName("");
   }
 
   return (
