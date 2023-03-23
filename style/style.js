@@ -52,11 +52,12 @@ export default StyleSheet.create({
 
     },
     homeButton: {
-      backgroundColor: 'green',
-      paddingVertical: 10,
-      width: 250,
+      backgroundColor: '#61876ed7',
+      width: 315,
+      height: 100,
       textAlign: 'center',
-      fontSize: 18
+      fontSize: 24,
+      textAlignVertical: 'center',
+      borderRadius: 15
     }
-    
   });

@@ -1,7 +1,6 @@
 import React from 'react';
 import Styles from '../style/style';
 import { Text, View } from 'react-native';
-import { ImageBackground } from 'react-native';
 import { Image, Dimensions } from 'react-native';
 
 
