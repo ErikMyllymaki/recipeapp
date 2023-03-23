@@ -19,6 +19,12 @@ export default function AddRecipe() {
     }
   }
 
+  useEffect(() => {
+    getData();
+    console.log(recipes)
+  }, [])
+  
+
   const getData = async() => {
     try {
       return AsyncStorage.getItem(STORAGE_KEY)

@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, Pressable, TouchableOpacity, Linking } from 'react-native';
 import Styles from '../style/style';
 import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
@@ -8,6 +8,42 @@ import { FontAwesome5 } from '@expo/vector-icons';
 
 
 export default function App() {
+
+  const handlePressTiktok = () => {
+    Linking.openURL('https://www.tiktok.com/');
+  };
+
+  const handlePressInsta = () => {
+    Linking.openURL('https://www.instagram.com/');
+  };
+
+  const handlePressFacebook = () => {
+    Linking.openURL('https://www.Facebook.com/');
+  };
+
+  const TikTokIcon = () => {
+    return (
+      <TouchableOpacity onPress={handlePressTiktok} >
+        <FontAwesome5 name="tiktok" size={50} color="#000000" style={Styles.icon} />
+      </TouchableOpacity>
+    );
+  };
+
+  const InstagramIcon = () => {
+    return (
+      <TouchableOpacity onPress={handlePressInsta}>
+        <Ionicons name="logo-instagram" size={60} color="#C13584" style={Styles.icon} />
+      </TouchableOpacity>
+    );
+  };
+
+  const FacebookIcon = () => {
+    return (
+      <TouchableOpacity onPress={handlePressFacebook}>
+        <FontAwesome name="facebook-square" size={60} color="#4267B2" style={Styles.icon} />
+      </TouchableOpacity>
+    );
+  };
 
   return (
     <View style={Styles.background}>
@@ -20,9 +56,9 @@ export default function App() {
         <Text style={Styles.contactInformation}>recipehub@recipehub.com</Text>
 
         <View style={Styles.socialIcons}>
-        <FontAwesome5 name="tiktok" size={60} color="#000000" style={Styles.icon} />
-          <Ionicons name="logo-instagram" size={60} color="#C13584" style={Styles.icon} />
-          <FontAwesome name="facebook-square" size={60} color="#4267B2" style={Styles.icon} />
+          <TikTokIcon />
+          <InstagramIcon />
+          <FacebookIcon/>
         </View>
 
       </View>
