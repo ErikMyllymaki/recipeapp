@@ -36,6 +36,12 @@ export default StyleSheet.create({
     aboutUsIntroduction: {
 
     },
-    
+    homeButton: {
+      backgroundColor: 'green',
+      paddingVertical: 10,
+      width: 250,
+      textAlign: 'center',
+      fontSize: 18
+    }
     
   });
