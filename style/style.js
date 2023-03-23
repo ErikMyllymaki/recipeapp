@@ -16,6 +16,21 @@ export default StyleSheet.create({
         padding: 15,
         fontSize: 23
     },
+    pageTitle: {
+      fontSize: 20
+    },
+    categoryItem: {
+      display: 'flex'
+    },
+    categoryTitle: {
+      backgroundColor: 'white',
+      padding: 20,
+      margin: 20,
+      flexDirection: 'column'
+    },
+    selectedCategoryTitle: {
+      fontSize: 20
+    },
 
     //about us sivulla käytetyt tyylit. Voi käyttää muillakin sivuilla
     textAreaBackground: {

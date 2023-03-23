@@ -18,39 +18,52 @@ export default function App() {
     <NavigationContainer>
       <Header />
       <Tab.Navigator
-        screenOptions={{ headerShown: false }}
+        screenOptions={{
+          headerShown: false,
+          tabBarShowLabel: false,
+          tabBarStyle: {
+            position: 'absolute',
+            bottom: 15,
+            left: 15,
+            right: 15,
+            elevation: 0,
+            backgroundcolor: '#fff',
+            borderRadius: 25,
+            height: 50,
+          }
+        }}
       >
         <Tab.Screen name="Home" component={Home} options={{
           tabBarStyle: { display: 'none' },
           tabBarIcon: () => (
-            <MaterialCommunityIcons name="home-account" size={30} />
+            <MaterialCommunityIcons name="home-account" size={30} color='#61876E'/>
           ),
-          tabBarActiveTintColor: 'black',
+          tabBarActiveTintColor: '#61876E',
           tabBarInActiveTintColor: 'gray'
         }} />
         <Tab.Screen name='Recipes' component={CategoryPage}
         options={{
           tabBarIcon: () => (
-            <MaterialIcons name="list-alt" size={30} />
+            <MaterialIcons name="list-alt" size={30} color='#61876E'/>
           ),
-          tabBarActiveTintColor: 'black',
+          tabBarActiveTintColor: '#61876E',
           tabBarInActiveTintColor: 'gray'
         }} />
         <Tab.Screen name='Add recipes' component={AddRecipe} 
         options={{
           tabBarIcon: () => (
-            <MaterialIcons name="playlist-add" size={30} />
+            <MaterialIcons name="playlist-add" size={30} color='#61876E'/>
           ),
-          tabBarActiveTintColor: 'black',
+          tabBarActiveTintColor: '#61876E',
           tabBarInActiveTintColor: 'gray'
         }} />
         
         <Tab.Screen name='About' component={About}
         options={{
           tabBarIcon: () => (
-            <MaterialCommunityIcons name="information-variant" size={30} />
+            <MaterialCommunityIcons name="information-variant" size={30} color='#61876E'/>
           ),
-          tabBarActiveTintColor: 'black',
+          tabBarActiveTintColor: '#61876E',
           tabBarInActiveTintColor: 'gray'
           }} />
 
