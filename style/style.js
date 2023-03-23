@@ -3,9 +3,13 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
     container: {
       backgroundColor: '#B5CFBB',
-      flex: 1
+      flex: 1,
+      
     },
-
+    testi: {
+      flex: 1,
+      flexDirection: 'column'
+    },
     header: {
         backgroundColor: '#E8E8E8',
         justifyContent: 'center',
