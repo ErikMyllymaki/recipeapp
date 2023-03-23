@@ -11,13 +11,19 @@ export default function Home( {navigation} ) {
             onPress={() => navigation.navigate('Recipes')}
             style={{ paddingVertical: 10 }}
           >
-            <Text style={{ fontSize: 18 }}>Go to Recipes</Text>
+            <Text style={{ fontSize: 18 }}>Recipes</Text>
           </Pressable>
           <Pressable
             onPress={() => navigation.navigate('Add recipes')}
             style={{ paddingVertical: 10 }}
           >
-            <Text style={{ fontSize: 18 }}>Go to Add Recipes</Text>
+            <Text style={{ fontSize: 18 }}>Add Recipe</Text>
+          </Pressable>
+          <Pressable
+            onPress={() => navigation.navigate('About')}
+            style={{ paddingVertical: 10 }}
+          >
+            <Text style={{ fontSize: 18 }}>About recipe app</Text>
           </Pressable>
         </View>
       );
