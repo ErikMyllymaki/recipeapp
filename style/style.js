@@ -5,31 +5,17 @@ export default StyleSheet.create({
       backgroundColor: '#B5CFBB',
       flex: 1
     },
+
     header: {
-        backgroundColor: '#ebece4',
+        backgroundColor: '#E8E8E8',
         justifyContent: 'center',
         alignItems: 'center',
-        height: 150,
+        height: 100,
     },
     title: {
         color: '#4B702F',
         padding: 15,
         fontSize: 23
-    },
-    pageTitle: {
-      fontSize: 20
-    },
-    categoryItem: {
-      display: 'flex'
-    },
-    categoryTitle: {
-      backgroundColor: 'white',
-      padding: 20,
-      margin: 20,
-      flexDirection: 'column'
-    },
-    selectedCategoryTitle: {
-      fontSize: 20
     },
 
     //about us sivulla käytetyt tyylit. Voi käyttää muillakin sivuilla
@@ -39,7 +25,9 @@ export default StyleSheet.create({
       paddingTop: 15,
       paddingBottom: 15,
       paddingHorizontal: 15,
-      
+      paddingBottom: 80,
+      marginHorizontal: 18,
+      borderRadius: 20,
     },
     pageHeader: {
       fontSize: 30,
@@ -48,16 +36,26 @@ export default StyleSheet.create({
       paddingTop: 15,
       paddingBottom: 15,
     },
+    contactUsHeader:{
+      fontSize: 30,
+      textAlign: 'center',
+      paddingTop: 15,
+      paddingBottom: 5,
+    },
+    contactInformation:{
+      fontSize: 20,
+      textAlign: 'center',
+      paddingBottom: 5,
+    },
     aboutUsIntroduction: {
 
     },
     homeButton: {
-      backgroundColor: '#61876ed7',
-      width: 315,
-      height: 100,
+      backgroundColor: 'green',
+      paddingVertical: 10,
+      width: 250,
       textAlign: 'center',
-      fontSize: 24,
-      textAlignVertical: 'center',
-      borderRadius: 15
+      fontSize: 18
     }
+    
   });
