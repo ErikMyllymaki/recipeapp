@@ -78,10 +78,11 @@ export default StyleSheet.create({
     bottom: 10,
     width: '100%',
     height: 60,
+    
   },
   icon: {
     marginHorizontal: 10,
-    
+    marginBottom: -10
   },
     homeButton: {
       backgroundColor: '#61876ee9',
