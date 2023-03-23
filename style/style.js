@@ -2,8 +2,8 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
     container: {
-      flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: '#B5CFBB',
+      flex: 1
     },
     header: {
         backgroundColor: '#E8E8E8',
@@ -18,10 +18,6 @@ export default StyleSheet.create({
     },
 
     //about us sivulla käytetyt tyylit. Voi käyttää muillakin sivuilla
-    background: {
-      backgroundColor: '#B5CFBB',
-      flex: 1
-    },
     textAreaBackground: {
       backgroundColor: '#E8E8E8',
       marginBottom: 15,
@@ -39,6 +35,7 @@ export default StyleSheet.create({
     },
     aboutUsIntroduction: {
 
-    }
+    },
+    
     
   });
