@@ -6,10 +6,6 @@ export default StyleSheet.create({
       flex: 1,
       
     },
-    testi: {
-      flex: 1,
-      flexDirection: 'column'
-    },
     header: {
         backgroundColor: '#eaece5',
         justifyContent: 'center',
@@ -31,7 +27,12 @@ export default StyleSheet.create({
       backgroundColor: 'white',
       padding: 20,
       margin: 20,
-      flexDirection: 'column'
+      width: 160,
+      height: 160,
+      alignItems: 'center'
+    },
+    categoryName: {
+      fontSize: 20
     },
     selectedCategoryTitle: {
       fontSize: 20
@@ -93,6 +94,7 @@ export default StyleSheet.create({
       fontSize: 18,
       textAlignVertical: 'center',
       borderRadius: 15,
+      color: '#ffffff'
     }
     
   });
