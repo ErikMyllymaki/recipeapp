@@ -66,10 +66,11 @@ export default StyleSheet.create({
     },
     homeButton: {
       backgroundColor: 'green',
-      paddingVertical: 10,
-      width: 250,
+      width: 300,
+      height: 100,
       textAlign: 'center',
-      fontSize: 18
+      fontSize: 18,
+      textAlignVertical: 'center'
     }
     
   });
