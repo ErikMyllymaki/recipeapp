@@ -24,7 +24,7 @@ export default function App() {
   const TikTokIcon = () => {
     return (
       <TouchableOpacity onPress={handlePressTiktok} >
-        <FontAwesome5 name="tiktok" size={60} color="#000000" style={Styles.icon} />
+        <FontAwesome5 name="tiktok" size={50} color="#000000" style={Styles.icon} />
       </TouchableOpacity>
     );
   };
