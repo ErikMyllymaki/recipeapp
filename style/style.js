@@ -5,12 +5,11 @@ export default StyleSheet.create({
       flex: 1,
       backgroundColor: '#fff',
     },
-
     header: {
         backgroundColor: '#E8E8E8',
         justifyContent: 'center',
         alignItems: 'center',
-        height: 100,
+        height: 150,
     },
     title: {
         color: '#4B702F',
