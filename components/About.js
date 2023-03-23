@@ -16,7 +16,7 @@ export default function App() {
         <Text style={Styles.aboutUsIntroduction}>Welcome to our recipe app! We're a team of food lovers and tech experts who are passionate about making cooking and meal planning easy and enjoyable. Our app features a wide range of recipes for all dietary needs and preferences. Thanks for choosing us as your recipe app!</Text>
         <Text style={Styles.contactUsHeader}>Contact us</Text>
         <Text style={Styles.contactInformation}>Yliopistokatu 9</Text>
-        <Text style={Styles.contactInformation}>020 6110212</Text>
+        <Text style={Styles.contactInformation}>020 6110232</Text>
         <Text style={Styles.contactInformation}>recipehub@recipehub.com</Text>
 
         <View style={Styles.socialIcons}>
