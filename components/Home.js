@@ -1,17 +1,19 @@
 
 import React from 'react'
-import { View, Text, Pressable } from 'react-native';
+import { View, Text, Pressable, Dimensions } from 'react-native';
 import Styles from '../style/style';
 import { ImageBackground } from 'react-native';
 
 
 export default function Home( {navigation} ) {
 
-  const backgroundImage = require('../images/background.jpg');
+  const backgroundImage = require('../images/background2.jpg');
+  const screenWidth = Dimensions.get('window').width;
+  const screenHeight = Dimensions.get('window').height;
 
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <ImageBackground source={backgroundImage}>
+          <ImageBackground source={backgroundImage} style={{width: screenWidth, height: screenHeight, alignItems:'center', justifyContent: 'center', resizeMode: 'contain'}}>
           <Pressable
             onPress={() => navigation.navigate('Recipes')}
             style={{ paddingVertical: 30}}

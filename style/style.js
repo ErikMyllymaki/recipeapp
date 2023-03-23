@@ -3,9 +3,13 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
     container: {
       backgroundColor: '#B5CFBB',
-      flex: 1
+      flex: 1,
+      
     },
-
+    testi: {
+      flex: 1,
+      flexDirection: 'column'
+    },
     header: {
         backgroundColor: '#eaece5',
         justifyContent: 'center',
@@ -86,7 +90,8 @@ export default StyleSheet.create({
       height: 100,
       textAlign: 'center',
       fontSize: 18,
-      textAlignVertical: 'center'
+      textAlignVertical: 'center',
+      borderRadius: 15,
     }
     
   });
