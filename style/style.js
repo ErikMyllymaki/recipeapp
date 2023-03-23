@@ -1,14 +1,10 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 
 export default StyleSheet.create({
     container: {
       backgroundColor: '#B5CFBB',
       flex: 1,
       
-    },
-    testi: {
-      flex: 1,
-      flexDirection: 'column'
     },
     header: {
         backgroundColor: '#eaece5',
@@ -31,7 +27,14 @@ export default StyleSheet.create({
       backgroundColor: 'white',
       padding: 20,
       margin: 20,
-      flexDirection: 'column'
+      width: 160,
+      height: 160,
+      alignItems: 'center',
+      borderRadius: 15,
+      overflow: 'hidden'
+    },
+    categoryName: {
+      fontSize: 20
     },
     selectedCategoryTitle: {
       fontSize: 20
@@ -45,6 +48,7 @@ export default StyleSheet.create({
 
    //about us sivulla käytetyt tyylit. Voi käyttää muillakin sivuilla
    textAreaBackground: {
+    alignItems: 'center',
     backgroundColor: '#E8E8E8',
     marginBottom: 15,
     paddingTop: 15,
@@ -97,7 +101,15 @@ export default StyleSheet.create({
       textAlign: 'center',
       fontSize: 18,
       textAlignVertical: 'center',
+      ...Platform.select({
+        ios: {
+          lineHeight: 100
+        },
+        android: {}
+      }),
       borderRadius: 15,
+      color: '#ffffff',
+      overflow: 'hidden'
     }
     
   });
