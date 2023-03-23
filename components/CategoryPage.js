@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, ImageBackground } from 'react-native';
 import Styles from '../style/style';
 
 const CATEGORIES = [
-  { id: '1', title: 'Breakfast' },
-  { id: '2', title: 'Dinner' },
-  { id: '3', title: 'Drinks' },
-  { id: '4', title: 'Dessert' },
-  { id: '5', title: 'Snacks' },
-  { id: '6', title: 'Pastries' }
+  { id: '1', title: 'Breakfast', image: require('../images/breakfast.jpg') },
+  { id: '2', title: 'Dinner', image: require('../images/dinner.jpg') },
+  { id: '3', title: 'Drinks', image: require('../images/drink.jpg') },
+  { id: '4', title: 'Dessert', image: require('../images/dessert.jpg') },
+  { id: '5', title: 'Snacks', image: require('../images/snack.jpg') },
+  { id: '6', title: 'Pastries', image: require('../images/pastry.jpg') }
 ];
 
 export default function CategoryPage({ navigation }) {
@@ -26,7 +26,7 @@ export default function CategoryPage({ navigation }) {
       ]}
       onPress={() => handleCategoryPress(item)}
     >
-      <Text style={Styles.categoryTitle}>{item.title}</Text>
+      <ImageBackground source={item.image} style={Styles.categoryTitle}><Text style={Styles.categoryName}>{item.title}</Text></ImageBackground>
     </TouchableOpacity>
   );
 
@@ -34,7 +34,6 @@ export default function CategoryPage({ navigation }) {
     <View style={Styles.container}>
       <Text style={Styles.pageTitle}>Recipes</Text>
       <FlatList
-        style={Styles.testi}
         numColumns={2}
         data={CATEGORIES}
         renderItem={renderCategoryItem}
