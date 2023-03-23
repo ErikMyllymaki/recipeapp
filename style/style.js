@@ -39,6 +39,7 @@ export default StyleSheet.create({
 
    //about us sivulla käytetyt tyylit. Voi käyttää muillakin sivuilla
    textAreaBackground: {
+    alignItems: 'center',
     backgroundColor: '#E8E8E8',
     marginBottom: 15,
     paddingTop: 15,
