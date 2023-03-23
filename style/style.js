@@ -32,38 +32,53 @@ export default StyleSheet.create({
     selectedCategoryTitle: {
       fontSize: 20
     },
-    //about us sivulla käytetyt tyylit. Voi käyttää muillakin sivuilla
-    textAreaBackground: {
-      backgroundColor: '#E8E8E8',
-      marginBottom: 15,
-      paddingTop: 15,
-      paddingBottom: 15,
-      paddingHorizontal: 15,
-      paddingBottom: 80,
-      marginHorizontal: 18,
-      borderRadius: 20,
-    },
-    pageHeader: {
-      fontSize: 30,
-      color: '#4B702F',
-      textAlign: 'center',
-      paddingTop: 15,
-      paddingBottom: 15,
-    },
-    contactUsHeader:{
-      fontSize: 30,
-      textAlign: 'center',
-      paddingTop: 15,
-      paddingBottom: 5,
-    },
-    contactInformation:{
-      fontSize: 20,
-      textAlign: 'center',
-      paddingBottom: 5,
-    },
-    aboutUsIntroduction: {
 
-    },
+   //about us sivulla käytetyt tyylit. Voi käyttää muillakin sivuilla
+   textAreaBackground: {
+    backgroundColor: '#E8E8E8',
+    marginBottom: 15,
+    paddingTop: 15,
+    paddingBottom: 15,
+    paddingHorizontal: 15,
+    paddingBottom: 80,
+    marginHorizontal: 18,
+    borderRadius: 20,
+  },
+  pageHeader: {
+    fontSize: 30,
+    color: '#4B702F',
+    textAlign: 'center',
+    paddingTop: 15,
+    paddingBottom: 15,
+  },
+  contactUsHeader:{
+    fontSize: 30,
+    textAlign: 'center',
+    paddingTop: 15,
+    paddingBottom: 5,
+  },
+  contactInformation:{
+    fontSize: 20,
+    textAlign: 'center',
+    paddingBottom: 5,
+  },
+  aboutUsIntroduction: {
+    fontSize: 20,
+    textAlign: 'center',
+  },
+  socialIcons: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    bottom: 10,
+    width: '100%',
+    height: 60,
+  },
+  icon: {
+    marginHorizontal: 10,
+    
+  },
     homeButton: {
       backgroundColor: 'green',
       width: 300,
