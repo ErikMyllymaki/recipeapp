@@ -4,9 +4,11 @@ import Styles from '../style/style';
 
 const CATEGORIES = [
   { id: '1', title: 'Breakfast' },
-  { id: '2', title: 'Lunch' },
-  { id: '3', title: 'Dinner' },
+  { id: '2', title: 'Dinner' },
+  { id: '3', title: 'Drinks' },
   { id: '4', title: 'Dessert' },
+  { id: '5', title: 'Snacks' },
+  { id: '6', title: 'Pastries' }
 ];
 
 export default function CategoryPage({ navigation }) {
