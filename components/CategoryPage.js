@@ -34,11 +34,11 @@ export default function CategoryPage({ navigation }) {
     <View style={Styles.container}>
       <Text style={Styles.pageTitle}>Recipes</Text>
       <FlatList
+        style={Styles.testi}
+        numColumns={2}
         data={CATEGORIES}
         renderItem={renderCategoryItem}
         keyExtractor={(item) => item.id}
-        horizontal
-        showsHorizontalScrollIndicator={false}
       />
       <Text style={Styles.selectedCategoryTitle}>{selectedCategory.title}</Text>
       {/* Display recipes for the selected category here */}
