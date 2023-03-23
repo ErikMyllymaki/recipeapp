@@ -36,6 +36,12 @@ export default StyleSheet.create({
     selectedCategoryTitle: {
       fontSize: 20
     },
+    textInput: {
+      borderWidth: 1,
+      padding: 5,
+      margin: 5,
+      backgroundColor: 'yellow'
+    },
 
    //about us sivulla käytetyt tyylit. Voi käyttää muillakin sivuilla
    textAreaBackground: {
