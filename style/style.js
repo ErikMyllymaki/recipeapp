@@ -65,7 +65,7 @@ export default StyleSheet.create({
 
     },
     homeButton: {
-      backgroundColor: 'green',
+      backgroundColor: '#61876ee9',
       width: 300,
       height: 100,
       textAlign: 'center',
