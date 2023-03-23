@@ -1,4 +1,3 @@
-
 // import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import Header from './components/Header';
@@ -36,24 +35,24 @@ export default function App() {
       >
         <Tab.Screen name="Home" component={Home} options={{
           tabBarStyle: { display: 'none' },
-          tabBarIcon: () => (
-            <MaterialCommunityIcons name="home-account" size={30} color='#61876E'/>
+          tabBarIcon: ({color}) => (
+            <MaterialCommunityIcons name="home-account" size={30} color={color}/>
           ),
           tabBarActiveTintColor: '#61876E',
           tabBarInActiveTintColor: 'gray'
         }} />
         <Tab.Screen name='Recipes' component={CategoryPage}
         options={{
-          tabBarIcon: () => (
-            <MaterialIcons name="list-alt" size={30} color='#61876E'/>
+          tabBarIcon: ({color}) => (
+            <MaterialIcons name="list-alt" size={30} color={color}/>
           ),
           tabBarActiveTintColor: '#61876E',
           tabBarInActiveTintColor: 'gray'
         }} />
         <Tab.Screen name='Add recipes' component={AddRecipe} 
         options={{
-          tabBarIcon: () => (
-            <MaterialIcons name="playlist-add" size={30} color='#61876E'/>
+          tabBarIcon: ({color}) => (
+            <MaterialIcons name="playlist-add" size={30} color={color}/>
           ),
           tabBarActiveTintColor: '#61876E',
           tabBarInActiveTintColor: 'gray'
@@ -61,8 +60,8 @@ export default function App() {
         
         <Tab.Screen name='About' component={About}
         options={{
-          tabBarIcon: () => (
-            <MaterialCommunityIcons name="information-variant" size={30} color='#61876E'/>
+          tabBarIcon: ({color}) => (
+            <MaterialCommunityIcons name="information-variant" size={30} color={color}/>
           ),
           tabBarActiveTintColor: '#61876E',
           tabBarInActiveTintColor: 'gray'
@@ -72,4 +71,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
