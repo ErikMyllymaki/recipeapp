@@ -7,10 +7,10 @@ export default StyleSheet.create({
     },
 
     header: {
-        backgroundColor: '#E8E8E8',
+        backgroundColor: '#eaece5',
         justifyContent: 'center',
         alignItems: 'center',
-        height: 100,
+        height: 150,
     },
     title: {
         color: '#4B702F',
@@ -66,10 +66,11 @@ export default StyleSheet.create({
     },
     homeButton: {
       backgroundColor: 'green',
-      paddingVertical: 10,
-      width: 250,
+      width: 300,
+      height: 100,
       textAlign: 'center',
-      fontSize: 18
+      fontSize: 18,
+      textAlignVertical: 'center'
     }
     
   });
