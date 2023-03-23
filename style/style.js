@@ -92,6 +92,7 @@ export default StyleSheet.create({
       fontSize: 18,
       textAlignVertical: 'center',
       borderRadius: 15,
+      color: '#ffffff'
     }
     
   });
