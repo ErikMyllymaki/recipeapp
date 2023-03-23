@@ -7,10 +7,10 @@ export default StyleSheet.create({
     },
 
     header: {
-        backgroundColor: '#E8E8E8',
+        backgroundColor: '#eaece5',
         justifyContent: 'center',
         alignItems: 'center',
-        height: 100,
+        height: 150,
     },
     title: {
         color: '#4B702F',
