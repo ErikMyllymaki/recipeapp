@@ -23,10 +23,15 @@ export default StyleSheet.create({
     },
     categoryItem: {
       flex: 1,
-      margin: 10,
+      padding: 10,
+      ...Platform.select({
+        ios: {
+          alignItems: "center",
+        },
+        android: {},
+      }),
     },
     categoryTitle: {
-      flex: 1,
       backgroundColor: 'white',
       padding: 20,
       width: 160,
