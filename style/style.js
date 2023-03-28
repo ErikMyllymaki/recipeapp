@@ -27,13 +27,14 @@ export default StyleSheet.create({
       ...Platform.select({
         ios: {
           alignItems: "center",
-        },
-        android: {},
-      }),
-      shadowColor: '#717f6851',
+          shadowColor: '#717f6851',
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.8,
         shadowRadius: 4,
+        },
+        android: {},
+      }),
+      
     },
     categoryTitle: {
       backgroundColor: 'white',
