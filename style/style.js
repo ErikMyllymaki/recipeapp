@@ -110,6 +110,14 @@ export default StyleSheet.create({
       borderRadius: 15,
       color: '#ffffff',
       overflow: 'hidden'
-    }
+    },
+    addRecipeInput:{
+      margin: 15,
+      backgroundColor: 'white',
+       padding: 10, 
+      borderRadius: 15,
+      placeholderTextColor: 'green',
+      }
+    
     
   });
