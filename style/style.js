@@ -22,14 +22,16 @@ export default StyleSheet.create({
       margin: 20,
     },
     categoryItem: {
-      display: 'flex'
+      flex: 1,
+      margin: 10,
     },
     categoryTitle: {
+      flex: 1,
       backgroundColor: 'white',
       padding: 20,
-      margin: 20,
       width: 160,
       height: 160,
+      resizeMode: 'cover',
       alignItems: 'center',
       borderRadius: 15,
       overflow: 'hidden'
