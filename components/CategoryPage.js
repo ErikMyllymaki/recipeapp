@@ -30,14 +30,17 @@ export default function CategoryPage({ navigation }) {
     </TouchableOpacity>
   );
 
+      
+
   return (
-    <View style={Styles.container}>
+    <View style={[Styles.container, {flex: 1, justifyContent: 'space-between'}] }>
       <Text style={Styles.pageTitle}>Recipes</Text>
       <FlatList
         numColumns={2}
         data={CATEGORIES}
         renderItem={renderCategoryItem}
         keyExtractor={(item) => item.id}
+        contentContainerStyle={{flexGrow: 1, justifyContent: 'center', paddingHorizontal: 10}}
       />
       <Text style={Styles.selectedCategoryTitle}>{selectedCategory.title}</Text>
       {/* Display recipes for the selected category here */}
