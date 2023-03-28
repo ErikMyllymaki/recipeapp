@@ -9,7 +9,8 @@ export default function AddRecipe() {
 
   const [recipeName, setRecipeName] = useState("");
   const [instructions, setInstructions] = useState("");
-  // const [ingerdients, setIngerdients] = useState([]);
+  const [ingredient, setIngredient] = useState("");
+  const [ingredients, setIngredients] = useState([]);
   const [recipes, setRecipes] = useState([]);
 
   const storeData = async (value) => {
@@ -45,15 +46,28 @@ export default function AddRecipe() {
 
   const saveRecipe = () => {
     const newKey = recipes.length + 1;
-    const newRecipe = { 
+    const newRecipe = {
       key: newKey.toString(),
-      name: recipeName, 
+      name: recipeName,
       instructions: instructions,
-      // ingredients: []
+      ingredients: ingredients
     }
     const newRecipes = [...recipes, newRecipe]
     storeData(newRecipes)
+    getData();
   }
+
+  const emptyAsyncStorage = async () => {
+    try {
+      const keys = await AsyncStorage.getAllKeys();
+      await AsyncStorage.multiRemove(keys);
+      console.log('AsyncStorage has been cleared!');
+    } catch (error) {
+      console.error('Error clearing AsyncStorage:', error);
+    }
+    getData();
+  }
+  
 
   return (
     <View style={Styles.container}>
@@ -70,6 +84,27 @@ export default function AddRecipe() {
         style={{ backgroundColor: 'white', padding: 10, }}
         onChangeText={text => setInstructions(text)}
       />
+      <Text>Add ingredients:</Text>
+      <TextInput
+        style={{ backgroundColor: 'white', padding: 10, }}
+        onChangeText={ingredient => setIngredient(ingredient)}
+      />
+      <Button
+        title="Add ingredient"
+        onPress={() => {
+          setIngredients([...ingredients, ingredient]);
+          setIngredient("");
+        }}
+      />
+      {/* <Button 
+      title='empty'
+        onPress={emptyAsyncStorage}
+      /> */}
+      <Text>Ingredients:</Text>
+      {ingredients.map((ingredient, index) => (
+        <Text key={index}>{ingredient}</Text>
+      ))}
+
       <Button
         title="save recipe"
         onPress={saveRecipe} />
@@ -78,6 +113,10 @@ export default function AddRecipe() {
           <View key={recipe.key} >
             <Text>name: {recipe.name}</Text>
             <Text>instructions: {recipe.instructions}</Text>
+            <Text>Ingredients:</Text>
+            {recipe.ingredients.map((ingredient, index) => (
+              <Text key={index}>{ingredient}</Text>
+            ))}
           </View>
         ))
       }
