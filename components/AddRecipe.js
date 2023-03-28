@@ -12,6 +12,8 @@ export default function AddRecipe() {
   const [ingredient, setIngredient] = useState("");
   const [ingredients, setIngredients] = useState([]);
   const [recipes, setRecipes] = useState([]);
+  const [expanded, setExpanded] = useState(false);
+
 
   const storeData = async (value) => {
     try {
@@ -81,12 +83,15 @@ export default function AddRecipe() {
       />
 
       
-      <TextInput
-      placeholder='+ Add instructions'
-      placeholderTextColor="#40793F"
-      style={Styles.addRecipeInput}
-        onChangeText={text => setInstructions(text)}
-      />
+<TextInput
+  multiline={true}
+  style={expanded ? [Styles.expandedAddRecipeInput, {textAlignVertical: 'top'}] : Styles.addRecipeInput}
+  onFocus={() => setExpanded(true)}
+  onBlur={() => setExpanded(false)}
+  placeholder='+ Add instructions'
+  placeholderTextColor="#40793F"
+  onChangeText={text => setInstructions(text)}
+/>
       
 
       <TextInput

@@ -124,6 +124,18 @@ export default StyleSheet.create({
       borderRadius: 15,
       backgroundColor: '#E8E8E8',
       },
+      expandedAddRecipeInput:{
+          fontSize: 15,
+          marginTop: 10,
+          marginBottom: 10,
+          marginHorizontal: 10,
+          backgroundColor: 'white',
+           padding: 10, 
+          borderRadius: 15,
+          backgroundColor: '#E8E8E8',
+          height: 100,
+          textAlignVertical: 'top',
+      },
       addRecipeButton:{
         backgroundColor: '#E8E8E8',
         alignItems: 'center',
@@ -135,7 +147,6 @@ export default StyleSheet.create({
         color: '#40793F',
         fontSize: 24,
       }
-
     
     
   });
