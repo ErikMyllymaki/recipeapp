@@ -113,12 +113,27 @@ export default StyleSheet.create({
       overflow: 'hidden'
     },
     addRecipeInput:{
-      margin: 15,
+      fontSize: 20,
+      marginTop: 10,
+      marginBottom: 10,
+      marginHorizontal: 30,
       backgroundColor: 'white',
        padding: 10, 
       borderRadius: 15,
-      placeholderTextColor: 'green',
+      backgroundColor: '#E8E8E8',
+      },
+      addRecipeButton:{
+        backgroundColor: '#E8E8E8',
+        alignItems: 'center',
+        padding: 5,
+        marginHorizontal: 60,
+        borderRadius: 15,
+      },
+      addRecipeButtonText: {
+        color: '#40793F',
+        fontSize: 24,
       }
+
     
     
   });
