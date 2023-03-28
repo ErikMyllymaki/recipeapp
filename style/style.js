@@ -23,10 +23,20 @@ export default StyleSheet.create({
     },
     categoryItem: {
       flex: 1,
-      margin: 10,
+      padding: 10,
+      ...Platform.select({
+        ios: {
+          alignItems: "center",
+          shadowColor: '#717f6851',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.8,
+        shadowRadius: 4,
+        },
+        android: {},
+      }),
+      
     },
     categoryTitle: {
-      flex: 1,
       backgroundColor: 'white',
       padding: 20,
       width: 160,
@@ -34,7 +44,7 @@ export default StyleSheet.create({
       resizeMode: 'cover',
       alignItems: 'center',
       borderRadius: 15,
-      overflow: 'hidden'
+      overflow: 'hidden',
     },
     categoryName: {
       fontSize: 20
