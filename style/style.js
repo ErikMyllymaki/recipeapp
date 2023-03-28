@@ -30,6 +30,10 @@ export default StyleSheet.create({
         },
         android: {},
       }),
+      shadowColor: '#717f6851',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.8,
+        shadowRadius: 4,
     },
     categoryTitle: {
       backgroundColor: 'white',
@@ -39,7 +43,7 @@ export default StyleSheet.create({
       resizeMode: 'cover',
       alignItems: 'center',
       borderRadius: 15,
-      overflow: 'hidden'
+      overflow: 'hidden',
     },
     categoryName: {
       fontSize: 20
