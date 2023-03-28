@@ -1,10 +1,20 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text, TextInput, Button} from 'react-native';
+import { Picker } from '@react-native-picker/picker'
 import Styles from '../style/style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CATEGORIES } from './CategoryPage';
 
 const STORAGE_KEY = "@recipe_Key";
+
+const CATEGORIES_TITLES = [
+  'Breakfast',
+  'Lunch',
+  'Dinner',
+  'Dessert',
+  'Snacks',
+  'Pastries'
+];
 
 export default function AddRecipe() {
 
@@ -13,7 +23,7 @@ export default function AddRecipe() {
   const [ingredient, setIngredient] = useState("");
   const [ingredients, setIngredients] = useState([]);
   const [recipes, setRecipes] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState(CATEGORIES[0]);
+  const [selectedCategory, setSelectedCategory] = useState(CATEGORIES_TITLES[0]);
 
   const storeData = async (value) => {
     try {
@@ -38,7 +48,6 @@ export default function AddRecipe() {
             json = []
           }
           setRecipes(json);
-          console.log(json)
         })
         .catch(error => console.log(error));
     } catch (e) {
@@ -50,12 +59,14 @@ export default function AddRecipe() {
     const newKey = recipes.length + 1;
     const newRecipe = {
       key: newKey.toString(),
+      category: selectedCategory,
       name: recipeName,
       instructions: instructions,
       ingredients: ingredients
     }
     const newRecipes = [...recipes, newRecipe]
     storeData(newRecipes)
+    console.log(newRecipes)
     getData();
   }
 
@@ -74,6 +85,19 @@ export default function AddRecipe() {
   return (
     <View style={Styles.container}>
       <Text style={Styles.pageHeader}>ADD RECIPE</Text>
+
+      <Picker
+        selectedValue={selectedCategory}
+        onValueChange={(itemValue) => setSelectedCategory(itemValue)}
+      >
+        {CATEGORIES_TITLES.map((category) => (
+          <Picker.Item
+            key={category}
+            label={category}
+            value={category}
+          />
+        ))}
+      </Picker>
 
       <TextInput
       placeholder='+ Add name'
@@ -101,10 +125,10 @@ export default function AddRecipe() {
           setIngredient("");
         }}
       />
-      {/* { <Button 
+      { <Button 
       title='empty'
         onPress={emptyAsyncStorage}
-      /> } */}
+      /> }
       <Text>Ingredients:</Text>
       {ingredients.map((ingredient, index) => (
         <Text key={index}>{ingredient}</Text>
@@ -116,6 +140,7 @@ export default function AddRecipe() {
       {
         recipes.map((recipe) => (
           <View key={recipe.key} >
+            <Text>cate: {recipe.category}</Text>
             <Text>name: {recipe.name}</Text>
             <Text>instructions: {recipe.instructions}</Text>
             <Text>Ingredients:</Text>
