@@ -18,7 +18,8 @@ export default StyleSheet.create({
         fontSize: 23
     },
     pageTitle: {
-      fontSize: 20
+      fontSize: 30,
+      margin: 20,
     },
     categoryItem: {
       display: 'flex'

@@ -30,6 +30,14 @@ export default function App() {
             backgroundcolor: '#fff',
             borderRadius: 25,
             height: 50,
+            ...Platform.select({
+              ios: {
+                bottom: 30,
+                height: 55,
+                paddingBottom: 0
+              },
+              android: {}
+            }),
           }
         }}
       >
