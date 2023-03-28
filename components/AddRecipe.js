@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { View, Text, TextInput, Button } from 'react-native';
 import Styles from '../style/style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { CATEGORIES } from './CategoryPage';
 
 const STORAGE_KEY = "@recipe_Key";
 
@@ -12,6 +13,7 @@ export default function AddRecipe() {
   const [ingredient, setIngredient] = useState("");
   const [ingredients, setIngredients] = useState([]);
   const [recipes, setRecipes] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(CATEGORIES[0]);
 
   const storeData = async (value) => {
     try {

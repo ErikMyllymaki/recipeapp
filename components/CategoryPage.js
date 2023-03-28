@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, ImageBackground } from 'react-native';
 import Styles from '../style/style';
 
-const CATEGORIES = [
+export const CATEGORIES = [
   { id: '1', title: 'Breakfast', image: require('../images/breakfast.jpg') },
   { id: '2', title: 'Dinner', image: require('../images/dinner.jpg') },
   { id: '3', title: 'Drinks', image: require('../images/drink.jpg') },
