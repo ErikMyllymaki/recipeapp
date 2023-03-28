@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, TextInput, Button} from 'react-native';
-import { Picker } from '@react-native-picker/picker'
+import { View, Text, TextInput, Button, TouchableOpacity } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
 import Styles from '../style/style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { CATEGORIES } from './CategoryPage';
 
 const STORAGE_KEY = "@recipe_Key";
 
@@ -101,6 +100,7 @@ export default function AddRecipe() {
 
       <TextInput
       placeholder='+ Add name'
+      placeholderTextColor="#40793F"
       style={Styles.addRecipeInput}
         onChangeText={name => setRecipeName(name)}
       />
@@ -108,6 +108,7 @@ export default function AddRecipe() {
       
       <TextInput
       placeholder='+ Add instructions'
+      placeholderTextColor="#40793F"
       style={Styles.addRecipeInput}
         onChangeText={text => setInstructions(text)}
       />
@@ -116,27 +117,32 @@ export default function AddRecipe() {
       <TextInput
         style={Styles.addRecipeInput}
         placeholder='+ Add ingredients'
+        placeholderTextColor="#40793F"
         onChangeText={ingredient => setIngredient(ingredient)}
       />
-      <Button
-        title="Add ingredient"
-        onPress={() => {
-          setIngredients([...ingredients, ingredient]);
-          setIngredient("");
-        }}
-      />
-      { <Button 
+<TouchableOpacity
+  style={Styles.addRecipeButton}
+  onPress={() => {
+    setIngredients([...ingredients, ingredient]);
+    setIngredient("");
+  }}
+>
+  <Text style={Styles.addRecipeButtonText}>Add ingredient</Text>
+</TouchableOpacity>
+      {/* { <Button 
       title='empty'
         onPress={emptyAsyncStorage}
-      /> }
+      /> */} 
       <Text>Ingredients:</Text>
       {ingredients.map((ingredient, index) => (
         <Text key={index}>{ingredient}</Text>
       ))}
 
-      <Button
-        title="save recipe"
-        onPress={saveRecipe} />
+<TouchableOpacity
+  style={Styles.addRecipeButton}
+  onPress={saveRecipe}>
+  <Text style={Styles.addRecipeButtonText}>Save recipe</Text>
+</TouchableOpacity>
       {
         recipes.map((recipe) => (
           <View key={recipe.key} >

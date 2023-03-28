@@ -22,17 +22,29 @@ export default StyleSheet.create({
       margin: 20,
     },
     categoryItem: {
-      display: 'flex'
+      flex: 1,
+      padding: 10,
+      ...Platform.select({
+        ios: {
+          alignItems: "center",
+          shadowColor: '#717f6851',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.8,
+        shadowRadius: 4,
+        },
+        android: {},
+      }),
+      
     },
     categoryTitle: {
       backgroundColor: 'white',
       padding: 20,
-      margin: 20,
       width: 160,
       height: 160,
+      resizeMode: 'cover',
       alignItems: 'center',
       borderRadius: 15,
-      overflow: 'hidden'
+      overflow: 'hidden',
     },
     categoryName: {
       fontSize: 20
@@ -113,12 +125,27 @@ export default StyleSheet.create({
       overflow: 'hidden'
     },
     addRecipeInput:{
-      margin: 15,
+      fontSize: 20,
+      marginTop: 10,
+      marginBottom: 10,
+      marginHorizontal: 30,
       backgroundColor: 'white',
        padding: 10, 
       borderRadius: 15,
-      placeholderTextColor: 'green',
+      backgroundColor: '#E8E8E8',
+      },
+      addRecipeButton:{
+        backgroundColor: '#E8E8E8',
+        alignItems: 'center',
+        padding: 5,
+        marginHorizontal: 60,
+        borderRadius: 15,
+      },
+      addRecipeButtonText: {
+        color: '#40793F',
+        fontSize: 24,
       }
+
     
     
   });
