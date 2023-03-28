@@ -9,7 +9,7 @@ const STORAGE_KEY = "@recipe_Key";
 // "Each child in a list should have unique "key" prop" !!!
 // Hakukentästä jos muuttaa hakusanaa, hakee vain filteredRecipes -> pitää hakea kaikista resepteistä
 
-export default function Recipe() {
+export default function RecipeList() {
 
     const [text, setText] = useState('');
     const [recipes, setRecipes] = useState([]);
