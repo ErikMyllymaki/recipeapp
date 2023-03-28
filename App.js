@@ -68,14 +68,15 @@ export default function App() {
             tabBarInActiveTintColor: 'gray'
           }} />
 
-        <Tab.Screen name='RecipeList' component={RecipeList}
+        {/* <Tab.Screen name='RecipeList' component={RecipeList}
           options={{
             tabBarIcon: ({ color }) => (
               <MaterialCommunityIcons name="information-variant" size={30} color={color} />
             ),
             tabBarActiveTintColor: '#61876E',
             tabBarInActiveTintColor: 'gray'
-          }} />
+          }} /> */}
+          <Tab.Screen name='RecipeList' component={RecipeList}/>
 
       </Tab.Navigator>
     </NavigationContainer>
