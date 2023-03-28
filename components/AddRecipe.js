@@ -73,22 +73,25 @@ export default function AddRecipe() {
 
   return (
     <View style={Styles.container}>
-      <Text>addrecieae</Text>
+      <Text style={Styles.pageHeader}>ADD RECIPE</Text>
 
-      <Text>Add name</Text>
       <TextInput
-        style={{ backgroundColor: 'white', padding: 10, }}
+      placeholder='+ Add name'
+      style={Styles.addRecipeInput}
         onChangeText={name => setRecipeName(name)}
       />
 
-      <Text>Add instructions</Text>
+      
       <TextInput
-        style={{ backgroundColor: 'white', padding: 10, }}
+      placeholder='+ Add instructions'
+      style={Styles.addRecipeInput}
         onChangeText={text => setInstructions(text)}
       />
-      <Text>Add ingredients:</Text>
+      
+
       <TextInput
-        style={{ backgroundColor: 'white', padding: 10, }}
+        style={Styles.addRecipeInput}
+        placeholder='+ Add ingredients'
         onChangeText={ingredient => setIngredient(ingredient)}
       />
       <Button
@@ -98,10 +101,10 @@ export default function AddRecipe() {
           setIngredient("");
         }}
       />
-      {/* <Button 
+      {/* { <Button 
       title='empty'
         onPress={emptyAsyncStorage}
-      /> */}
+      /> } */}
       <Text>Ingredients:</Text>
       {ingredients.map((ingredient, index) => (
         <Text key={index}>{ingredient}</Text>

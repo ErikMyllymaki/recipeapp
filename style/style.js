@@ -18,7 +18,8 @@ export default StyleSheet.create({
         fontSize: 23
     },
     pageTitle: {
-      fontSize: 20
+      fontSize: 30,
+      margin: 20,
     },
     categoryItem: {
       display: 'flex'
@@ -110,6 +111,14 @@ export default StyleSheet.create({
       borderRadius: 15,
       color: '#ffffff',
       overflow: 'hidden'
-    }
+    },
+    addRecipeInput:{
+      margin: 15,
+      backgroundColor: 'white',
+       padding: 10, 
+      borderRadius: 15,
+      placeholderTextColor: 'green',
+      }
+    
     
   });
