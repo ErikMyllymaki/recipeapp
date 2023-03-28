@@ -43,10 +43,10 @@ export default StyleSheet.create({
       fontSize: 20
     },
     textInput: {
-      borderWidth: 1,
-      padding: 5,
-      margin: 5,
-      backgroundColor: 'yellow'
+      padding: 10,
+      margin: 15,
+      borderRadius: 25,
+      backgroundColor: '#ffffff',
     },
 
    //about us sivulla käytetyt tyylit. Voi käyttää muillakin sivuilla
@@ -62,7 +62,7 @@ export default StyleSheet.create({
     borderRadius: 20,
   },
   pageHeader: {
-    fontSize: 30,
+    fontSize: 25,
     color: '#4B702F',
     textAlign: 'center',
     paddingTop: 15,
