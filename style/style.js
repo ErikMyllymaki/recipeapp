@@ -65,7 +65,7 @@ export default StyleSheet.create({
    textAreaBackground: {
     alignItems: 'center',
     backgroundColor: '#E8E8E8',
-    marginBottom: 15,
+    marginBottom: 50,
     paddingTop: 15,
     paddingHorizontal: 15,
     paddingBottom: 100,
@@ -81,7 +81,7 @@ export default StyleSheet.create({
     paddingBottom: 15,
   },
   contactUsHeader:{
-    fontSize: 30,
+    fontSize: 25,
     fontFamily: 'TenorSans',
     textAlign: 'center',
     paddingTop: 15,
@@ -89,13 +89,13 @@ export default StyleSheet.create({
     color: '#4B702F'
   },
   contactInformation:{
-    fontSize: 20,
+    fontSize: 19,
     fontFamily: 'GeosansLight',
     textAlign: 'center',
     paddingBottom: 5,
   },
   aboutUsIntroduction: {
-    fontSize: 17,
+    fontSize: 18,
     textAlign: 'center',
     paddingBottom: 25,
     padding: 15,
@@ -109,7 +109,6 @@ export default StyleSheet.create({
     bottom: 10,
     width: '100%',
     height: 80,
-
   },
   icon: {
     marginHorizontal: 13,
