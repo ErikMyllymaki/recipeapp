@@ -69,6 +69,7 @@ export default function AddRecipe() {
     storeData(newRecipes)
     console.log(newRecipes)
     getData();
+    
   }
 
   const emptyAsyncStorage = async () => {
@@ -81,7 +82,7 @@ export default function AddRecipe() {
     }
     getData();
   }
-  
+
 
   return (
     <View style={Styles.container}>
@@ -101,23 +102,12 @@ export default function AddRecipe() {
       </Picker>
 
       <TextInput
-      placeholder='+ Add name'
-      placeholderTextColor="#40793F"
-      style={Styles.addRecipeInput}
+        placeholder='+ Add name'
+        placeholderTextColor="#40793F"
+        style={Styles.addRecipeInput}
         onChangeText={name => setRecipeName(name)}
       />
 
-      
-<TextInput
-  multiline={true}
-  style={expanded ? [Styles.expandedAddRecipeInput, {textAlignVertical: 'top'}] : Styles.addRecipeInput}
-  onFocus={() => setExpanded(true)}
-  onBlur={() => setExpanded(false)}
-  placeholder='+ Add instructions'
-  placeholderTextColor="#40793F"
-  onChangeText={text => setInstructions(text)}
-/>
-      
 
       <TextInput
         style={Styles.addRecipeInput}
@@ -125,29 +115,39 @@ export default function AddRecipe() {
         placeholderTextColor="#40793F"
         onChangeText={ingredient => setIngredient(ingredient)}
       />
-<TouchableOpacity
-  style={Styles.addRecipeButton}
-  onPress={() => {
-    setIngredients([...ingredients, ingredient]);
-    setIngredient("");
-  }}
->
-  <Text style={Styles.addRecipeButtonText}>Add ingredient</Text>
-</TouchableOpacity>
+      <TouchableOpacity
+        style={Styles.addRecipeButton}
+        onPress={() => {
+          setIngredients([...ingredients, ingredient]);
+          setIngredient("");
+        }}
+      >
+        <Text style={Styles.addRecipeButtonText}>Add ingredient</Text>
+      </TouchableOpacity>
       {/* { <Button 
       title='empty'
         onPress={emptyAsyncStorage}
-      /> */} 
+      /> */}
       <Text>Ingredients:</Text>
       {ingredients.map((ingredient, index) => (
         <Text key={index}>{ingredient}</Text>
       ))}
 
-<TouchableOpacity
-  style={Styles.addRecipeButton}
-  onPress={saveRecipe}>
-  <Text style={Styles.addRecipeButtonText}>Save recipe</Text>
-</TouchableOpacity>
+      <TextInput
+        multiline={true}
+        style={expanded ? [Styles.expandedAddRecipeInput, { textAlignVertical: 'top' }] : Styles.addRecipeInput}
+        onFocus={() => setExpanded(true)}
+        onBlur={() => setExpanded(false)}
+        placeholder='+ Add instructions'
+        placeholderTextColor="#40793F"
+        onChangeText={text => setInstructions(text)}
+      />
+
+      <TouchableOpacity
+        style={Styles.addRecipeButton}
+        onPress={saveRecipe}>
+        <Text style={Styles.addRecipeButtonText}>Save recipe</Text>
+      </TouchableOpacity>
       {
         recipes.map((recipe) => (
           <View key={recipe.key} >
