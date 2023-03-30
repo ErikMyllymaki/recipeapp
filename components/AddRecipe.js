@@ -23,6 +23,7 @@ export default function AddRecipe() {
   const [ingredients, setIngredients] = useState([]);
   const [recipes, setRecipes] = useState([]);
   const [expanded, setExpanded] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const [selectedCategory, setSelectedCategory] = useState(CATEGORIES_TITLES[0]);
 
@@ -63,11 +64,12 @@ export default function AddRecipe() {
       category: selectedCategory,
       name: recipeName,
       instructions: instructions,
-      ingredients: ingredients
+      ingredients: ingredients,
+      isFavorite: isFavorite,
     }
     const newRecipes = [...recipes, newRecipe]
     storeData(newRecipes)
-    // console.log(newRecipes)
+    console.log(newRecipes)
     getData();
     
   }
