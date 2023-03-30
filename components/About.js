@@ -5,9 +5,19 @@ import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { useFonts } from 'expo-font';
 
 
 export default function App() {
+  const [loaded] = useFonts({
+    GeosansLight: require('../assets/fonts/GeosansLight.ttf'),
+    TenorSans: require('../assets/fonts/TenorSans-Regular.ttf'),
+    Sansation: require('../assets/fonts/Sansation-Regular.ttf')
+  });
+
+  if (!loaded) {
+    return null;
+  }
 
   const handlePressTiktok = () => {
     Linking.openURL('https://www.tiktok.com/');

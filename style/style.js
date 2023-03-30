@@ -47,7 +47,9 @@ export default StyleSheet.create({
       overflow: 'hidden',
     },
     categoryName: {
-      fontSize: 20
+      fontSize: 20,
+      position: 'absolute', 
+      bottom: 10
     },
     selectedCategoryTitle: {
       fontSize: 20
@@ -72,20 +74,23 @@ export default StyleSheet.create({
   },
   pageHeader: {
     fontSize: 25,
+    fontFamily:'TenorSans',
     color: '#4B702F',
     textAlign: 'center',
     paddingTop: 15,
     paddingBottom: 15,
   },
   contactUsHeader:{
-    fontSize: 25,
+    fontSize: 30,
+    fontFamily: 'TenorSans',
     textAlign: 'center',
     paddingTop: 15,
     paddingBottom: 15,
     color: '#4B702F'
   },
   contactInformation:{
-    fontSize: 17,
+    fontSize: 20,
+    fontFamily: 'GeosansLight',
     textAlign: 'center',
     paddingBottom: 5,
   },
@@ -93,7 +98,8 @@ export default StyleSheet.create({
     fontSize: 17,
     textAlign: 'center',
     paddingBottom: 25,
-    padding: 15
+    padding: 15,
+    fontFamily: 'GeosansLight'
   },
   socialIcons: {
     flexDirection: 'row',
@@ -110,6 +116,7 @@ export default StyleSheet.create({
     marginBottom: -10
   },
     homeButton: {
+      fontFamily: 'TenorSans',
       backgroundColor: '#61876ee9',
       width: 300,
       height: 100,

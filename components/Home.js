@@ -3,9 +3,18 @@ import React from 'react'
 import { View, Text, Pressable, Dimensions } from 'react-native';
 import Styles from '../style/style';
 import { ImageBackground } from 'react-native';
+import { useFonts } from 'expo-font';
 
 
 export default function Home( {navigation} ) {
+  const [loaded] = useFonts({
+    GeosansLight: require('../assets/fonts/GeosansLight.ttf'),
+    TenorSans: require('../assets/fonts/TenorSans-Regular.ttf')
+  });
+
+  if (!loaded) {
+    return null;
+  }
 
   const backgroundImage = require('../images/backgroundImage.jpg');
   const screenWidth = Dimensions.get('window').width;
