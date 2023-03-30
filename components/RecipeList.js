@@ -50,7 +50,7 @@ export default function RecipeList({navigation,route}) {
     const renderReceptItem = ({ item }) => {
       // if (item.category === "route.params.recipe") {
         return (
-          <TouchableOpacity>
+          <TouchableOpacity key={item.key}>
             <Text style={Styles.categoryTitle}>{item.name}</Text>
           </TouchableOpacity>
         );
@@ -72,7 +72,7 @@ export default function RecipeList({navigation,route}) {
             style={Styles.testi}
             data={filteredRecipes}
             renderItem={renderReceptItem}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item) => item.key}
         />
     </View>
     )
