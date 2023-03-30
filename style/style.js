@@ -75,6 +75,7 @@ export default StyleSheet.create({
   },
   pageHeader: {
     fontSize: 25,
+    fontFamily:'TenorSans',
     color: '#4B702F',
     textAlign: 'center',
     paddingTop: 15,
@@ -82,18 +83,21 @@ export default StyleSheet.create({
   },
   contactUsHeader:{
     fontSize: 30,
+    fontFamily: 'TenorSans',
     textAlign: 'center',
     paddingTop: 15,
     paddingBottom: 5,
   },
   contactInformation:{
     fontSize: 20,
+    fontFamily: 'GeosansLight',
     textAlign: 'center',
     paddingBottom: 5,
   },
   aboutUsIntroduction: {
     fontSize: 20,
     textAlign: 'center',
+    fontFamily: 'GeosansLight'
   },
   socialIcons: {
     flexDirection: 'row',
@@ -110,6 +114,7 @@ export default StyleSheet.create({
     marginBottom: -10
   },
     homeButton: {
+      fontFamily: 'TenorSans',
       backgroundColor: '#61876ee9',
       width: 300,
       height: 100,

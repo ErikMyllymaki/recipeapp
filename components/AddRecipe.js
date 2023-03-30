@@ -115,19 +115,19 @@ export default function AddRecipe() {
         placeholderTextColor="#40793F"
         onChangeText={ingredient => setIngredient(ingredient)}
       />
-      <TouchableOpacity
-        style={Styles.addRecipeButton}
-        onPress={() => {
-          setIngredients([...ingredients, ingredient]);
-          setIngredient("");
-        }}
-      >
-        <Text style={Styles.addRecipeButtonText}>Add ingredient</Text>
-      </TouchableOpacity>
-      {/* { <Button 
+<TouchableOpacity
+  style={Styles.addRecipeButton}
+  onPress={() => {
+    setIngredients([...ingredients, ingredient]);
+    setIngredient("");
+  }}
+>
+  <Text style={Styles.addRecipeButtonText}>Add ingredient</Text>
+</TouchableOpacity>
+      {/* <Button 
       title='empty'
         onPress={emptyAsyncStorage}
-      /> */}
+      />  */}
       <Text>Ingredients:</Text>
       {ingredients.map((ingredient, index) => (
         <Text key={index}>{ingredient}</Text>
