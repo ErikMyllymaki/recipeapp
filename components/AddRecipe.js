@@ -67,7 +67,7 @@ export default function AddRecipe() {
     }
     const newRecipes = [...recipes, newRecipe]
     storeData(newRecipes)
-    console.log(newRecipes)
+    // console.log(newRecipes)
     getData();
   }
 
@@ -134,10 +134,10 @@ export default function AddRecipe() {
 >
   <Text style={Styles.addRecipeButtonText}>Add ingredient</Text>
 </TouchableOpacity>
-      {/* { <Button 
+        <Button 
       title='empty'
         onPress={emptyAsyncStorage}
-      /> */} 
+      />  
       <Text>Ingredients:</Text>
       {ingredients.map((ingredient, index) => (
         <Text key={index}>{ingredient}</Text>
