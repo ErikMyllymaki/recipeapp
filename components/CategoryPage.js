@@ -12,17 +12,17 @@ export const CATEGORIES = [
 ];
 
 export default function CategoryPage({ navigation }) {
-  const [selectedCategory, setSelectedCategory] = useState(CATEGORIES[0]);
+  // const [selectedCategory, setSelectedCategory] = useState(CATEGORIES[0]);
 
-  const handleCategoryPress = (category) => {
-    setSelectedCategory(category);
-  };
+  // const handleCategoryPress = (category) => {
+  //   setSelectedCategory(category);
+  // };
 
   const renderCategoryItem = ({ item }) => (
     <TouchableOpacity
       style={[
         Styles.categoryItem,
-        selectedCategory.id === item.id
+        // selectedCategory.id === item.id
       ]}
       onPress={() => navigation.navigate('RecipeList', {category: item})}
 
@@ -43,8 +43,6 @@ export default function CategoryPage({ navigation }) {
         keyExtractor={(item) => item.id}
         contentContainerStyle={{flexGrow: 1, paddingHorizontal: 10}}
       />
-      <Text style={Styles.selectedCategoryTitle}>{selectedCategory.title}</Text>
-      {/* Display recipes for the selected category here */}
     </View>
   );
 }

@@ -47,7 +47,9 @@ export default StyleSheet.create({
       overflow: 'hidden',
     },
     categoryName: {
-      fontSize: 20
+      fontSize: 20,
+      position: 'absolute', 
+      bottom: 10
     },
     selectedCategoryTitle: {
       fontSize: 20
@@ -63,35 +65,41 @@ export default StyleSheet.create({
    textAreaBackground: {
     alignItems: 'center',
     backgroundColor: '#E8E8E8',
-    marginBottom: 15,
+    marginBottom: 50,
     paddingTop: 15,
-    paddingBottom: 15,
     paddingHorizontal: 15,
-    paddingBottom: 80,
+    paddingBottom: 100,
     marginHorizontal: 18,
     borderRadius: 20,
   },
   pageHeader: {
     fontSize: 25,
+    fontFamily:'TenorSans',
     color: '#4B702F',
     textAlign: 'center',
     paddingTop: 15,
     paddingBottom: 15,
   },
   contactUsHeader:{
-    fontSize: 30,
+    fontSize: 25,
+    fontFamily: 'TenorSans',
     textAlign: 'center',
     paddingTop: 15,
-    paddingBottom: 5,
+    paddingBottom: 15,
+    color: '#4B702F'
   },
   contactInformation:{
-    fontSize: 20,
+    fontSize: 19,
+    fontFamily: 'GeosansLight',
     textAlign: 'center',
     paddingBottom: 5,
   },
   aboutUsIntroduction: {
-    fontSize: 20,
+    fontSize: 18,
     textAlign: 'center',
+    paddingBottom: 25,
+    padding: 15,
+    fontFamily: 'GeosansLight'
   },
   socialIcons: {
     flexDirection: 'row',
@@ -100,14 +108,14 @@ export default StyleSheet.create({
     position: 'absolute',
     bottom: 10,
     width: '100%',
-    height: 60,
-    
+    height: 80,
   },
   icon: {
-    marginHorizontal: 10,
+    marginHorizontal: 13,
     marginBottom: -10
   },
     homeButton: {
+      fontFamily: 'TenorSans',
       backgroundColor: '#61876ee9',
       width: 300,
       height: 100,
@@ -156,7 +164,13 @@ export default StyleSheet.create({
       addRecipeButtonText: {
         color: '#40793F',
         fontSize: 24,
-      }
-    
+      },
+    recipeList: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+      gap: 50,
+      marginLeft: -100
+    }
     
   });

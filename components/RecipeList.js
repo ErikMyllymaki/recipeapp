@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, TextInput, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image, Pressable } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import Styles from '../style/style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { AntDesign } from '@expo/vector-icons';
 
 const STORAGE_KEY = "@recipe_Key";
 
@@ -49,7 +50,7 @@ export default function RecipeList({navigation,route}) {
     const renderReceptItem = ({ item }) => {
       // if (item.category === "route.params.recipe") {
         return (
-          <TouchableOpacity>
+          <TouchableOpacity key={item.key}>
             <Text style={Styles.categoryTitle}>{item.name}</Text>
           </TouchableOpacity>
         );
@@ -61,12 +62,17 @@ export default function RecipeList({navigation,route}) {
     return (
     <View style={Styles.container}>
         {/* <TextInput value={text} onChangeText={search} style={Styles.textInput} placeholder='Search' placeholderTextColor={'#3C6255'}/> */}
+        <View style={Styles.recipeList}>
+        <Pressable onPress={() => navigation.navigate('Recipes')}>
+          <AntDesign name='left' size={30} color='#4B702F'/>
+        </Pressable>
         <Text style={Styles.pageHeader}>{category.title}</Text>
+        </View>
         <FlatList
             style={Styles.testi}
             data={filteredRecipes}
             renderItem={renderReceptItem}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item) => item.key}
         />
     </View>
     )
