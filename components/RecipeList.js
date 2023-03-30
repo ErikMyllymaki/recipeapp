@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import Styles from '../style/style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -49,10 +49,10 @@ export default function RecipeList() {
 
     return (
     <View style={Styles.container}>
-        <TextInput value={text} onChangeText={search} style={Styles.textInput} placeholder='Search'/>
+        <TextInput value={text} onChangeText={search} style={Styles.textInput} placeholder='Search' placeholderTextColor={'#3C6255'}/>
+        <Text style={Styles.pageHeader}>CATEGORY*</Text>
         <FlatList
             style={Styles.testi}
-            numColumns={1}
             data={recipes}
             renderItem={renderReceptItem}
             keyExtractor={(item) => item.id}

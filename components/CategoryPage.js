@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, ImageBackground } from 'react-native';
 import Styles from '../style/style';
 
-const CATEGORIES = [
+export const CATEGORIES = [
   { id: '1', title: 'Breakfast', image: require('../images/breakfast.jpg') },
   { id: '2', title: 'Dinner', image: require('../images/dinner.jpg') },
   { id: '3', title: 'Drinks', image: require('../images/drink.jpg') },
@@ -30,14 +30,17 @@ export default function CategoryPage({ navigation }) {
     </TouchableOpacity>
   );
 
+      
+
   return (
-    <View style={Styles.container}>
+    <View style={[Styles.container, {flex: 1, justifyContent: 'space-between'}] }>
       <Text style={Styles.pageTitle}>Recipes</Text>
       <FlatList
         numColumns={2}
         data={CATEGORIES}
         renderItem={renderCategoryItem}
         keyExtractor={(item) => item.id}
+        contentContainerStyle={{flexGrow: 1, paddingHorizontal: 10}}
       />
       <Text style={Styles.selectedCategoryTitle}>{selectedCategory.title}</Text>
       {/* Display recipes for the selected category here */}

@@ -1,9 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text, TextInput, Button, TouchableOpacity } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
 import Styles from '../style/style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const STORAGE_KEY = "@recipe_Key";
+
+const CATEGORIES_TITLES = [
+  'Breakfast',
+  'Lunch',
+  'Dinner',
+  'Dessert',
+  'Snacks',
+  'Pastries'
+];
 
 export default function AddRecipe() {
 
@@ -12,6 +22,9 @@ export default function AddRecipe() {
   const [ingredient, setIngredient] = useState("");
   const [ingredients, setIngredients] = useState([]);
   const [recipes, setRecipes] = useState([]);
+  const [expanded, setExpanded] = useState(false);
+
+  const [selectedCategory, setSelectedCategory] = useState(CATEGORIES_TITLES[0]);
 
   const storeData = async (value) => {
     try {
@@ -36,7 +49,6 @@ export default function AddRecipe() {
             json = []
           }
           setRecipes(json);
-          console.log(json)
         })
         .catch(error => console.log(error));
     } catch (e) {
@@ -48,12 +60,14 @@ export default function AddRecipe() {
     const newKey = recipes.length + 1;
     const newRecipe = {
       key: newKey.toString(),
+      category: selectedCategory,
       name: recipeName,
       instructions: instructions,
       ingredients: ingredients
     }
     const newRecipes = [...recipes, newRecipe]
     storeData(newRecipes)
+    console.log(newRecipes)
     getData();
   }
 
@@ -71,46 +85,73 @@ export default function AddRecipe() {
 
   return (
     <View style={Styles.container}>
-      <Text>addrecieae</Text>
+      <Text style={Styles.pageHeader}>ADD RECIPE</Text>
 
-      <Text>Add name</Text>
+      <Picker
+        selectedValue={selectedCategory}
+        onValueChange={(itemValue) => setSelectedCategory(itemValue)}
+      >
+        {CATEGORIES_TITLES.map((category) => (
+          <Picker.Item
+            key={category}
+            label={category}
+            value={category}
+          />
+        ))}
+      </Picker>
+
       <TextInput
-        style={{ backgroundColor: 'white', padding: 10, }}
+      placeholder='+ Add name'
+      placeholderTextColor="#40793F"
+      style={Styles.addRecipeInput}
         onChangeText={name => setRecipeName(name)}
       />
 
-      <Text>Add instructions</Text>
+      
+<TextInput
+  multiline={true}
+  style={expanded ? [Styles.expandedAddRecipeInput, {textAlignVertical: 'top'}] : Styles.addRecipeInput}
+  onFocus={() => setExpanded(true)}
+  onBlur={() => setExpanded(false)}
+  placeholder='+ Add instructions'
+  placeholderTextColor="#40793F"
+  onChangeText={text => setInstructions(text)}
+/>
+      
+
       <TextInput
-        style={{ backgroundColor: 'white', padding: 10, }}
-        onChangeText={text => setInstructions(text)}
-      />
-      <Text>Add ingredients:</Text>
-      <TextInput
-        style={{ backgroundColor: 'white', padding: 10, }}
+        style={Styles.addRecipeInput}
+        placeholder='+ Add ingredients'
+        placeholderTextColor="#40793F"
         onChangeText={ingredient => setIngredient(ingredient)}
       />
-      <Button
-        title="Add ingredient"
-        onPress={() => {
-          setIngredients([...ingredients, ingredient]);
-          setIngredient("");
-        }}
-      />
-      {/* <Button 
+<TouchableOpacity
+  style={Styles.addRecipeButton}
+  onPress={() => {
+    setIngredients([...ingredients, ingredient]);
+    setIngredient("");
+  }}
+>
+  <Text style={Styles.addRecipeButtonText}>Add ingredient</Text>
+</TouchableOpacity>
+      {/* { <Button 
       title='empty'
         onPress={emptyAsyncStorage}
-      /> */}
+      /> */} 
       <Text>Ingredients:</Text>
       {ingredients.map((ingredient, index) => (
         <Text key={index}>{ingredient}</Text>
       ))}
 
-      <Button
-        title="save recipe"
-        onPress={saveRecipe} />
+<TouchableOpacity
+  style={Styles.addRecipeButton}
+  onPress={saveRecipe}>
+  <Text style={Styles.addRecipeButtonText}>Save recipe</Text>
+</TouchableOpacity>
       {
         recipes.map((recipe) => (
           <View key={recipe.key} >
+            <Text>cate: {recipe.category}</Text>
             <Text>name: {recipe.name}</Text>
             <Text>instructions: {recipe.instructions}</Text>
             <Text>Ingredients:</Text>
