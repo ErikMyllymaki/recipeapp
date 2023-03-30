@@ -22,9 +22,10 @@ export default function CategoryPage({ navigation }) {
     <TouchableOpacity
       style={[
         Styles.categoryItem,
-        selectedCategory.id === item.id && Styles.selectedCategoryItem,
+        selectedCategory.id === item.id
       ]}
-      onPress={() => handleCategoryPress(item)}
+      onPress={() => navigation.navigate('RecipeList', {category: item})}
+
     >
       <ImageBackground source={item.image} style={Styles.categoryTitle}><Text style={Styles.categoryName}>{item.title}</Text></ImageBackground>
     </TouchableOpacity>

@@ -67,7 +67,7 @@ export default function AddRecipe() {
     }
     const newRecipes = [...recipes, newRecipe]
     storeData(newRecipes)
-    console.log(newRecipes)
+    // console.log(newRecipes)
     getData();
     
   }
