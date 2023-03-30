@@ -164,7 +164,13 @@ export default StyleSheet.create({
       addRecipeButtonText: {
         color: '#40793F',
         fontSize: 24,
-      }
-    
+      },
+    recipeList: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+      gap: 50,
+      marginLeft: -100
+    }
     
   });
