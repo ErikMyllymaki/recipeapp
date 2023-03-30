@@ -4,7 +4,7 @@ import { Picker } from '@react-native-picker/picker';
 import Styles from '../style/style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const STORAGE_KEY = "@recipe_Key";
+export const STORAGE_KEY = "@recipe_Key";
 
 const CATEGORIES_TITLES = [
   'Breakfast',

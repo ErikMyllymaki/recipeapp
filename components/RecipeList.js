@@ -4,10 +4,9 @@ import { FlatList } from 'react-native-gesture-handler';
 import Styles from '../style/style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AntDesign } from '@expo/vector-icons';
+import { STORAGE_KEY } from './AddRecipe';
 
-const STORAGE_KEY = "@recipe_Key";
 
-// "Each child in a list should have unique "key" prop" !!!
 // Hakukentästä jos muuttaa hakusanaa, hakee vain filteredRecipes -> pitää hakea kaikista resepteistä
 
 export default function RecipeList({navigation,route}) {
@@ -52,15 +51,11 @@ export default function RecipeList({navigation,route}) {
     };
 
     const renderReceptItem = ({ item }) => {
-      // if (item.category === "route.params.recipe") {
         return (
           <TouchableOpacity key={item.key} onPress={() => navigateToRecipe(item)}>
             <Text style={Styles.categoryTitle}>{item.name}</Text>
           </TouchableOpacity>
         );
-      // } else {
-      //   return null;
-      // }
     };
     
     return (
