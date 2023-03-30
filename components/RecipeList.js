@@ -47,10 +47,14 @@ export default function RecipeList({navigation,route}) {
     //     setRecipes(filteredRecipes);
     // }
 
+    const navigateToRecipe = recipe => {
+      navigation.navigate('Recipe', { recipe });
+    };
+
     const renderReceptItem = ({ item }) => {
       // if (item.category === "route.params.recipe") {
         return (
-          <TouchableOpacity key={item.key}>
+          <TouchableOpacity key={item.key} onPress={() => navigateToRecipe(item)}>
             <Text style={Styles.categoryTitle}>{item.name}</Text>
           </TouchableOpacity>
         );

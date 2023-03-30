@@ -5,6 +5,7 @@ import Styles from './style/style';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from './components/Home';
+import Recipe from './components/Recipe';
 import CategoryPage from './components/CategoryPage';
 import AddRecipe from './components/AddRecipe';
 import RecipeList from './components/RecipeList';
@@ -85,6 +86,8 @@ export default function App() {
             tabBarInActiveTintColor: 'gray'
           }} /> */}
           <Tab.Screen name='RecipeList' component={RecipeList}/>
+          <Tab.Screen name='Recipe' component={Recipe}/>
+
 
       </Tab.Navigator>
     </NavigationContainer>
