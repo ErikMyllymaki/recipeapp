@@ -47,7 +47,9 @@ export default StyleSheet.create({
       overflow: 'hidden',
     },
     categoryName: {
-      fontSize: 20
+      fontSize: 20,
+      position: 'absolute', 
+      bottom: 10
     },
     selectedCategoryTitle: {
       fontSize: 20
