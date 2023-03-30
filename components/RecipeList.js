@@ -9,10 +9,14 @@ const STORAGE_KEY = "@recipe_Key";
 // "Each child in a list should have unique "key" prop" !!!
 // Hakukentästä jos muuttaa hakusanaa, hakee vain filteredRecipes -> pitää hakea kaikista resepteistä
 
-export default function RecipeList() {
+export default function RecipeList({navigation,route}) {
 
     const [text, setText] = useState('');
     const [recipes, setRecipes] = useState([]);
+
+    const { category } = route.params;
+    const filteredRecipes = recipes.filter(recipe => recipe.category === category.title);
+
 
     useEffect(() => {
         getData();
@@ -27,7 +31,8 @@ export default function RecipeList() {
                 json = []
               }
               setRecipes(json);
-              console.log(json)
+              console.log(recipes)
+              // console.log(json)
             })
             .catch (error => console.log(error));
         } catch (e) {
@@ -35,25 +40,31 @@ export default function RecipeList() {
         }
       }
 
-    function search(keyword) {
-        setText(keyword);
-        const filteredRecipes = recipes.filter(r => r.name.includes(keyword));
-        setRecipes(filteredRecipes);
-    }
+    // function search(keyword) {
+    //     setText(keyword);
+    //     const filteredRecipes = recipes.filter(r => r.name.includes(keyword));
+    //     setRecipes(filteredRecipes);
+    // }
 
-    const renderReceptItem = ({ item }) => (
-        <TouchableOpacity>
-          <Text style={Styles.categoryTitle}>{item.name}</Text>
-        </TouchableOpacity>
-    );
-
+    const renderReceptItem = ({ item }) => {
+      // if (item.category === "route.params.recipe") {
+        return (
+          <TouchableOpacity>
+            <Text style={Styles.categoryTitle}>{item.name}</Text>
+          </TouchableOpacity>
+        );
+      // } else {
+      //   return null;
+      // }
+    };
+    
     return (
     <View style={Styles.container}>
-        <TextInput value={text} onChangeText={search} style={Styles.textInput} placeholder='Search' placeholderTextColor={'#3C6255'}/>
-        <Text style={Styles.pageHeader}>CATEGORY*</Text>
+        {/* <TextInput value={text} onChangeText={search} style={Styles.textInput} placeholder='Search' placeholderTextColor={'#3C6255'}/> */}
+        <Text style={Styles.pageHeader}>{category.title}</Text>
         <FlatList
             style={Styles.testi}
-            data={recipes}
+            data={filteredRecipes}
             renderItem={renderReceptItem}
             keyExtractor={(item) => item.id}
         />
