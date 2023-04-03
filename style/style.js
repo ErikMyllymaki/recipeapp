@@ -198,6 +198,20 @@ export default StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       flexDirection: 'row'
+    },
+    recipeBackground: {
+      backgroundColor: '#E8E8E8',
+      paddingVertical: 30,
+      marginVertical: 30,
+      paddingHorizontal: 20,
+      marginHorizontal: 18,
+      borderRadius: 20,
+    },
+    recipeImage: {
+      alignSelf: 'center'
+    },
+    recipeSubtitle: {
+      fontWeight: 'bold',
+      marginTop: 25
     }
-    
   });

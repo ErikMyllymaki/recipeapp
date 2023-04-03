@@ -40,11 +40,11 @@ export default function RecipeList({navigation,route}) {
         }
       }
 
-    // function search(keyword) {
-    //     setText(keyword);
-    //     const filteredRecipes = recipes.filter(r => r.name.includes(keyword));
-    //     setRecipes(filteredRecipes);
-    // }
+    function search(keyword) {
+        setText(keyword);
+        const filteredRecipes = recipes.filter(r => r.name.includes(keyword));
+        setRecipes(filteredRecipes);
+    }
 
     const navigateToRecipe = recipe => {
       navigation.navigate('Recipe', { recipe });
@@ -60,7 +60,7 @@ export default function RecipeList({navigation,route}) {
     
     return (
     <View style={Styles.container}>
-        {/* <TextInput value={text} onChangeText={search} style={Styles.textInput} placeholder='Search' placeholderTextColor={'#3C6255'}/> */}
+        <TextInput value={text} onChangeText={search} style={Styles.textInput} placeholder='Search' placeholderTextColor={'#3C6255'}/>
         <View style={Styles.recipeList}>
         <Pressable onPress={() => navigation.navigate('Recipes')}>
           <AntDesign name='left' size={30} color='#4B702F'/>
