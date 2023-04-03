@@ -54,7 +54,7 @@ export default function CategoryPage({ navigation }) {
         contentContainerStyle={{flexGrow: 1, paddingHorizontal: 20, paddingTop: 10, ...Platform.select({
           ios: {
             paddingHorizontal:20,
-            paddingTop: 70
+            paddingTop: 30
           },
           android: {}
         })}}
