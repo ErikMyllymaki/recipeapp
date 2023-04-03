@@ -35,13 +35,18 @@ export default function CategoryPage({ navigation }) {
 
   return (
     <View style={[Styles.container, {flex: 1, justifyContent: 'space-between'}] }>
-      <Text style={Styles.pageTitle}>Recipes</Text>
+
       <FlatList
         numColumns={2}
         data={CATEGORIES}
         renderItem={renderCategoryItem}
         keyExtractor={(item) => item.id}
-        contentContainerStyle={{flexGrow: 1, paddingHorizontal: 10}}
+        contentContainerStyle={{flexGrow: 1, paddingHorizontal: 10, ...Platform.select({
+          ios: {
+            paddingHorizontal: 30
+          },
+          android: {}
+        })}}
       />
     </View>
   );
