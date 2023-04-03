@@ -197,7 +197,8 @@ export default StyleSheet.create({
       borderRadius: 25,
       justifyContent: 'center',
       alignItems: 'center',
-      flexDirection: 'row'
+      flexDirection: 'row',
+      paddingLeft: 20
     }
     
   });
