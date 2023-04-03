@@ -112,6 +112,7 @@ export default function AddRecipe() {
 
 
       <TextInput
+        ref={input => { this.textInput = input }}
         style={Styles.addRecipeInput}
         placeholder='+ Add ingredients'
         placeholderTextColor="#40793F"
@@ -120,8 +121,13 @@ export default function AddRecipe() {
 <TouchableOpacity
   style={Styles.addRecipeButton}
   onPress={() => {
+    if (ingredient === "") {
+      alert("Type in the name of ingredient");
+      return;
+    }
     setIngredients([...ingredients, ingredient]);
     setIngredient("");
+    this.textInput.clear();
   }}
 >
   <Text style={Styles.addRecipeButtonText}>Add ingredient</Text>
