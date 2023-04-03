@@ -43,7 +43,8 @@ export default function CategoryPage({ navigation }) {
         keyExtractor={(item) => item.id}
         contentContainerStyle={{flexGrow: 1, paddingHorizontal: 20, ...Platform.select({
           ios: {
-            paddingHorizontal: 30
+            paddingHorizontal:20,
+            paddingTop: 60
           },
           android: {}
         })}}
