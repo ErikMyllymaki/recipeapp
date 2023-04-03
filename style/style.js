@@ -21,10 +21,13 @@ export default StyleSheet.create({
     pageTitle: {
       fontSize: 30,
       margin: 20,
+      
     },
     categoryItem: {
       flex: 1,
       padding: 10,
+
+
       ...Platform.select({
         ios: {
           alignItems: "center",
@@ -52,6 +55,13 @@ export default StyleSheet.create({
       resizeMode: 'cover',
       alignItems: 'center',
       borderRadius: 15,
+      overflow: 'hidden',
+
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.8,
+      shadowRadius: 4,
+      elevation: 5,
       overflow: 'hidden',
     },
     categoryName: {
