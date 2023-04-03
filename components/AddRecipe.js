@@ -58,6 +58,16 @@ export default function AddRecipe() {
   }
 
   const saveRecipe = () => {
+    if (recipeName === "") {
+      alert("Give a name to your recipe");
+      return;
+    } else if (ingredients.length === 0) {
+      alert("Add some ingredients");
+      return;
+    } else if (instructions === "") {
+      alert("Write instructions for your recipe");
+      return;
+    }
     const newKey = recipes.length + 1;
     const newRecipe = {
       key: newKey.toString(),
@@ -71,7 +81,11 @@ export default function AddRecipe() {
     storeData(newRecipes)
     console.log(newRecipes)
     getData();
-    
+    setRecipeName("");
+    setIngredients([]);
+    setInstructions("");
+    this.recipeName.clear();
+    this.instructions.clear();
   }
 
   const emptyAsyncStorage = async () => {
@@ -104,6 +118,7 @@ export default function AddRecipe() {
       </Picker>
 
       <TextInput
+      ref={input => {this.recipeName = input}}
         placeholder='+ Add name'
         placeholderTextColor="#40793F"
         style={Styles.addRecipeInput}
@@ -142,6 +157,7 @@ export default function AddRecipe() {
       ))}
 
       <TextInput
+      ref={input => {this.instructions = input}}
         multiline={true}
         style={expanded ? [Styles.expandedAddRecipeInput, { textAlignVertical: 'top' }] : Styles.addRecipeInput}
         onFocus={() => setExpanded(true)}
@@ -153,7 +169,10 @@ export default function AddRecipe() {
 
       <TouchableOpacity
         style={Styles.addRecipeButton}
-        onPress={saveRecipe}>
+        onPress={() => {saveRecipe();
+        
+        }}
+        >
         <Text style={Styles.addRecipeButtonText}>Save recipe</Text>
       </TouchableOpacity>
       {
