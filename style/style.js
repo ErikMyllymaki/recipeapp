@@ -179,6 +179,15 @@ export default StyleSheet.create({
       alignItems: 'center',
       gap: 50,
       marginLeft: -100
+    },
+    searchInput: {
+      backgroundColor: '#ffffff',
+      height: 62,
+      width: 333,
+      borderRadius: 25,
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexDirection: 'row'
     }
     
   });
