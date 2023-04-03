@@ -39,8 +39,15 @@ export default StyleSheet.create({
     categoryTitle: {
       backgroundColor: 'white',
       padding: 20,
-      width: 160,
-      height: 160,
+      width: 150,
+      height: 150,
+      ...Platform.select({
+        ios: {
+          height: 170,
+          width: 170,
+        },
+        android: {}
+      }),
       resizeMode: 'cover',
       alignItems: 'center',
       borderRadius: 15,

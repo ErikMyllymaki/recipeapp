@@ -41,7 +41,7 @@ export default function CategoryPage({ navigation }) {
         data={CATEGORIES}
         renderItem={renderCategoryItem}
         keyExtractor={(item) => item.id}
-        contentContainerStyle={{flexGrow: 1, paddingHorizontal: 10, ...Platform.select({
+        contentContainerStyle={{flexGrow: 1, paddingHorizontal: 20, ...Platform.select({
           ios: {
             paddingHorizontal: 30
           },
