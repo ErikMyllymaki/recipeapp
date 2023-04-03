@@ -122,7 +122,7 @@ export default function AddRecipe() {
   style={Styles.addRecipeButton}
   onPress={() => {
     if (ingredient === "") {
-      alert("type in ingredient");
+      alert("Type in the name of ingredient");
       return;
     }
     setIngredients([...ingredients, ingredient]);
