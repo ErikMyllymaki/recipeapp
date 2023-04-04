@@ -201,17 +201,23 @@ export default StyleSheet.create({
     },
     recipeBackground: {
       backgroundColor: '#E8E8E8',
-      paddingVertical: 30,
+      paddingBottom: 30,
       marginVertical: 30,
-      paddingHorizontal: 20,
       marginHorizontal: 18,
       borderRadius: 20,
     },
     recipeImage: {
-      alignSelf: 'center'
+      height: 290, 
+      width: '100%',
+      borderRadius: 20,
+    },
+    recipeInfo: {
+      paddingHorizontal: 20,
+      borderRadius: 20,
     },
     recipeSubtitle: {
       fontWeight: 'bold',
-      marginTop: 25
+      marginTop: 25,
+      marginBottom: 5,
     }
   });
