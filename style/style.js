@@ -62,7 +62,6 @@ export default StyleSheet.create({
       shadowOpacity: 0.8,
       shadowRadius: 4,
       elevation: 5,
-      overflow: 'hidden',
     },
     categoryName: {
       fontSize: 20,
@@ -132,99 +131,114 @@ export default StyleSheet.create({
     marginHorizontal: 13,
     marginBottom: -10
   },
-    homeButton: {
-      fontFamily: 'TenorSans',
-      backgroundColor: '#61876ee9',
-      width: 300,
-      height: 100,
-      textAlign: 'center',
-      fontSize: 18,
-      textAlignVertical: 'center',
-      ...Platform.select({
-        ios: {
-          lineHeight: 100
-        },
-        android: {}
-      }),
-      borderRadius: 15,
-      color: '#ffffff',
-      overflow: 'hidden'
-    },
-    addRecipeInput:{
-      fontSize: 20,
-      marginTop: 10,
-      marginBottom: 10,
-      marginHorizontal: 30,
-      backgroundColor: 'white',
-       padding: 10, 
-      borderRadius: 15,
-      backgroundColor: '#E8E8E8',
+  homeButton: {
+    fontFamily: 'TenorSans',
+    backgroundColor: '#61876ee9',
+    width: 300,
+    height: 100,
+    textAlign: 'center',
+    fontSize: 18,
+    textAlignVertical: 'center',
+    ...Platform.select({
+      ios: {
+        lineHeight: 100
       },
-      expandedAddRecipeInput:{
-          fontSize: 15,
-          marginTop: 10,
-          marginBottom: 10,
-          marginHorizontal: 10,
-          backgroundColor: 'white',
-           padding: 10, 
-          borderRadius: 15,
-          backgroundColor: '#E8E8E8',
-          height: 100,
-          textAlignVertical: 'top',
-      },
-      addRecipeButton:{
-        backgroundColor: '#E8E8E8',
-        alignItems: 'center',
-        padding: 5,
-        marginHorizontal: 60,
-        borderRadius: 15,
-      },
-      addRecipeButtonText: {
-        color: '#40793F',
-        fontSize: 24,
-      },
-    recipeList: {
-      flexDirection: 'row',
-      justifyContent: 'center',
-      alignItems: 'center',
-      gap: 50,
-      marginLeft: -100
-    },
-    searchInput: {
-      backgroundColor: '#ffffff',
-      height: 62,
-      width: 333,
-      borderRadius: 25,
-      justifyContent: 'center',
-      alignItems: 'center',
-      flexDirection: 'row'
-    },
-    recipeBackground: {
-      backgroundColor: '#E8E8E8',
-      paddingBottom: 30,
-      marginVertical: 30,
-      marginHorizontal: 18,
-      borderRadius: 20,
-    },
-    recipeImage: {
-      height: 290, 
-      width: '100%',
-      borderRadius: 20,
-    },
-    recipeInfo: {
-      paddingHorizontal: 20,
-      borderRadius: 20,
-    },
-    recipeSubtitle: {
-      fontWeight: 'bold',
-      marginTop: 25,
-      marginBottom: 5,
-    },
-    recipeListItem: {
-      backgroundColor: '#ffffff',
-      width: 333,
-      height: 99,
-      marginTop: 20,
-
-    }
-  });
+      android: {}
+    }),
+    borderRadius: 15,
+    color: '#ffffff',
+    overflow: 'hidden'
+  },
+  addRecipeInput:{
+    fontSize: 20,
+    marginTop: 10,
+    marginBottom: 10,
+    marginHorizontal: 30,
+    backgroundColor: 'white',
+    padding: 10, 
+    borderRadius: 15,
+    backgroundColor: '#E8E8E8',
+  },
+  expandedAddRecipeInput:{
+    fontSize: 15,
+    marginTop: 10,
+    marginBottom: 10,
+    marginHorizontal: 10,
+    backgroundColor: 'white',
+    padding: 10, 
+    borderRadius: 15,
+    backgroundColor: '#E8E8E8',
+    height: 100,
+    textAlignVertical: 'top',
+  },
+  addRecipeButton:{
+    backgroundColor: '#E8E8E8',
+    alignItems: 'center',
+    padding: 5,
+    marginHorizontal: 60,
+    borderRadius: 15,
+  },
+  addRecipeButtonText: {
+    color: '#40793F',
+    fontSize: 24,
+  },
+  recipeList: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 50,
+    marginLeft: -100
+  },
+  searchInput: {
+    backgroundColor: '#ffffff',
+    height: 62,
+    width: 333,
+    borderRadius: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row'
+  },
+  recipeBackground: {
+    backgroundColor: '#E8E8E8',
+    paddingBottom: 30,
+    marginVertical: 30,
+    marginHorizontal: 18,
+    borderRadius: 20,
+  },
+  recipeImage: {
+    height: 290, 
+    width: '100%',
+    borderRadius: 20,
+  },
+  recipeInfo: {
+    paddingHorizontal: 20,
+    borderRadius: 20,
+  },
+  recipeSubtitle: {
+    fontWeight: 'bold',
+    marginTop: 25,
+    marginBottom: 5,
+  },
+  recipeListItem: {
+    backgroundColor: '#ffffff',
+    width: 333,
+    height: 99,
+    margin: 10,
+    borderRadius: 15,
+    justifyContent: 'flex-start', 
+    alignItems: 'center', 
+    flexDirection: 'row',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.8,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  recipeListImage: {
+    width: 80, 
+    height: 80,
+    borderRadius: 15,
+    marginLeft: 10,
+    marginRight: 30,
+  }
+});

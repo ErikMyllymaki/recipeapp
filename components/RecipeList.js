@@ -52,12 +52,14 @@ export default function RecipeList({navigation,route}) {
 
     const renderReceptItem = ({ item }) => {
         return (
-        //   <View style={{paddingTop: 20, justifyContent: 'center',
-        // alignItems: 'center', flexDirection: 'row'}}>
-            <TouchableOpacity key={item.key} onPress={() => navigateToRecipe(item)}>
-              <Text style={Styles.recipeListItem}>{item.name}</Text>
+          <View style={{justifyContent: 'center', alignItems: 'center', flexDirection: 'row'}}>
+            <TouchableOpacity style={Styles.recipeListItem} key={item.key} onPress={() => navigateToRecipe(item)}>
+            <Image source={require('../images/breakfast.jpg')} style={Styles.recipeListImage}/>
+              <Text >
+                {item.name}
+              </Text>
             </TouchableOpacity>
-          // </View>
+          </View>
           
         );
     };
