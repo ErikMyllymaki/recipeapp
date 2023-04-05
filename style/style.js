@@ -219,5 +219,12 @@ export default StyleSheet.create({
       fontWeight: 'bold',
       marginTop: 25,
       marginBottom: 5,
+    },
+    recipeListItem: {
+      backgroundColor: '#ffffff',
+      width: 333,
+      height: 99,
+      marginTop: 20,
+
     }
   });

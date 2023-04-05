@@ -52,15 +52,23 @@ export default function RecipeList({navigation,route}) {
 
     const renderReceptItem = ({ item }) => {
         return (
-          <TouchableOpacity key={item.key} onPress={() => navigateToRecipe(item)}>
-            <Text style={Styles.categoryTitle}>{item.name}</Text>
-          </TouchableOpacity>
+        //   <View style={{paddingTop: 20, justifyContent: 'center',
+        // alignItems: 'center', flexDirection: 'row'}}>
+            <TouchableOpacity key={item.key} onPress={() => navigateToRecipe(item)}>
+              <Text style={Styles.recipeListItem}>{item.name}</Text>
+            </TouchableOpacity>
+          // </View>
+          
         );
     };
     
     return (
     <View style={Styles.container}>
-        <TextInput value={text} onChangeText={search} style={Styles.textInput} placeholder='Search' placeholderTextColor={'#3C6255'}/>
+      <View style={{paddingTop: 20, justifyContent: 'center',
+        alignItems: 'center', flexDirection: 'row'}}>
+          <TextInput value={text} onChangeText={search} style={Styles.searchInput} placeholder='Search' placeholderTextColor={'#3C6255'}/>
+      </View>
+        
         <View style={Styles.recipeList}>
         <Pressable onPress={() => navigation.navigate('Recipes')}>
           <AntDesign name='left' size={30} color='#4B702F'/>
