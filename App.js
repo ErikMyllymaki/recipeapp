@@ -25,7 +25,7 @@ export default function App() {
           tabBarShowLabel: false,
           tabBarStyle: {
             position: 'absolute',
-            bottom: 15,
+            bottom: 8,
             left: 15,
             right: 15,
             elevation: 0,
