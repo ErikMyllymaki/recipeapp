@@ -3,6 +3,7 @@ import { View, Text, TextInput, Button, TouchableOpacity } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import Styles from '../style/style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export const STORAGE_KEY = "@recipe_Key";
 
@@ -101,6 +102,7 @@ export default function AddRecipe() {
 
 
   return (
+    <ScrollView>
     <View style={Styles.container}>
       <Text style={Styles.pageHeader}>ADD RECIPE</Text>
 
@@ -189,6 +191,6 @@ export default function AddRecipe() {
         ))
       }
     </View>
-
+    </ScrollView>
   )
 }
