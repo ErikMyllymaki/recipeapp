@@ -8,8 +8,8 @@ export const STORAGE_KEY = "@recipe_Key";
 
 const CATEGORIES_TITLES = [
   'Breakfast',
-  'Lunch',
   'Dinner',
+  'Drinks',
   'Dessert',
   'Snacks',
   'Pastries'
