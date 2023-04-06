@@ -39,9 +39,8 @@ export default function CategoryPage({ navigation }) {
     <View style={[Styles.container, {flex: 1, justifyContent: 'space-between'}] }>
       <View style={{paddingTop: 20, justifyContent: 'center',
         alignItems: 'center', flexDirection: 'row'}}>
-          <TextInput style={Styles.searchInput}>
-          <Entypo name="magnifying-glass"  size={30} color={'grey'} />
-            Pöö
+          <TextInput style={Styles.searchInput} >
+            <Entypo name="magnifying-glass"  size={30} color={'grey'} />
           </TextInput>
         </View>
       
