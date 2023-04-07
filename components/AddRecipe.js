@@ -4,6 +4,8 @@ import { Picker } from '@react-native-picker/picker';
 import Styles from '../style/style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ScrollView } from 'react-native-gesture-handler';
+import { child, push, ref, remove, update, onValue } from 'firebase/database';
+import { db, RECIPES_REF } from '../firebase/config';
 
 export const STORAGE_KEY = "@recipe_Key";
 
@@ -16,90 +18,55 @@ const CATEGORIES_TITLES = [
   'Pastries'
 ];
 
-
 export default function AddRecipe() {
+//new
+  const [recipeName, setRecipeName] = useState('');
+  const [ingredients, setIngredients] = useState('');
+  const [instuctions, setInstructions] = useState('');
+  const [category, setCategory] = useState('Breakfast');
 
-  const [recipeName, setRecipeName] = useState("");
-  const [instructions, setInstructions] = useState("");
-  const [ingredient, setIngredient] = useState("");
-  const [ingredients, setIngredients] = useState([]);
   const [recipes, setRecipes] = useState([]);
+
+
   const [expanded, setExpanded] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
-  const [selectedCategory, setSelectedCategory] = useState(CATEGORIES_TITLES[0]);
 
-  const storeData = async (value) => {
-    try {
-      const jsonValue = JSON.stringify(value);
-      await AsyncStorage.setItem(STORAGE_KEY, jsonValue);
-    } catch (e) {
-      console.log(e)
+  const addNewRecipe = () => {
+    if (recipeName.trim() !== "") {
+      const newRecipeItem = {
+        recipeName: recipeName,
+        ingredients: ingredients,
+        instructions: instuctions,
+        category: category
+      };
+      const newRecipeItemRef = push(ref(db, RECIPES_REF), newRecipeItem);
+      const newRecipeItemKey = newRecipeItemRef.key;
+      setRecipeName('');
+      setIngredients('');
+      setInstructions('');
+      setCategory('');
+      return newRecipeItemKey;
     }
-  }
-
+  };
+  
   useEffect(() => {
-    getData();
-  }, [])
+    const recipesRef = ref(db, RECIPES_REF);
+    onValue(recipesRef, (snapshot) => {
+      const recipesObject = snapshot.val();
+      if (recipesObject) {
+        const recipesList = Object.entries(recipesObject).map(([key, value]) => ({
+          key,
+          ...value,
+        }));
+        setRecipes(recipesList);
+      } else {
+        setRecipes([]);
+      }
 
-
-  const getData = async () => {
-    try {
-      return AsyncStorage.getItem(STORAGE_KEY)
-        .then(req => JSON.parse(req))
-        .then(json => {
-          if (json === null) {
-            json = []
-          }
-          setRecipes(json);
-        })
-        .catch(error => console.log(error));
-    } catch (e) {
-      console.log(e)
-    }
-  }
-
-  const saveRecipe = () => {
-    if (recipeName === "") {
-      alert("Give a name to your recipe");
-      return;
-    } else if (ingredients.length === 0) {
-      alert("Add some ingredients");
-      return;
-    } else if (instructions === "") {
-      alert("Write instructions for your recipe");
-      return;
-    }
-    const newKey = recipes.length + 1;
-    const newRecipe = {
-      key: newKey.toString(),
-      category: selectedCategory,
-      name: recipeName,
-      instructions: instructions,
-      ingredients: ingredients,
-      isFavorite: isFavorite,
-    }
-    const newRecipes = [...recipes, newRecipe]
-    storeData(newRecipes)
-    console.log(newRecipes)
-    getData();
-    setRecipeName("");
-    setIngredients([]);
-    setInstructions("");
-    this.recipeName.clear();
-    this.instructions.clear();
-  }
-
-  const emptyAsyncStorage = async () => {
-    try {
-      const keys = await AsyncStorage.getAllKeys();
-      await AsyncStorage.multiRemove(keys);
-      console.log('AsyncStorage has been cleared!');
-    } catch (error) {
-      console.error('Error clearing AsyncStorage:', error);
-    }
-    getData();
-  }
+      addNewRecipe();
+    });
+  }, [category]);
 
 
   return (
@@ -108,8 +75,8 @@ export default function AddRecipe() {
       <Text style={Styles.pageHeader}>ADD RECIPE</Text>
 
       <Picker
-        selectedValue={selectedCategory}
-        onValueChange={(itemValue) => setSelectedCategory(itemValue)}
+        selectedValue={category}
+        onValueChange={(itemValue) => setCategory(itemValue)}
       >
         {CATEGORIES_TITLES.map((category) => (
           <Picker.Item
@@ -125,7 +92,7 @@ export default function AddRecipe() {
         placeholder='+ Add name'
         placeholderTextColor="#40793F"
         style={Styles.addRecipeInput}
-        onChangeText={name => setRecipeName(name)}
+        onChangeText={setRecipeName}
       />
 
 
@@ -134,30 +101,8 @@ export default function AddRecipe() {
         style={Styles.addRecipeInput}
         placeholder='+ Add ingredients'
         placeholderTextColor="#40793F"
-        onChangeText={ingredient => setIngredient(ingredient)}
+        onChangeText={setIngredients}
       />
-<TouchableOpacity
-  style={Styles.addRecipeButton}
-  onPress={() => {
-    if (ingredient === "") {
-      alert("Type in the name of ingredient");
-      return;
-    }
-    setIngredients([...ingredients, ingredient]);
-    setIngredient("");
-    this.textInput.clear();
-  }}
->
-  <Text style={Styles.addRecipeButtonText}>Add ingredient</Text>
-</TouchableOpacity>
-      {/* <Button 
-      title='empty'
-        onPress={emptyAsyncStorage}
-      />  */}
-      <Text>Ingredients:</Text>
-      {ingredients.map((ingredient, index) => (
-        <Text key={index}>{ingredient}</Text>
-      ))}
 
       <TextInput
       ref={input => {this.instructions = input}}
@@ -172,25 +117,12 @@ export default function AddRecipe() {
 
       <TouchableOpacity
         style={Styles.addRecipeButton}
-        onPress={() => {saveRecipe();
+        onPress={() => {addNewRecipe();
         
         }}
         >
         <Text style={Styles.addRecipeButtonText}>Save recipe</Text>
       </TouchableOpacity>
-      {
-        recipes.map((recipe) => (
-          <View key={recipe.key} >
-            <Text>cate: {recipe.category}</Text>
-            <Text>name: {recipe.name}</Text>
-            <Text>instructions: {recipe.instructions}</Text>
-            <Text>Ingredients:</Text>
-            {recipe.ingredients.map((ingredient, index) => (
-              <Text key={index}>{ingredient}</Text>
-            ))}
-          </View>
-        ))
-      }
     </View>
     </ScrollView>
   )
