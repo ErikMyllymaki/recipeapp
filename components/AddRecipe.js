@@ -16,6 +16,7 @@ const CATEGORIES_TITLES = [
   'Pastries'
 ];
 
+
 export default function AddRecipe() {
 
   const [recipeName, setRecipeName] = useState("");
