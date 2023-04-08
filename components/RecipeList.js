@@ -12,14 +12,11 @@ import { db, RECIPES_REF } from '../firebase/config';
 // Hakukentästä jos muuttaa hakusanaa, hakee vain filteredRecipes -> pitää hakea kaikista resepteistä
 
 export default function RecipeList({ navigation, route }) {
-
   const [text, setText] = useState('');
   const [recipes, setRecipes] = useState([]);
 
   const { category } = route.params;
   const filteredRecipes = recipes.filter(recipe => recipe.category === category.title);
-
-
 
   function search(keyword) {
     setText(keyword);
@@ -27,25 +24,17 @@ export default function RecipeList({ navigation, route }) {
     setFilteredRecipes(filteredRecipes);
   }
 
-  const navigateToRecipe = recipe => {
-    navigation.navigate('Recipe', { recipe });
-  };
-
   const renderReceptItem = ({ item }) => {
+    const navigateToRecipe = () => {
+      navigation.navigate('Recipe', { recipe: item });
+    };
+  
     return (
-      <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
-        {filteredRecipes.map((recipe) => (
-          <View key={recipe.key} style={Styles.recipeListItem}>
-            <TouchableOpacity style={Styles.recipeListItem} key={item.key} onPress={() => navigateToRecipe(item)}>
-            <Image source={require('../images/breakfast.jpg')} style={Styles.recipeListImage}/>
-            <Text>{recipe.recipeName}</Text>
-            </TouchableOpacity>
-            <Button
-              title="Remove"
-              onPress={() => removeRecipe(recipe.key)}
-            />
-          </View>
-        ))}
+      <View key={item.key} style={Styles.recipeListItem}>
+        <TouchableOpacity style={Styles.recipeListItem} onPress={navigateToRecipe}>
+          <Image source={require('../images/breakfast.jpg')} style={Styles.recipeListImage}/>
+          <Text>{item.recipeName}</Text>
+        </TouchableOpacity>
       </View>
     );
   };
@@ -61,7 +50,6 @@ export default function RecipeList({ navigation, route }) {
       setRecipes(recipes);
     });
   }, []);
-
 
   return (
     <View style={Styles.container}>
@@ -79,7 +67,6 @@ export default function RecipeList({ navigation, route }) {
         <Text style={Styles.pageHeader}>{category.title}</Text>
       </View>
       <FlatList
-        style={Styles.testi}
         data={filteredRecipes}
         renderItem={renderReceptItem}
         keyExtractor={(item) => item.key}
@@ -87,3 +74,4 @@ export default function RecipeList({ navigation, route }) {
     </View>
   )
 }
+

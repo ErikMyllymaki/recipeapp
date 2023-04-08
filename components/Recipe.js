@@ -1,36 +1,46 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import { View, Text, Pressable, Image, ScrollView } from 'react-native';
 import Styles from '../style/style';
-// import { AntDesign } from '@expo/vector-icons';
-
+import { child, push, ref, remove, update, onValue } from 'firebase/database';
+import { db, RECIPES_REF } from '../firebase/config';
 
 export default function Recipe({ route, navigation }) {
 
-  const { recipe } = route.params;
+  const { recipe } = route.params || {}; 
+  const [recipeData, setRecipeData] = useState(null);
+
+  useEffect(() => {
+    if (recipe) { // check if recipe is defined
+      const recipeRef = ref(db, `${RECIPES_REF}/${recipe.key}`);
+      onValue(recipeRef, (snapshot) => {
+        setRecipeData(snapshot.val());
+      });
+    }
+  }, [recipe?.key]); 
+
 
   const recipeImage = require('../images/dinner.jpg');
 
+
   return (
     <ScrollView>
-    <View style={Styles.container}>
-      {/* <Pressable onPress={() => navigation.navigate('RecipeList')}>
-        <AntDesign name='left' size={30} color='#4B702F'/>
-      </Pressable> */}
-      <View style={Styles.recipeBackground}>
-        <View style={{alignItems: 'center', }}>
-          <Image source={recipeImage} style={Styles.recipeImage}></Image>
-        </View>
-        <View style={Styles.recipeInfo}>
-          <Text style={Styles.pageHeader}>{recipe.name}</Text>
-          <Text style={Styles.recipeSubtitle}>Ingredients:</Text>
-          {recipe.ingredients.map((ingredient, index) => (
-            <Text key={index}>{`\u2022 ${ingredient}`}</Text>
-          ))}
-          <Text style={Styles.recipeSubtitle}>Instructions:</Text>
-          <Text>{recipe.instructions}</Text>
+      <View style={Styles.container}>
+        <View style={Styles.recipeBackground}>
+        <View style={{ alignItems: 'center' }}>
+          <Image source={recipeImage} style={Styles.recipeImage} />
+          </View>
+          <View style={Styles.recipeInfo}>
+            <Text style={Styles.pageHeader}>{recipeData?.recipeName}</Text>
+            <Text style={Styles.recipeSubtitle}>Ingredients: {recipeData?.ingredients}</Text>
+
+            <Text style={Styles.recipeDescription}>{recipeData?.description}</Text>
+            
+            <Text style={Styles.recipeSubtitle}>Instructions: {recipeData?.instructions}</Text>
+          </View>
         </View>
       </View>
-    </View>
     </ScrollView>
-  )
+  );
+
+
 }
