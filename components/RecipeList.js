@@ -31,7 +31,6 @@ export default function RecipeList({ navigation, route }) {
     navigation.navigate('Recipe', { recipe });
   };
 
-
   const renderReceptItem = ({ item }) => {
     return (
       <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
