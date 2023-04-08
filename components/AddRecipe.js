@@ -7,7 +7,6 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { child, push, ref, remove, update, onValue } from 'firebase/database';
 import { db, RECIPES_REF } from '../firebase/config';
 
-export const STORAGE_KEY = "@recipe_Key";
 
 const CATEGORIES_TITLES = [
   'Breakfast',
@@ -22,7 +21,7 @@ export default function AddRecipe() {
 //new
   const [recipeName, setRecipeName] = useState('');
   const [ingredients, setIngredients] = useState('');
-  const [instuctions, setInstructions] = useState('');
+  const [instructions, setInstructions] = useState('');
   const [category, setCategory] = useState('Breakfast');
 
   const [recipes, setRecipes] = useState([]);
@@ -33,11 +32,11 @@ export default function AddRecipe() {
 
 
   const addNewRecipe = () => {
-    if (recipeName.trim() !== "") {
+    if (recipeName.trim() !== "" && ingredients.trim() !== "" && instructions.trim() !== "") {
       const newRecipeItem = {
         recipeName: recipeName,
         ingredients: ingredients,
-        instructions: instuctions,
+        instructions: instructions,
         category: category
       };
       const newRecipeItemRef = push(ref(db, RECIPES_REF), newRecipeItem);
@@ -45,7 +44,8 @@ export default function AddRecipe() {
       setRecipeName('');
       setIngredients('');
       setInstructions('');
-      setCategory('');
+      setCategory('Breakfast');
+
       return newRecipeItemKey;
     }
   };
@@ -118,7 +118,9 @@ export default function AddRecipe() {
       <TouchableOpacity
         style={Styles.addRecipeButton}
         onPress={() => {addNewRecipe();
-        
+          this.recipeName.clear();
+          this.textInput.clear();
+          this.instructions.clear();
         }}
         >
         <Text style={Styles.addRecipeButtonText}>Save recipe</Text>
