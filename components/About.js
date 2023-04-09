@@ -20,7 +20,7 @@ export default function App() {
   }
 
   const handlePressTiktok = () => {
-    Linking.openURL('https://www.tiktok.com/');
+    Linking.openURL('https://www.tiktok.com/@tariq.almazyad/video/7154381967306329345?lang=fi-FI');
   };
 
   const handlePressInsta = () => {
