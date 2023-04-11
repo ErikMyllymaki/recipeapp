@@ -85,8 +85,10 @@ export default function App() {
             tabBarActiveTintColor: '#61876E',
             tabBarInActiveTintColor: 'gray'
           }} /> */}
-          <Tab.Screen name='RecipeList' component={RecipeList}/>
-          <Tab.Screen name='Recipe' component={Recipe}/>
+        <Tab.Screen name='RecipeList' component={RecipeList}
+          options={{ tabBarButton: (props) => null }} />
+        <Tab.Screen name='Recipe' component={Recipe}
+          options={{ tabBarButton: (props) => null }} />
 
 
       </Tab.Navigator>
