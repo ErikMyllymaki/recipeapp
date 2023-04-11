@@ -4,9 +4,10 @@ import { FlatList } from 'react-native-gesture-handler';
 import Styles from '../style/style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AntDesign } from '@expo/vector-icons';
-import { STORAGE_KEY } from './AddRecipe';
+// import { STORAGE_KEY } from './AddRecipe';
 import { child, push, ref, remove, update, onValue } from 'firebase/database';
 import { db, RECIPES_REF } from '../firebase/config';
+import { Entypo } from '@expo/vector-icons';
 
 
 // Hakukentästä jos muuttaa hakusanaa, hakee vain filteredRecipes -> pitää hakea kaikista resepteistä
@@ -28,11 +29,11 @@ export default function RecipeList({ navigation, route }) {
     const navigateToRecipe = () => {
       navigation.navigate('Recipe', { recipe: item });
     };
-  
+
     return (
       <View key={item.key} style={Styles.recipeListItem}>
         <TouchableOpacity style={Styles.recipeListItem} onPress={navigateToRecipe}>
-          <Image source={require('../images/breakfast.jpg')} style={Styles.recipeListImage}/>
+          <Image source={require('../images/breakfast.jpg')} style={Styles.recipeListImage} />
           <Text>{item.recipeName}</Text>
         </TouchableOpacity>
       </View>
@@ -57,7 +58,10 @@ export default function RecipeList({ navigation, route }) {
         paddingTop: 20, justifyContent: 'center',
         alignItems: 'center', flexDirection: 'row'
       }}>
-        <TextInput value={text} onChangeText={search} style={Styles.searchInput} placeholder='Search' placeholderTextColor={'#3C6255'} />
+        {/* <TextInput value={text} onChangeText={search} style={Styles.searchInput} placeholder='Search' placeholderTextColor={'#3C6255'}> 
+          <Entypo name="magnifying-glass" style={{padding: 20}} size={30} color={'grey'} />
+        </TextInput> */}
+
       </View>
 
       <View style={Styles.recipeList}>
