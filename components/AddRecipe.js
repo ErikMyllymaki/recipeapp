@@ -18,9 +18,10 @@ const CATEGORIES_TITLES = [
 ];
 
 export default function AddRecipe() {
-//new
+  //new
   const [recipeName, setRecipeName] = useState('');
-  const [ingredients, setIngredients] = useState('');
+  const [ingredient, setIngredient] = useState('');
+  const [ingredients, setIngredients] = useState([]);
   const [instructions, setInstructions] = useState('');
   const [category, setCategory] = useState('Breakfast');
 
@@ -32,7 +33,7 @@ export default function AddRecipe() {
 
 
   const addNewRecipe = () => {
-    if (recipeName.trim() !== "" && ingredients.trim() !== "" && instructions.trim() !== "") {
+    if (recipeName.trim() !== "" && ingredients.length > 0 && instructions.trim() !== "") {
       const newRecipeItem = {
         recipeName: recipeName,
         ingredients: ingredients,
@@ -42,14 +43,14 @@ export default function AddRecipe() {
       const newRecipeItemRef = push(ref(db, RECIPES_REF), newRecipeItem);
       const newRecipeItemKey = newRecipeItemRef.key;
       setRecipeName('');
-      setIngredients('');
+      setIngredients([]);
       setInstructions('');
       setCategory('Breakfast');
 
       return newRecipeItemKey;
     }
   };
-  
+
   useEffect(() => {
     const recipesRef = ref(db, RECIPES_REF);
     onValue(recipesRef, (snapshot) => {
@@ -71,61 +72,74 @@ export default function AddRecipe() {
 
   return (
     <ScrollView>
-    <View style={Styles.container}>
-      <Text style={Styles.pageHeader}>ADD RECIPE</Text>
+      <View style={Styles.container}>
+        <Text style={Styles.pageHeader}>ADD RECIPE</Text>
 
-      <Picker
-        selectedValue={category}
-        onValueChange={(itemValue) => setCategory(itemValue)}
-      >
-        {CATEGORIES_TITLES.map((category) => (
-          <Picker.Item
-            key={category}
-            label={category}
-            value={category}
-          />
-        ))}
-      </Picker>
-
-      <TextInput
-      ref={input => {this.recipeName = input}}
-        placeholder='+ Add name'
-        placeholderTextColor="#40793F"
-        style={Styles.addRecipeInput}
-        onChangeText={setRecipeName}
-      />
-
-
-      <TextInput
-        ref={input => { this.textInput = input }}
-        style={Styles.addRecipeInput}
-        placeholder='+ Add ingredients'
-        placeholderTextColor="#40793F"
-        onChangeText={setIngredients}
-      />
-
-      <TextInput
-      ref={input => {this.instructions = input}}
-        multiline={true}
-        style={expanded ? [Styles.expandedAddRecipeInput, { textAlignVertical: 'top' }] : Styles.addRecipeInput}
-        onFocus={() => setExpanded(true)}
-        onBlur={() => setExpanded(false)}
-        placeholder='+ Add instructions'
-        placeholderTextColor="#40793F"
-        onChangeText={text => setInstructions(text)}
-      />
-
-      <TouchableOpacity
-        style={Styles.addRecipeButton}
-        onPress={() => {addNewRecipe();
-          this.recipeName.clear();
-          this.textInput.clear();
-          this.instructions.clear();
-        }}
+        <Picker
+          selectedValue={category}
+          onValueChange={(itemValue) => setCategory(itemValue)}
         >
-        <Text style={Styles.addRecipeButtonText}>Save recipe</Text>
-      </TouchableOpacity>
-    </View>
+          {CATEGORIES_TITLES.map((category) => (
+            <Picker.Item
+              key={category}
+              label={category}
+              value={category}
+            />
+          ))}
+        </Picker>
+
+        <TextInput
+          ref={input => { this.recipeName = input }}
+          placeholder='+ Add name'
+          placeholderTextColor="#40793F"
+          style={Styles.addRecipeInput}
+          onChangeText={setRecipeName}
+        />
+
+
+        <TextInput
+          ref={input => { this.textInput = input }}
+          style={Styles.addRecipeInput}
+          placeholder='+ Add ingredients'
+          placeholderTextColor="#40793F"
+          onChangeText={ingredient => setIngredient(ingredient)}
+        />
+
+        <TouchableOpacity
+          style={Styles.addRecipeButton}
+          onPress={() => {
+            setIngredients([...ingredients, ingredient]);
+            setIngredient("");
+          }} >
+          <Text style={Styles.addRecipeButtonText}>Add ingredient</Text>
+
+        </TouchableOpacity>
+        {ingredients.map((ingredient, index) => (
+        <Text key={index}>{ingredient}</Text>
+      ))}
+        <TextInput
+          ref={input => { this.instructions = input }}
+          multiline={true}
+          style={expanded ? [Styles.expandedAddRecipeInput, { textAlignVertical: 'top' }] : Styles.addRecipeInput}
+          onFocus={() => setExpanded(true)}
+          onBlur={() => setExpanded(false)}
+          placeholder='+ Add instructions'
+          placeholderTextColor="#40793F"
+          onChangeText={text => setInstructions(text)}
+        />
+
+        <TouchableOpacity
+          style={Styles.addRecipeButton}
+          onPress={() => {
+            addNewRecipe();
+            this.recipeName.clear();
+            this.textInput.clear();
+            this.instructions.clear();
+          }}
+        >
+          <Text style={Styles.addRecipeButtonText}>Save recipe</Text>
+        </TouchableOpacity>
+      </View>
     </ScrollView>
   )
 }
