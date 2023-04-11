@@ -69,6 +69,13 @@ export default function AddRecipe() {
     });
   }, [category]);
 
+  const addIngredient = () => {
+    if (ingredient.trim() != "") {
+      setIngredients([...ingredients, ingredient]);
+      setIngredient("");
+    }
+  }
+
 
   return (
     <ScrollView>
@@ -108,8 +115,7 @@ export default function AddRecipe() {
         <TouchableOpacity
           style={Styles.addRecipeButton}
           onPress={() => {
-            setIngredients([...ingredients, ingredient]);
-            setIngredient("");
+            addIngredient();
           }} >
           <Text style={Styles.addRecipeButtonText}>Add ingredient</Text>
 
