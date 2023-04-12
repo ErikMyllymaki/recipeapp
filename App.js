@@ -13,7 +13,7 @@ import About from './components/About';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import Welcome from './components/Welcome';
 import Login from './components/Login';
-import { Register } from './components/Register';
+import Register from './components/Register';
 
 
 const Tab = createBottomTabNavigator();
