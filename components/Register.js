@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Alert, Button, Pressable } from 'react-native';
 import { signUp } from './Auth';
 import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../firebase/Config';
+import { auth } from '../firebase/config';
 import styles from '../style/style';
 
 export default Register = ({ navigation }) => {
