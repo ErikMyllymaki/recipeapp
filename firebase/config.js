@@ -18,4 +18,5 @@ const app = initializeApp(firebaseConfig);
 export const db = getDatabase(app);
 
 
-export const RECIPES_REF = 'recipes/'
+export const RECIPES_REF = 'recipes/';
+export const USERS_REF = '/users/';
