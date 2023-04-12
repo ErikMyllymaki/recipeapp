@@ -41,6 +41,12 @@ export default function Home( {navigation} ) {
           >
             <Text style={Styles.homeButton}>About recipe app</Text>
           </Pressable>
+          <Pressable
+            onPress={() => navigation.navigate('Welcome')}
+            style={{ paddingVertical: 30 }}
+          >
+            <Text style={Styles.homeButton}>Welcome</Text>
+          </Pressable>
           </ImageBackground>
         </View>
       );
