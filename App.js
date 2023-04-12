@@ -11,6 +11,7 @@ import AddRecipe from './components/AddRecipe';
 import RecipeList from './components/RecipeList';
 import About from './components/About';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import Welcome from './components/Welcome';
 
 
 const Tab = createBottomTabNavigator();
@@ -43,6 +44,11 @@ export default function App() {
           }
         }}
       >
+
+        <Tab.Screen name='Welcome' component={Welcome}
+          options={{ tabBarButton: (props) => null }} />
+
+
         <Tab.Screen name="Home" component={Home} options={{
           tabBarStyle: { display: 'none' },
           tabBarIcon: ({ color }) => (
