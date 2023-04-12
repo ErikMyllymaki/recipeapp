@@ -29,7 +29,7 @@ export default Register = ({ navigation }) => {
       signUp(nickname, email, password);
       onAuthStateChanged(auth, (user) => {
         if (user) {
-          navigation.navigate('Todo', {userUid: user.uid});
+          navigation.navigate('Home', {userUid: user.uid});
         } 
       });
     }
