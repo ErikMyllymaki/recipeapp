@@ -23,7 +23,7 @@ export default Login = ( { navigation } ) => {
       signIn(email, password);
       onAuthStateChanged(auth, async (user) => {
         if (user) {
-          navigation.navigate('Todo', {userUid: user.uid});
+          navigation.navigate('Home', {userUid: user.uid});
         }
       });
     }
