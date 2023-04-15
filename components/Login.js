@@ -45,7 +45,6 @@ export default Login = ( { navigation } ) => {
 
   return (
     <View>
-      <Text >Todos</Text>
       <Text >Login to your account</Text>
       <TextInput
         placeholder="Enter your email*"

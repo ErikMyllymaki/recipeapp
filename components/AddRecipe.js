@@ -5,7 +5,9 @@ import Styles from '../style/style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ScrollView } from 'react-native-gesture-handler';
 import { child, push, ref, remove, update, onValue } from 'firebase/database';
-import { db, RECIPES_REF } from '../firebase/config';
+import { db, RECIPES_REF, USERS_REF } from '../firebase/config';
+import { auth } from '../firebase/config';
+
 
 
 const CATEGORIES_TITLES = [
@@ -18,7 +20,10 @@ const CATEGORIES_TITLES = [
 ];
 
 export default function AddRecipe() {
-  //new
+
+const [userKey, setUserKey] = useState('');
+const [nickname, setNickname] = useState('');
+
   const [recipeName, setRecipeName] = useState('');
   const [ingredient, setIngredient] = useState('');
   const [ingredients, setIngredients] = useState([]);
@@ -38,7 +43,9 @@ export default function AddRecipe() {
         recipeName: recipeName,
         ingredients: ingredients,
         instructions: instructions,
-        category: category
+        category: category,
+        userKey: userKey,
+        nickname: nickname,
       };
       const newRecipeItemRef = push(ref(db, RECIPES_REF), newRecipeItem);
       const newRecipeItemKey = newRecipeItemRef.key;
@@ -50,6 +57,23 @@ export default function AddRecipe() {
       return newRecipeItemKey;
     }
   };
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        const userRef = ref(db, USERS_REF + '/' + user.uid);
+        onValue(userRef, snapshot => {
+          const userData = snapshot.val();
+          if (userData) {
+            setUserKey(user.uid);
+            setNickname(userData.nickname); 
+          }
+        });
+      }
+    });
+  
+    return () => unsubscribe();
+  }, []);
 
   useEffect(() => {
     const recipesRef = ref(db, RECIPES_REF);
