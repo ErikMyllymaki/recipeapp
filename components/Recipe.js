@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Pressable, Image, ScrollView, Button, TouchableWithoutFeedback } from 'react-native';
 import Styles from '../style/style';
-import { child, push, ref, remove, update, onValue } from 'firebase/database';
-import { db, RECIPES_REF } from '../firebase/config';
+import { child, push, ref, remove, update, onValue, set } from 'firebase/database';
+import { db, RECIPES_REF, USERS_REF, FAVORITES_REF } from '../firebase/config';
 import { EvilIcons } from '@expo/vector-icons';
+import { auth } from '../firebase/config';
+
 
 export default function Recipe({ route, navigation }) {
 
   const { recipe } = route.params || {};
   const [recipeData, setRecipeData] = useState(null);
+  const [userKey, setUserKey] = useState('');
 
   useEffect(() => {
     if (recipe) { // check if recipe is defined
@@ -19,10 +22,32 @@ export default function Recipe({ route, navigation }) {
     }
   }, [recipe?.key]);
 
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        const userRef = ref(db, USERS_REF + '/' + user.uid);
+        onValue(userRef, snapshot => {
+          const userData = snapshot.val();
+          if (userData) {
+            setUserKey(user.uid);
+          }
+        });
+      }
+    });
+  
+    return () => unsubscribe();
+  }, []);
+  
+
   const removeRecipe = (recipeKey) => {
     const updates = {};
     updates[`${RECIPES_REF}/${recipeKey}`] = null;
     update(ref(db), updates);
+  };
+
+  const addFavorite = (recipeKey, userKey) => {
+    const userFavoritesRef = ref(db, `Favorites/${userKey}/${recipeKey}`);
+    set(userFavoritesRef, true);
   };
 
   const recipeImage = require('../images/dinner.jpg');
@@ -43,6 +68,11 @@ export default function Recipe({ route, navigation }) {
               <TouchableWithoutFeedback onPress={() => removeRecipe(recipe.key)}>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                   <EvilIcons name="trash" size={40} />
+                </View>
+              </TouchableWithoutFeedback>
+              <TouchableWithoutFeedback onPress={() => addFavorite(recipe.key, userKey)}>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <EvilIcons name="star" size={40} />
                 </View>
               </TouchableWithoutFeedback>
             </View>

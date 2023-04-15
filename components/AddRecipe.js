@@ -57,6 +57,7 @@ const [nickname, setNickname] = useState('');
       return newRecipeItemKey;
     }
   };
+  
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {

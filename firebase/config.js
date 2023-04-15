@@ -29,3 +29,4 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
         export const RECIPES_REF = 'recipes/';
         export const USERS_REF = '/users/';
+        export const FAVORITES_REF = '/favorites/';
