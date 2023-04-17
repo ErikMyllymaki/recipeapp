@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Pressable, Image, ScrollView, Button, TouchableWithoutFeedback } from 'react-native';
 import Styles from '../style/style';
-import { child, push, ref, remove, update, onValue, set } from 'firebase/database';
+import { child, push, ref, remove, update, onValue, set, get } from 'firebase/database';
 import { db, RECIPES_REF, USERS_REF, FAVORITES_REF } from '../firebase/config';
 import { EvilIcons } from '@expo/vector-icons';
 import { auth } from '../firebase/config';
-
+import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 
 export default function Recipe({ route, navigation }) {
 
   const { recipe } = route.params || {};
   const [recipeData, setRecipeData] = useState(null);
   const [userKey, setUserKey] = useState('');
+  const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
     if (recipe) { // check if recipe is defined
@@ -21,6 +22,7 @@ export default function Recipe({ route, navigation }) {
       });
     }
   }, [recipe?.key]);
+
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
@@ -34,10 +36,10 @@ export default function Recipe({ route, navigation }) {
         });
       }
     });
-  
+
     return () => unsubscribe();
   }, []);
-  
+
 
   const removeRecipe = (recipeKey) => {
     const updates = {};
@@ -46,9 +48,17 @@ export default function Recipe({ route, navigation }) {
   };
 
   const addFavorite = (recipeKey, userKey) => {
-    const userFavoritesRef = ref(db, `Favorites/${userKey}/${recipeKey}`);
-    set(userFavoritesRef, true);
+    const userFavoritesRef = ref(db, `favorites/${userKey}/${recipeKey}`);
+  
+    get(userFavoritesRef).then((snapshot) => {
+      if (snapshot.exists()) {
+        remove(userFavoritesRef).then(() => setIsFavorite(false));
+      } else {
+        set(userFavoritesRef, true).then(() => setIsFavorite(true));
+      }
+    });
   };
+
 
   const recipeImage = require('../images/dinner.jpg');
 
@@ -71,8 +81,12 @@ export default function Recipe({ route, navigation }) {
                 </View>
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback onPress={() => addFavorite(recipe.key, userKey)}>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <EvilIcons name="star" size={40} />
+                <View style={{ flexDirection: "row", alignItems: "center" }}>
+                  <MaterialCommunityIcons
+                    name="star"
+                    size={30}
+                    color={isFavorite ? "yellow" : "gray"} // Change color based on isFavorite state
+                  />
                 </View>
               </TouchableWithoutFeedback>
             </View>
