@@ -60,10 +60,8 @@ export default function RecipeList({ navigation, route }) {
         paddingTop: 20, justifyContent: 'center',
         alignItems: 'center', flexDirection: 'row'
       }}>
-        <TextInput value={text} onChangeText={search} style={Styles.searchInput} placeholder='Search' placeholderTextColor={'#3C6255'}> 
-          <Entypo name="magnifying-glass" style={{padding: 20}} size={30} color={'grey'} />
-        </TextInput>
-
+        <TextInput value={text} onChangeText={search} style={Styles.searchInput} placeholder='Search' placeholderTextColor={'#3C6255'}/> 
+        <Entypo name="magnifying-glass" style={{position: 'absolute', right: 20, top: 15, padding: 20}} size={30} color={'grey'} />
       </View>
 
       <View style={Styles.recipeList}>
