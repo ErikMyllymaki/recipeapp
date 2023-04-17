@@ -27,7 +27,7 @@ export default function RecipeList({ navigation, route }) {
 
   const renderReceptItem = ({ item }) => {
     const navigateToRecipe = () => {
-      navigation.navigate('Recipe', { recipe: item });
+      navigation.navigate('Recipe', { recipe: item, category: category });
       
     };
 

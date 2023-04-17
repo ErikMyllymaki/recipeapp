@@ -16,6 +16,8 @@ export default function Recipe({ route, navigation }) {
   const [userKey, setUserKey] = useState('');
   const [isFavorite, setIsFavorite] = useState(false);
 
+  const category = route.params.category;
+
   useEffect(() => {
     if (recipe) { // check if recipe is defined
       const recipeRef = ref(db, `${RECIPES_REF}/${recipe.key}`);
@@ -23,8 +25,6 @@ export default function Recipe({ route, navigation }) {
         setRecipeData(snapshot.val());
       });
     }
-
-    console.log(recipeData?.category);
     
   }, [recipe?.key]);
 
@@ -71,7 +71,7 @@ export default function Recipe({ route, navigation }) {
   return (
     <ScrollView>
       <View style={Styles.container}>
-        <Pressable onPress={() => navigation.navigate('RecipeList', {category: recipeData?.category})}>
+        <Pressable onPress={() => navigation.navigate('RecipeList', {category: category})}>
           <AntDesign name='left' size={30} color='#4B702F' />
         </Pressable>
         <View style={Styles.recipeBackground}>
