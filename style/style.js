@@ -13,6 +13,15 @@ export default StyleSheet.create({
         height: 130,
         paddingTop: 25
     },
+    loginHeader: {
+        fontSize: 25,
+        fontFamily: 'TenorSans',
+        textAlign: 'center',
+        marginTop: -100,
+        marginLeft: 100,
+        marginBottom: 60,
+        marginRight: 100
+    },
     title: {
         color: '#4B702F',
         padding: 15,
