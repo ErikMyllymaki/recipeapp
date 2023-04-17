@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, TextInput, Button, TouchableOpacity } from 'react-native';
+import { Image, View, Text, TextInput, Button, TouchableOpacity } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import Styles from '../style/style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -7,6 +7,8 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { child, push, ref, remove, update, onValue } from 'firebase/database';
 import { db, RECIPES_REF, USERS_REF } from '../firebase/config';
 import { auth } from '../firebase/config';
+import { AntDesign } from '@expo/vector-icons';
+import * as ImagePicker from 'expo-image-picker';
 
 
 
@@ -29,6 +31,7 @@ const [nickname, setNickname] = useState('');
   const [ingredients, setIngredients] = useState([]);
   const [instructions, setInstructions] = useState('');
   const [category, setCategory] = useState('Breakfast');
+  const [image, setImage] = useState(null);
 
   const [recipes, setRecipes] = useState([]);
 
@@ -46,6 +49,7 @@ const [nickname, setNickname] = useState('');
         category: category,
         userKey: userKey,
         nickname: nickname,
+        image: image
       };
       const newRecipeItemRef = push(ref(db, RECIPES_REF), newRecipeItem);
       const newRecipeItemKey = newRecipeItemRef.key;
@@ -53,7 +57,7 @@ const [nickname, setNickname] = useState('');
       setIngredients([]);
       setInstructions('');
       setCategory('Breakfast');
-
+  
       return newRecipeItemKey;
     }
   };
@@ -89,10 +93,8 @@ const [nickname, setNickname] = useState('');
       } else {
         setRecipes([]);
       }
-
-      addNewRecipe();
     });
-  }, [category]);
+  }, []);
 
   const addIngredient = () => {
     if (ingredient.trim() != "") {
@@ -100,11 +102,28 @@ const [nickname, setNickname] = useState('');
       setIngredient("");
     }
   }
+  
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+    }
+  };
+
 
 
   return (
     <ScrollView>
-      <View style={Styles.container}>
+      <View style={[Styles.container,]}>
         <Text style={Styles.pageHeader}>ADD RECIPE</Text>
 
         <Picker
@@ -127,6 +146,12 @@ const [nickname, setNickname] = useState('');
           style={Styles.addRecipeInput}
           onChangeText={setRecipeName}
         />
+
+
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <Button title="Pick an image from camera roll" onPress={pickImage} />
+          {image && <Image source={{ uri: image }} style={{ width: 300, height: 200 }} />}
+        </View>
 
 
         <TextInput
@@ -159,6 +184,7 @@ const [nickname, setNickname] = useState('');
           onChangeText={text => setInstructions(text)}
         />
 
+        
         <TouchableOpacity
           style={Styles.addRecipeButton}
           onPress={() => {
@@ -168,7 +194,7 @@ const [nickname, setNickname] = useState('');
             this.instructions.clear();
           }}
         >
-          <Text style={Styles.addRecipeButtonText}>Save recipe</Text>
+          <Text style={[Styles.addRecipeButtonText, {paddingBottom: 60}]}>Save recipe</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
