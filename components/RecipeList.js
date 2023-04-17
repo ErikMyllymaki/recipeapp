@@ -20,9 +20,10 @@ export default function RecipeList({ navigation, route }) {
   const filteredRecipes = recipes.filter(recipe => recipe.category === category.title);
 
   function search(keyword) {
-    setText(keyword);
-    const filteredRecipes = recipes.filter(r => r.name.includes(keyword) && r.category === category.title);
-    setFilteredRecipes(filteredRecipes);
+    // setText(keyword);
+    // const filteredRecipes = recipes.filter(r => r.name.includes(keyword) && r.category === category.title);
+    // setFilteredRecipes(filteredRecipes);
+    
   }
 
   const renderReceptItem = ({ item }) => {
@@ -58,9 +59,9 @@ export default function RecipeList({ navigation, route }) {
         paddingTop: 20, justifyContent: 'center',
         alignItems: 'center', flexDirection: 'row'
       }}>
-        {/* <TextInput value={text} onChangeText={search} style={Styles.searchInput} placeholder='Search' placeholderTextColor={'#3C6255'}> 
+        <TextInput value={text} onChangeText={search} style={Styles.searchInput} placeholder='Search' placeholderTextColor={'#3C6255'}> 
           <Entypo name="magnifying-glass" style={{padding: 20}} size={30} color={'grey'} />
-        </TextInput> */}
+        </TextInput>
 
       </View>
 
