@@ -2,42 +2,36 @@ import React, { useState, useEffect } from 'react';
 import Styles from '../style/style';
 import { Text, View } from 'react-native';
 import { Image, Dimensions } from 'react-native';
-import { db, USERS_REF } from '../firebase/config';
+import { useState, useEffect } from 'react';
 import { auth } from '../firebase/config';
-
-
-
+import { db, USERS_REF } from '../firebase/config';
+import { onValue, ref } from 'firebase/database';
 
 export default function Header() {
+  const [userNickname, setUserNickname] = useState('');
 
-    const [userKey, setUserKey] = useState('');
-    const [nickname, setNickname] = useState('');
-
-    useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged(user => {
-          if (user) {
-            const userRef = ref(db, USERS_REF + '/' + user.uid);
-            onValue(userRef, snapshot => {
-              const userData = snapshot.val();
-              if (userData) {
-                setUserKey(user.uid);
-                setNickname(userData.nickname); 
-              }
-            });
-          }
+  useEffect(() => {
+    const unsubscribeAuth = auth.onAuthStateChanged(user => {
+      if (user) {
+        const userRef = ref(db, `${USERS_REF}/${user.uid}/nickname`);
+        onValue(userRef, snapshot => {
+          setUserNickname(snapshot.val() || '');
         });
-      
-        return () => unsubscribe();
-      }, []);
+      } else {
+        setUserNickname('');
+      }
+    });
 
-    const yourImage = require('../images/Logo.png');
-    const screenWidth = Dimensions.get('window').width;
+    return () => unsubscribeAuth();
+  }, []);
 
+  const yourImage = require('../images/Logo.png');
+  const screenWidth = Dimensions.get('window').width;
 
-    return (
-        <View style={Styles.header}>
-            <Image source={yourImage} style={{ resizeMode: 'contain', height: 75}}></Image>
-            <Text>{nickname}</Text>
-        </View>
-    )
+  return (
+    <View style={Styles.header}>
+      <Image source={yourImage} style={{ resizeMode: 'contain', height: 75 }} />
+      <Text>{userNickname}</Text>
+    </View>
+  );
 }
