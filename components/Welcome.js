@@ -1,14 +1,10 @@
 import { View, Text, Button } from 'react-native';
-import { logout } from './Auth';
 import Styles from '../style/style';
 
 
 export default Welcome = ({ navigation }) => {
 
-    handlePress= () => {
-        logout();
-        console.log("Logged out");
-    }
+
 
     return (
         <View style={Styles.container}>
@@ -20,10 +16,6 @@ export default Welcome = ({ navigation }) => {
             <Button
             title='Login'
             onPress={() => navigation.navigate('Login')}
-            />
-            <Button
-            title='Logout'
-            onPress={handlePress}
             />
         </View>
     )

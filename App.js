@@ -48,11 +48,11 @@ export default function App() {
       >
 
         <Tab.Screen name='Welcome' component={Welcome}
-          options={{ tabBarButton: (props) => null }} />
+          options={{tabBarStyle: { display: 'none' }, tabBarButton: (props) => null }} />
         <Tab.Screen name='Login' component={Login}
-          options={{ tabBarButton: (props) => null }} /> 
+          options={{tabBarStyle: { display: 'none' }, tabBarButton: (props) => null }} /> 
           <Tab.Screen name='Register' component={Register}
-            options={{ tabBarButton: (props) => null }} />
+            options={{tabBarStyle: { display: 'none' }, tabBarButton: (props) => null }} />
 
         <Tab.Screen name="Home" component={Home} options={{
           tabBarStyle: { display: 'none' },
