@@ -16,7 +16,7 @@ export default function RecipeList({ navigation, route }) {
   const [text, setText] = useState('');
   const [recipes, setRecipes] = useState([]);
 
-  const { category } = route.params;
+  const category  = route.params.category;
   const filteredRecipes = recipes.filter(recipe => recipe.category === category.title);
 
   function search(keyword) {
@@ -28,6 +28,7 @@ export default function RecipeList({ navigation, route }) {
   const renderReceptItem = ({ item }) => {
     const navigateToRecipe = () => {
       navigation.navigate('Recipe', { recipe: item });
+      
     };
 
     return (

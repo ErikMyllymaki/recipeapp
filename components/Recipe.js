@@ -5,6 +5,7 @@ import { child, push, ref, remove, update, onValue, set } from 'firebase/databas
 import { db, RECIPES_REF, USERS_REF, FAVORITES_REF } from '../firebase/config';
 import { EvilIcons } from '@expo/vector-icons';
 import { auth } from '../firebase/config';
+import { AntDesign } from '@expo/vector-icons';
 
 
 export default function Recipe({ route, navigation }) {
@@ -20,6 +21,9 @@ export default function Recipe({ route, navigation }) {
         setRecipeData(snapshot.val());
       });
     }
+
+    console.log(recipeData?.category);
+    
   }, [recipe?.key]);
 
   useEffect(() => {
@@ -56,6 +60,9 @@ export default function Recipe({ route, navigation }) {
   return (
     <ScrollView>
       <View style={Styles.container}>
+        <Pressable onPress={() => navigation.navigate('RecipeList', {category: recipeData?.category})}>
+          <AntDesign name='left' size={30} color='#4B702F' />
+        </Pressable>
         <View style={Styles.recipeBackground}>
           <View style={{ alignItems: 'center' }}>
             <Image source={recipeImage} style={Styles.recipeImage} />
