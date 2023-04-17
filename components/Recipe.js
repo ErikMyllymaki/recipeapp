@@ -80,8 +80,12 @@ export default function Recipe({ route, navigation }) {
           </View>
           <View style={Styles.recipeInfo}>
             <Text style={Styles.pageHeader}>{recipeData?.recipeName}</Text>
-            <Text style={Styles.recipeSubtitle}>Ingredients: {recipeData?.ingredients}</Text>
-            <Text style={Styles.recipeSubtitle}>Instructions: {recipeData?.instructions}</Text>
+            <Text style={Styles.recipeSubtitle}>Ingredients:</Text>
+            {recipeData?.ingredients.map((ingredient, index) => (
+              <Text key={index}>{`\u2022 ${ingredient}`}</Text>
+            ))}
+            <Text style={Styles.recipeSubtitle}>Instructions:</Text>
+            <Text>{recipeData?.instructions}</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <TouchableWithoutFeedback onPress={() => removeRecipe(recipe.key)}>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -91,9 +95,9 @@ export default function Recipe({ route, navigation }) {
               <TouchableWithoutFeedback onPress={() => addFavorite(recipe.key, userKey)}>
                 <View style={{ flexDirection: "row", alignItems: "center" }}>
                   <MaterialCommunityIcons
-                    name="star"
+                    name="heart"
                     size={30}
-                    color={isFavorite ? "yellow" : "gray"} // Change color based on isFavorite state
+                    color={isFavorite ? "#CA3433" : "gray"} // Change color based on isFavorite state
                   />
                 </View>
               </TouchableWithoutFeedback>
