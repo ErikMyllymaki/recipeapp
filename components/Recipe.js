@@ -5,6 +5,8 @@ import { child, push, ref, remove, update, onValue, set, get } from 'firebase/da
 import { db, RECIPES_REF, USERS_REF, FAVORITES_REF } from '../firebase/config';
 import { EvilIcons } from '@expo/vector-icons';
 import { auth } from '../firebase/config';
+import { AntDesign } from '@expo/vector-icons';
+
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 
 export default function Recipe({ route, navigation }) {
@@ -21,6 +23,9 @@ export default function Recipe({ route, navigation }) {
         setRecipeData(snapshot.val());
       });
     }
+
+    console.log(recipeData?.category);
+    
   }, [recipe?.key]);
 
 
@@ -66,14 +71,21 @@ export default function Recipe({ route, navigation }) {
   return (
     <ScrollView>
       <View style={Styles.container}>
+        <Pressable onPress={() => navigation.navigate('RecipeList', {category: recipeData?.category})}>
+          <AntDesign name='left' size={30} color='#4B702F' />
+        </Pressable>
         <View style={Styles.recipeBackground}>
           <View style={{ alignItems: 'center' }}>
             <Image source={recipeImage} style={Styles.recipeImage} />
           </View>
           <View style={Styles.recipeInfo}>
             <Text style={Styles.pageHeader}>{recipeData?.recipeName}</Text>
-            <Text style={Styles.recipeSubtitle}>Ingredients: {recipeData?.ingredients}</Text>
-            <Text style={Styles.recipeSubtitle}>Instructions: {recipeData?.instructions}</Text>
+            <Text style={Styles.recipeSubtitle}>Ingredients:</Text>
+            {recipeData?.ingredients.map((ingredient, index) => (
+              <Text key={index}>{`\u2022 ${ingredient}`}</Text>
+            ))}
+            <Text style={Styles.recipeSubtitle}>Instructions:</Text>
+            <Text>{recipeData?.instructions}</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <TouchableWithoutFeedback onPress={() => removeRecipe(recipe.key)}>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -83,9 +95,9 @@ export default function Recipe({ route, navigation }) {
               <TouchableWithoutFeedback onPress={() => addFavorite(recipe.key, userKey)}>
                 <View style={{ flexDirection: "row", alignItems: "center" }}>
                   <MaterialCommunityIcons
-                    name="star"
+                    name="heart"
                     size={30}
-                    color={isFavorite ? "yellow" : "gray"} // Change color based on isFavorite state
+                    color={isFavorite ? "#CA3433" : "gray"} // Change color based on isFavorite state
                   />
                 </View>
               </TouchableWithoutFeedback>
