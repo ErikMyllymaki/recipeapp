@@ -90,7 +90,11 @@ export default function Recipe({ route, navigation }) {
             <Text>{recipeData?.instructions}</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               {userKey === recipeData?.userKey && (
-                <TouchableWithoutFeedback onPress={() => navigation.navigate('EditRecipe', { recipeData: recipeData })}>
+                <TouchableWithoutFeedback
+                  onPress={() => {
+                    console.log(recipeData);
+                    navigation.navigate('EditRecipe', { recipeData });
+                  }}>
                   <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <EvilIcons name="pencil" size={40} />
                   </View>
