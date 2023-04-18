@@ -1,8 +1,17 @@
 import { View, Text, Pressable, ImageBackground, Dimensions } from 'react-native';
+import { useFonts } from 'expo-font';
 import Styles from '../style/style';
 
 
 export default Welcome = ({ navigation }) => {
+  const [loaded] = useFonts({
+    GeosansLight: require('../assets/fonts/GeosansLight.ttf'),
+    TenorSans: require('../assets/fonts/TenorSans-Regular.ttf')
+  });
+
+  if (!loaded) {
+    return null;
+  }
 
     const backgroundImage = require('../images/backgroundImage.jpg');
     const screenWidth = Dimensions.get('window').width;
