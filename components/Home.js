@@ -32,7 +32,7 @@ export default function Home( {navigation} ) {
           <Pressable
             onPress={() => {
               handlePress();
-              navigation.navigate('Welcome');
+              // navigation.navigate('Welcome');
             }}
             style={{ paddingVertical: 30 }}
           >
