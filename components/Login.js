@@ -65,11 +65,12 @@ export default Login = ( { navigation } ) => {
         <Text style={styles.buttonStyle}>Login</Text>
       </Pressable>
       <Pressable  style={{ paddingVertical: 30, alignItems: 'center', paddingTop: 0 }}>
-        <Text style={styles.buttonStyle}>Forgot password</Text>
+        <Text onPress={handlePressForgotPw} style={styles.buttonStyle}>Forgot password</Text>
       </Pressable>
       { showForgotPw &&
         <>
           <TextInput
+            style={styles.textInput}
             placeholder="Enter your email*"
             value={emailForgotPw}
             onChangeText={(emailForgotPw) => setEmailForgotPw(emailForgotPw)}
@@ -77,11 +78,11 @@ export default Login = ( { navigation } ) => {
             autoCapitalize="none"
           />
           <Pressable onPress={() => handlePressResetPw()} style={{ paddingVertical: 30, alignItems: 'center' }}>
-            <Text>
+            <Text style={styles.buttonStyle}>
               Reset password
             </Text>
           </Pressable>
-          <Text>
+          <Text style={[styles.infoText, {fontSize: 15, fontStyle: 'italic'}]}>
             Be sure to check your spam folder after resetting!
           </Text>
         </>
