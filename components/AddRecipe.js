@@ -122,7 +122,7 @@ const [nickname, setNickname] = useState('');
 
 
   return (
-    <ScrollView>
+    <ScrollView style={{backgroundColor: '#B5CFBB'}}>
       <View style={[Styles.container,]}>
         <Text style={Styles.pageHeader}>ADD RECIPE</Text>
 
