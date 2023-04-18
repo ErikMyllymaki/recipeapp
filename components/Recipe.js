@@ -25,7 +25,7 @@ export default function Recipe({ route, navigation }) {
         setRecipeData(snapshot.val());
       });
     }
-    
+
   }, [recipe?.key]);
 
 
@@ -54,7 +54,7 @@ export default function Recipe({ route, navigation }) {
 
   const addFavorite = (recipeKey, userKey) => {
     const userFavoritesRef = ref(db, `favorites/${userKey}/${recipeKey}`);
-  
+
     get(userFavoritesRef).then((snapshot) => {
       if (snapshot.exists()) {
         remove(userFavoritesRef).then(() => setIsFavorite(false));
@@ -71,7 +71,7 @@ export default function Recipe({ route, navigation }) {
   return (
     <ScrollView>
       <View style={Styles.container}>
-        <Pressable onPress={() => navigation.navigate('RecipeList', {category: category})}>
+        <Pressable onPress={() => navigation.navigate('RecipeList', { category: category })}>
           <AntDesign name='left' size={30} color='#4B702F' />
         </Pressable>
         <View style={Styles.recipeBackground}>
@@ -87,11 +87,13 @@ export default function Recipe({ route, navigation }) {
             <Text style={Styles.recipeSubtitle}>Instructions:</Text>
             <Text>{recipeData?.instructions}</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <TouchableWithoutFeedback onPress={() => removeRecipe(recipe.key)}>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <EvilIcons name="trash" size={40} />
-                </View>
-              </TouchableWithoutFeedback>
+            {userKey === recipeData?.userKey && (
+                <TouchableWithoutFeedback onPress={() => removeRecipe(recipe.key)}>
+                  <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <EvilIcons name="trash" size={40} />
+                  </View>
+                </TouchableWithoutFeedback>
+              )}
               <TouchableWithoutFeedback onPress={() => addFavorite(recipe.key, userKey)}>
                 <View style={{ flexDirection: "row", alignItems: "center" }}>
                   <MaterialCommunityIcons
