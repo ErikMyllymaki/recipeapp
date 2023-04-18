@@ -140,6 +140,30 @@ export default StyleSheet.create({
     marginHorizontal: 13,
     marginBottom: -10
   },
+  buttonStyle: {
+    fontFamily: 'TenorSans',
+    backgroundColor: '#61876ee9',
+    width: 200,
+    height: 50,
+    textAlign: 'center',
+    fontSize: 18,
+    textAlignVertical: 'center',
+    ...Platform.select({
+      ios: {
+        lineHeight: 50
+      },
+      android: {}
+    }),
+    borderRadius: 15,
+    color: '#ffffff',
+    overflow: 'hidden'
+  },
+  infoText: {
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    fontSize: 20,
+    padding: 20
+  },
   homeButton: {
     fontFamily: 'TenorSans',
     backgroundColor: '#61876ee9',
