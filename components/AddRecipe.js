@@ -9,7 +9,7 @@ import { db, RECIPES_REF, USERS_REF } from '../firebase/config';
 import { auth } from '../firebase/config';
 import { AntDesign } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
-
+import NumericInput from 'react-native-numeric-input'
 
 
 const CATEGORIES_TITLES = [
@@ -32,6 +32,7 @@ const [nickname, setNickname] = useState('');
   const [instructions, setInstructions] = useState('');
   const [category, setCategory] = useState('Breakfast');
   const [image, setImage] = useState(null);
+  const [servingSize, setServingSize] = useState(0)
 
   const [recipes, setRecipes] = useState([]);
 
@@ -44,6 +45,7 @@ const [nickname, setNickname] = useState('');
     if (recipeName.trim() !== "" && ingredients.length > 0 && instructions.trim() !== "") {
       const newRecipeItem = {
         recipeName: recipeName,
+        servingSize: servingSize,
         ingredients: ingredients,
         instructions: instructions,
         category: category,
@@ -57,7 +59,7 @@ const [nickname, setNickname] = useState('');
       setIngredients([]);
       setInstructions('');
       setCategory('Breakfast');
-  
+      setServingSize(0);
       return newRecipeItemKey;
     }
   };
@@ -153,6 +155,10 @@ const [nickname, setNickname] = useState('');
           {image && <Image source={{ uri: image }} style={{ width: 300, height: 200 }} />}
         </View>
 
+        <NumericInput
+          onChange={setServingSize}
+          rounded
+        />
 
         <TextInput
           ref={input => { this.textInput = input }}
