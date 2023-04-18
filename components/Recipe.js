@@ -6,8 +6,8 @@ import { db, RECIPES_REF, USERS_REF, FAVORITES_REF } from '../firebase/config';
 import { EvilIcons } from '@expo/vector-icons';
 import { auth } from '../firebase/config';
 import { AntDesign } from '@expo/vector-icons';
-
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import EditRecipe from './EditRecipe';
 
 export default function Recipe({ route, navigation }) {
 
@@ -87,7 +87,15 @@ export default function Recipe({ route, navigation }) {
             <Text style={Styles.recipeSubtitle}>Instructions:</Text>
             <Text>{recipeData?.instructions}</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            {userKey === recipeData?.userKey && (
+              {userKey === recipeData?.userKey && (
+                <TouchableWithoutFeedback onPress={() => navigation.navigate('EditRecipe', { recipeData: recipeData })}>
+                  <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <EvilIcons name="pencil" size={40} />
+                  </View>
+                </TouchableWithoutFeedback>
+              )}
+
+              {userKey === recipeData?.userKey && (
                 <TouchableWithoutFeedback onPress={() => removeRecipe(recipe.key)}>
                   <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <EvilIcons name="trash" size={40} />

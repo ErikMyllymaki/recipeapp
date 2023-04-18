@@ -16,7 +16,7 @@ import Welcome from './components/Welcome';
 import Login from './components/Login';
 import Register from './components/Register';
 import { auth } from './firebase/config';
-
+import EditRecipe from './components/EditRecipe'
 
 const Tab = createBottomTabNavigator();
 
@@ -137,6 +137,8 @@ export default function App() {
         <Tab.Screen name='RecipeList' component={RecipeList}
           options={{ tabBarButton: (props) => null }} />
         <Tab.Screen name='Recipe' component={Recipe}
+          options={{ tabBarButton: (props) => null }} />
+          <Tab.Screen name='EditRecipe' component={EditRecipe}
           options={{ tabBarButton: (props) => null }} />
 
 
