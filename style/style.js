@@ -250,5 +250,14 @@ export default StyleSheet.create({
     borderRadius: 15,
     marginLeft: 10,
     marginRight: 30,
+  },
+
+  ingredient: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 6,
+    paddingBottom: 0,
   }
 });
