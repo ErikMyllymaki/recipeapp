@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Image, View, Text, TextInput, Button, TouchableOpacity } from 'react-native';
+import { Image, View, Text, TextInput, Button, TouchableOpacity, Pressable } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import Styles from '../style/style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -121,10 +121,15 @@ const [nickname, setNickname] = useState('');
     }
   };
 
+  const handleRemoveIngredient = (ingredient) => {
+    const newIngredients = ingredients.filter((item) => item !== ingredient);
+    setIngredients(newIngredients);
+  };
+
 
 
   return (
-    <ScrollView>
+    <ScrollView style={{backgroundColor: '#B5CFBB'}}>
       <View style={[Styles.container,]}>
         <Text style={Styles.pageHeader}>ADD RECIPE</Text>
 
@@ -177,7 +182,15 @@ const [nickname, setNickname] = useState('');
 
         </TouchableOpacity>
         {ingredients.map((ingredient, index) => (
-        <Text key={index}>{ingredient}</Text>
+          <View style={Styles.ingredient}>
+            <Text key={index} style={{fontSize: 23}}>{ingredient}</Text>
+              <Pressable 
+                style={{marginLeft: 15}}
+                onPress={() => handleRemoveIngredient(ingredient)}
+                >
+              <AntDesign name='close' size={23}/>
+              </Pressable>
+          </View>
       ))}
         <TextInput
           ref={input => { this.instructions = input }}
