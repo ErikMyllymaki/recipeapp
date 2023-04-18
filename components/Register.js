@@ -41,7 +41,7 @@ export default Register = ({ navigation }) => {
       //contentContainerStyle={styles.contentContainerStyle}
       >
       {/* <Text style={styles.header}>Todos</Text> */}
-      <Text>Create an account</Text>
+      <Text style={styles.infoText}>Create an account</Text>
       <TextInput
         style={styles.textInput}
         placeholder="Nickname*"
@@ -70,16 +70,12 @@ export default Register = ({ navigation }) => {
         onChangeText={(confirmPassword) => setConfirmPassword(confirmPassword)}
         secureTextEntry={true}
       />
-      <Pressable style={styles.buttonStyle}>
-        <Button 
-          title="Register"
-          onPress={handlePress} />
+      <Pressable onPress={handlePress} style={{ paddingVertical: 30, alignItems: 'center' }}>
+        <Text style={styles.buttonStyle}>Register</Text>
       </Pressable>
       <Text style={styles.infoText}>Already have an account?</Text>
-      <Pressable style={styles.buttonStyle}>
-        <Button
-          title="Login"
-          onPress={() => navigation.navigate('Login')} />
+      <Pressable style={{ paddingVertical: 30, alignItems: 'center' }} onPress={() => navigation.navigate('Login')}>
+        <Text style={styles.buttonStyle}>Login</Text>
       </Pressable>
     </View>
   );
