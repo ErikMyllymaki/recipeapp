@@ -177,8 +177,8 @@ const [nickname, setNickname] = useState('');
           ref={input => { this.instructions = input }}
           multiline={true}
           style={expanded ? [Styles.expandedAddRecipeInput, { textAlignVertical: 'top' }] : Styles.addRecipeInput}
-          onFocus={() => setExpanded(true)}
-          onBlur={() => setExpanded(false)}
+          // onFocus={() => setExpanded(true)}
+          // onBlur={() => setExpanded(false)}
           placeholder='+ Add instructions'
           placeholderTextColor="#40793F"
           onChangeText={text => setInstructions(text)}
