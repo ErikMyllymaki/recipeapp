@@ -80,6 +80,8 @@ export default function Recipe({ route, navigation }) {
           </View>
           <View style={Styles.recipeInfo}>
             <Text style={Styles.pageHeader}>{recipeData?.recipeName}</Text>
+            <Text style={Styles.recipeSubtitle}>Serving size:</Text>
+            <Text>{recipeData?.servingSize} serving(s)</Text>
             <Text style={Styles.recipeSubtitle}>Ingredients:</Text>
             {recipeData?.ingredients.map((ingredient, index) => (
               <Text key={index}>{`\u2022 ${ingredient}`}</Text>
