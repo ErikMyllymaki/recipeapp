@@ -28,6 +28,17 @@ export default function Recipe({ route, navigation }) {
 
   }, [recipe?.key]);
 
+  useEffect(() => {
+    if (userKey && recipe) {
+      const userFavoritesRef = ref(db, `${FAVORITES_REF}/${userKey}`);
+      onValue(userFavoritesRef, snapshot => {
+        const favorites = snapshot.val() || {};
+        setIsFavorite(favorites[recipe.key]);
+      });
+    }
+  }, [userKey, recipe?.key]);
+  
+
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
