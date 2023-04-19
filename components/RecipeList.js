@@ -45,6 +45,7 @@ const [favoriteRecipes, setFavoriteRecipes] = useState([]);
   useEffect(() => {
     let refPath = RECIPES_REF;
     if (category.title === 'Favorites') {
+      console.log("favs")
       const favoritesRef = ref(db, FAVORITES_REF + userKey);
       const recipesRef = ref(db, RECIPES_REF);
       const favoriteRecipeKeys = [];
@@ -71,7 +72,9 @@ const [favoriteRecipes, setFavoriteRecipes] = useState([]);
         snapshot.forEach((childSnapshot) => {
           const key = childSnapshot.key;
           const data = childSnapshot.val();
-          recipes.push({ key, ...data });
+          if (category.title === data.category) {
+            recipes.push({ key, ...data });
+          }
         });
         setRecipes(recipes);
       });
