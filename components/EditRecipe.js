@@ -33,7 +33,6 @@ export default function EditRecipe({ route }) {
     setRecipeName(recipeData?.recipeName || '');
     setIngredients(recipeData?.ingredients || []);
     setInstructions(recipeData?.instructions || '');
-    setImage(recipeData?.image || null);
     setServingSize(recipeData?.servingSize || 0);
     setCategory(recipeData?.category || '');
   }, [recipeData]);
@@ -54,7 +53,6 @@ export default function EditRecipe({ route }) {
       recipeName,
       ingredients,
       instructions,
-      image,
       servingSize,
       category,
     };
