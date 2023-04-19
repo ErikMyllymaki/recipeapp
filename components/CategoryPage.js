@@ -37,14 +37,12 @@ export default function CategoryPage({ navigation }) {
 
   return (
     <View style={[Styles.container, {flex: 1, justifyContent: 'space-between'}] }>
-      <View style={{paddingTop: 20, justifyContent: 'center',
+      {/* <View style={{paddingTop: 20, justifyContent: 'center',
         alignItems: 'center', flexDirection: 'row'}}>
-          <TextInput style={Styles.searchInput} >
-            <Entypo name="magnifying-glass" style={{padding: 20}} size={30} color={'grey'} />
-          </TextInput>
-        </View>
+          <Entypo name="magnifying-glass" style={{padding: 20}} size={30} color={'grey'} />
+          <TextInput style={Styles.searchInput} />
+        </View> */}
       
-
       <FlatList
         numColumns={2}
         data={CATEGORIES}

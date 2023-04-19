@@ -62,9 +62,10 @@ export default Login = ( { navigation } ) => {
   }
 
   return (
-    <View>
-      <Text >Login to your account</Text>
+    <View style={styles.container}>
+      <Text style={styles.infoText}>Login to your account</Text>
       <TextInput
+        style={styles.textInput}
         placeholder="Enter your email*"
         value={email}
         onChangeText={(email) => setEmail(email)}
@@ -72,48 +73,42 @@ export default Login = ( { navigation } ) => {
         autoCapitalize="none"
       />
       <TextInput
+        style={styles.textInput}
         placeholder="Enter your password*"
         value={password}
         onChangeText={(password) => setPassword(password)}
         secureTextEntry={true}
       />
-      <Pressable>
-        <Button 
-          title="Login"
-          onPress={() => {
-          handlePress();
-          horo();
-          }} />
+      <Pressable onPress={handlePress} style={{ paddingVertical: 30, alignItems: 'center' }}>
+        <Text style={styles.buttonStyle}>Login</Text>
       </Pressable>
-      <Text>Not having account yet?</Text>
-      <Pressable >
-        <Button
-          title="Register"
-          onPress={() => navigation.navigate('Register')} />
-      </Pressable>
-      <Pressable >
-        <Text 
-          onPress={handlePressForgotPw}>Forgot password</Text>
+      <Pressable  style={{ paddingVertical: 30, alignItems: 'center', paddingTop: 0 }}>
+        <Text onPress={handlePressForgotPw} style={styles.buttonStyle}>Forgot password</Text>
       </Pressable>
       { showForgotPw &&
         <>
           <TextInput
+            style={styles.textInput}
             placeholder="Enter your email*"
             value={emailForgotPw}
             onChangeText={(emailForgotPw) => setEmailForgotPw(emailForgotPw)}
             keyboardType="email-address"
             autoCapitalize="none"
           />
-          <Pressable>
-            <Button
-              title="Reset password"
-              onPress={() => handlePressResetPw()} />
+          <Pressable onPress={() => handlePressResetPw()} style={{ paddingVertical: 30, alignItems: 'center' }}>
+            <Text style={styles.buttonStyle}>
+              Reset password
+            </Text>
           </Pressable>
-          <Text>
+          <Text style={[styles.infoText, {fontSize: 15, fontStyle: 'italic'}]}>
             Be sure to check your spam folder after resetting!
           </Text>
         </>
       }
+      <Text style={styles.infoText}>Not having account yet?</Text>
+      <Pressable onPress={() => navigation.navigate('Register')} style={{ paddingVertical: 30, alignItems: 'center' }}>
+        <Text style={styles.buttonStyle}>Register</Text>
+      </Pressable>   
     </View>
   );
 }

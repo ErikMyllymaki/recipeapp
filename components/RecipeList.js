@@ -16,18 +16,20 @@ export default function RecipeList({ navigation, route }) {
   const [text, setText] = useState('');
   const [recipes, setRecipes] = useState([]);
 
-  const { category } = route.params;
+  const category  = route.params.category;
   const filteredRecipes = recipes.filter(recipe => recipe.category === category.title);
 
   function search(keyword) {
-    setText(keyword);
-    const filteredRecipes = recipes.filter(r => r.name.includes(keyword) && r.category === category.title);
-    setFilteredRecipes(filteredRecipes);
+    // setText(keyword);
+    // const filteredRecipes = recipes.filter(r => r.name.includes(keyword) && r.category === category.title);
+    // setFilteredRecipes(filteredRecipes);
+    
   }
 
   const renderReceptItem = ({ item }) => {
     const navigateToRecipe = () => {
-      navigation.navigate('Recipe', { recipe: item });
+      navigation.navigate('Recipe', { recipe: item, category: category });
+      
     };
 
     return (
@@ -58,10 +60,8 @@ export default function RecipeList({ navigation, route }) {
         paddingTop: 20, justifyContent: 'center',
         alignItems: 'center', flexDirection: 'row'
       }}>
-        {/* <TextInput value={text} onChangeText={search} style={Styles.searchInput} placeholder='Search' placeholderTextColor={'#3C6255'}> 
-          <Entypo name="magnifying-glass" style={{padding: 20}} size={30} color={'grey'} />
-        </TextInput> */}
-
+        <TextInput value={text} onChangeText={search} style={Styles.searchInput} placeholder='Search' placeholderTextColor={'#3C6255'}/> 
+        <Entypo name="magnifying-glass" style={{position: 'absolute', right: 20, top: 15, padding: 20}} size={30} color={'grey'} />
       </View>
 
       <View style={Styles.recipeList}>
