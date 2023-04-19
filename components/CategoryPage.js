@@ -24,9 +24,9 @@ export default function CategoryPage({ navigation }) {
   const renderCategoryItem = ({ item }) => {
     if (item.title === 'Favorites') {
       return (
-        <TouchableOpacity
+        <TouchableOpacity 
           style={Styles.categoryItem}
-          onPress={() => navigation.navigate('RecipeList')}
+          onPress={() => navigation.navigate('RecipeList', { category: item })}
         >
           <ImageBackground source={item.image} style={Styles.categoryTitle}>
             <Text style={Styles.categoryName}>{item.title}</Text>
