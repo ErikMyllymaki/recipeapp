@@ -23,8 +23,8 @@ const CATEGORIES_TITLES = [
 
 export default function AddRecipe() {
 
-const [userKey, setUserKey] = useState('');
-const [nickname, setNickname] = useState('');
+  const [userKey, setUserKey] = useState('');
+  const [nickname, setNickname] = useState('');
 
   const [recipeName, setRecipeName] = useState('');
   const [ingredient, setIngredient] = useState('');
@@ -63,7 +63,7 @@ const [nickname, setNickname] = useState('');
       return newRecipeItemKey;
     }
   };
-  
+
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
@@ -73,12 +73,12 @@ const [nickname, setNickname] = useState('');
           const userData = snapshot.val();
           if (userData) {
             setUserKey(user.uid);
-            setNickname(userData.nickname); 
+            setNickname(userData.nickname);
           }
         });
       }
     });
-  
+
     return () => unsubscribe();
   }, []);
 
@@ -104,7 +104,7 @@ const [nickname, setNickname] = useState('');
       setIngredient("");
     }
   }
-  
+
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -129,7 +129,7 @@ const [nickname, setNickname] = useState('');
 
 
   return (
-    <ScrollView style={{backgroundColor: '#B5CFBB'}}>
+    <ScrollView style={{ backgroundColor: '#B5CFBB' }}>
       <View style={[Styles.container,]}>
         <Text style={Styles.pageHeader}>ADD RECIPE</Text>
 
@@ -166,6 +166,7 @@ const [nickname, setNickname] = useState('');
         />
 
         <TextInput
+          value={ingredient}
           ref={input => { this.textInput = input }}
           style={Styles.addRecipeInput}
           placeholder='+ Add ingredients'
@@ -182,16 +183,17 @@ const [nickname, setNickname] = useState('');
 
         </TouchableOpacity>
         {ingredients.map((ingredient, index) => (
-          <View style={Styles.ingredient}>
-            <Text key={index} style={{fontSize: 23}}>{ingredient}</Text>
-              <Pressable 
-                style={{marginLeft: 15}}
-                onPress={() => handleRemoveIngredient(ingredient)}
-                >
-              <AntDesign name='close' size={23}/>
-              </Pressable>
+          <View key={index} style={Styles.ingredient}>
+            <Text style={{ fontSize: 23 }}>{ingredient}</Text>
+            <Pressable
+              style={{ marginLeft: 15 }}
+              onPress={() => handleRemoveIngredient(ingredient)}
+            >
+              <AntDesign name="close" size={23} />
+            </Pressable>
           </View>
-      ))}
+        ))}
+
         <TextInput
           ref={input => { this.instructions = input }}
           multiline={true}
@@ -203,7 +205,7 @@ const [nickname, setNickname] = useState('');
           onChangeText={text => setInstructions(text)}
         />
 
-        
+
         <TouchableOpacity
           style={Styles.addRecipeButton}
           onPress={() => {
@@ -213,7 +215,7 @@ const [nickname, setNickname] = useState('');
             this.instructions.clear();
           }}
         >
-          <Text style={[Styles.addRecipeButtonText, {paddingBottom: 60}]}>Save recipe</Text>
+          <Text style={[Styles.addRecipeButtonText, { paddingBottom: 60 }]}>Save recipe</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
