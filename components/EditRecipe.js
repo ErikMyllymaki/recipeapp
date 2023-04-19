@@ -13,7 +13,11 @@ import NumericInput from 'react-native-numeric-input'
 
 export default function EditRecipe({ route }) {
 
-  const { recipeData } = route.params || {};
+  const [recipeData, setRecipeData] = useState(route.params?.recipeData || {});
+
+  useEffect(() => {
+    setRecipeData(route.params?.recipeData || {});
+  }, [route.params?.recipeData]);
 
   const CATEGORIES_TITLES = ['Breakfast', 'Dinner', 'Drinks', 'Dessert', 'Snacks', 'Pastries'];
 
@@ -24,6 +28,14 @@ export default function EditRecipe({ route }) {
   const [image, setImage] = useState(recipeData?.image || null);
   const [servingSize, setServingSize] = useState(recipeData?.servingSize || 0)
   const [category, setCategory] = useState(recipeData?.category || '');
+
+  useEffect(() => {
+    setRecipeName(recipeData?.recipeName || '');
+    setIngredients(recipeData?.ingredients || []);
+    setInstructions(recipeData?.instructions || '');
+    setServingSize(recipeData?.servingSize || 0);
+    setCategory(recipeData?.category || '');
+  }, [recipeData]);
 
   const addIngredient = () => {
     if (ingredient) {
@@ -41,7 +53,6 @@ export default function EditRecipe({ route }) {
       recipeName,
       ingredients,
       instructions,
-      image,
       servingSize,
       category,
     };
