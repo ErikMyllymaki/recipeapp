@@ -10,7 +10,8 @@ export const CATEGORIES = [
   { id: '3', title: 'Drinks', image: require('../images/drink.jpg') },
   { id: '4', title: 'Dessert', image: require('../images/dessert.jpg') },
   { id: '5', title: 'Snacks', image: require('../images/snack.jpg') },
-  { id: '6', title: 'Pastries', image: require('../images/pastry.jpg') }
+  { id: '6', title: 'Pastries', image: require('../images/pastry.jpg') },
+  { id: '7', title: 'Favorites', image: require('../images/pastry.jpg') } // new object for favorites
 ];
 
 export default function CategoryPage({ navigation }) {
@@ -20,44 +21,67 @@ export default function CategoryPage({ navigation }) {
   //   setSelectedCategory(category);
   // };
 
-  const renderCategoryItem = ({ item }) => (
-    <TouchableOpacity
-      style={[
-        Styles.categoryItem,
-        // selectedCategory.id === item.id
-      ]}
-      onPress={() => navigation.navigate('RecipeList', {category: item})}
+  const renderCategoryItem = ({ item }) => {
+    if (item.title === 'Favorites') {
+      return (
+        <TouchableOpacity 
+          style={Styles.categoryItem}
+          onPress={() => navigation.navigate('RecipeList', { category: item })}
+        >
+          <ImageBackground source={item.image} style={Styles.categoryTitle}>
+            <Text style={Styles.categoryName}>{item.title}</Text>
+          </ImageBackground>
+        </TouchableOpacity>
+      );
+    } else {
+      return (
+        <TouchableOpacity
+          style={Styles.categoryItem}
+          onPress={() => navigation.navigate('RecipeList', { category: item })}
+        >
+          <ImageBackground source={item.image} style={Styles.categoryTitle}>
+            <Text style={Styles.categoryName}>{item.title}</Text>
+          </ImageBackground>
+        </TouchableOpacity>
+      );
+    }
+  };
+  
 
-    >
-      <ImageBackground source={item.image} style={Styles.categoryTitle}><Text style={Styles.categoryName}>{item.title}</Text></ImageBackground>
-    </TouchableOpacity>
-  );
 
-      
 
   return (
-    <View style={[Styles.container, {flex: 1, justifyContent: 'space-between'}] }>
-      <View style={{paddingTop: 20, justifyContent: 'center',
+    <View style={[Styles.container, { flex: 1, justifyContent: 'space-between' }]}>
+      {/* <View style={{paddingTop: 20, justifyContent: 'center',
         alignItems: 'center', flexDirection: 'row'}}>
-          <TextInput style={Styles.searchInput} >
-            <Entypo name="magnifying-glass" style={{padding: 20}} size={30} color={'grey'} />
-          </TextInput>
-        </View>
-      
+          <Entypo name="magnifying-glass" style={{padding: 20}} size={30} color={'grey'} />
+          <TextInput style={Styles.searchInput} />
+        </View> */}
 
+{/* <TouchableOpacity
+        style={[
+          Styles.categoryItem,
+          // selectedCategory.id === item.id
+        ]}
+
+      ><Text style={Styles.categoryName}>Favorites</Text></TouchableOpacity> */}
       <FlatList
         numColumns={2}
         data={CATEGORIES}
         renderItem={renderCategoryItem}
         keyExtractor={(item) => item.id}
-        contentContainerStyle={{flexGrow: 1, paddingHorizontal: 20, paddingTop: 10, ...Platform.select({
-          ios: {
-            paddingHorizontal:20,
-            paddingTop: 30
-          },
-          android: {}
-        })}}
+        contentContainerStyle={{
+          flexGrow: 1, paddingHorizontal: 20, paddingTop: 10, ...Platform.select({
+            ios: {
+              paddingHorizontal: 20,
+              paddingTop: 30
+            },
+            android: {}
+          })
+        }}
       />
+
+
     </View>
   );
 }

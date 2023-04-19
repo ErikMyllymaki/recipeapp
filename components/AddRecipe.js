@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Image, View, Text, TextInput, Button, TouchableOpacity } from 'react-native';
+import { Image, View, Text, TextInput, Button, TouchableOpacity, Pressable } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import Styles from '../style/style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -9,7 +9,7 @@ import { db, RECIPES_REF, USERS_REF } from '../firebase/config';
 import { auth } from '../firebase/config';
 import { AntDesign } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
-
+import NumericInput from 'react-native-numeric-input'
 
 
 const CATEGORIES_TITLES = [
@@ -23,8 +23,8 @@ const CATEGORIES_TITLES = [
 
 export default function AddRecipe() {
 
-const [userKey, setUserKey] = useState('');
-const [nickname, setNickname] = useState('');
+  const [userKey, setUserKey] = useState('');
+  const [nickname, setNickname] = useState('');
 
   const [recipeName, setRecipeName] = useState('');
   const [ingredient, setIngredient] = useState('');
@@ -32,6 +32,7 @@ const [nickname, setNickname] = useState('');
   const [instructions, setInstructions] = useState('');
   const [category, setCategory] = useState('Breakfast');
   const [image, setImage] = useState(null);
+  const [servingSize, setServingSize] = useState(0)
 
   const [recipes, setRecipes] = useState([]);
 
@@ -44,6 +45,7 @@ const [nickname, setNickname] = useState('');
     if (recipeName.trim() !== "" && ingredients.length > 0 && instructions.trim() !== "") {
       const newRecipeItem = {
         recipeName: recipeName,
+        servingSize: servingSize,
         ingredients: ingredients,
         instructions: instructions,
         category: category,
@@ -57,11 +59,11 @@ const [nickname, setNickname] = useState('');
       setIngredients([]);
       setInstructions('');
       setCategory('Breakfast');
-  
+      setServingSize(0);
       return newRecipeItemKey;
     }
   };
-  
+
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
@@ -71,12 +73,12 @@ const [nickname, setNickname] = useState('');
           const userData = snapshot.val();
           if (userData) {
             setUserKey(user.uid);
-            setNickname(userData.nickname); 
+            setNickname(userData.nickname);
           }
         });
       }
     });
-  
+
     return () => unsubscribe();
   }, []);
 
@@ -102,7 +104,7 @@ const [nickname, setNickname] = useState('');
       setIngredient("");
     }
   }
-  
+
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -119,10 +121,15 @@ const [nickname, setNickname] = useState('');
     }
   };
 
+  const handleRemoveIngredient = (ingredient) => {
+    const newIngredients = ingredients.filter((item) => item !== ingredient);
+    setIngredients(newIngredients);
+  };
+
 
 
   return (
-    <ScrollView>
+    <ScrollView style={{ backgroundColor: '#B5CFBB' }}>
       <View style={[Styles.container,]}>
         <Text style={Styles.pageHeader}>ADD RECIPE</Text>
 
@@ -153,8 +160,13 @@ const [nickname, setNickname] = useState('');
           {image && <Image source={{ uri: image }} style={{ width: 300, height: 200 }} />}
         </View>
 
+        <NumericInput
+          onChange={setServingSize}
+          rounded
+        />
 
         <TextInput
+          value={ingredient}
           ref={input => { this.textInput = input }}
           style={Styles.addRecipeInput}
           placeholder='+ Add ingredients'
@@ -171,20 +183,29 @@ const [nickname, setNickname] = useState('');
 
         </TouchableOpacity>
         {ingredients.map((ingredient, index) => (
-        <Text key={index}>{ingredient}</Text>
-      ))}
+          <View key={index} style={Styles.ingredient}>
+            <Text style={{ fontSize: 23 }}>{ingredient}</Text>
+            <Pressable
+              style={{ marginLeft: 15 }}
+              onPress={() => handleRemoveIngredient(ingredient)}
+            >
+              <AntDesign name="close" size={23} />
+            </Pressable>
+          </View>
+        ))}
+
         <TextInput
           ref={input => { this.instructions = input }}
           multiline={true}
           style={expanded ? [Styles.expandedAddRecipeInput, { textAlignVertical: 'top' }] : Styles.addRecipeInput}
-          onFocus={() => setExpanded(true)}
-          onBlur={() => setExpanded(false)}
+          // onFocus={() => setExpanded(true)}
+          // onBlur={() => setExpanded(false)}
           placeholder='+ Add instructions'
           placeholderTextColor="#40793F"
           onChangeText={text => setInstructions(text)}
         />
 
-        
+
         <TouchableOpacity
           style={Styles.addRecipeButton}
           onPress={() => {
@@ -194,7 +215,7 @@ const [nickname, setNickname] = useState('');
             this.instructions.clear();
           }}
         >
-          <Text style={[Styles.addRecipeButtonText, {paddingBottom: 60}]}>Save recipe</Text>
+          <Text style={[Styles.addRecipeButtonText, { paddingBottom: 60 }]}>Save recipe</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>

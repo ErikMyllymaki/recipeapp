@@ -1,4 +1,5 @@
 // import { StatusBar } from 'expo-status-bar';
+import { useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Header from './components/Header';
 import Styles from './style/style';
@@ -14,11 +15,27 @@ import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import Welcome from './components/Welcome';
 import Login from './components/Login';
 import Register from './components/Register';
-
+import { auth } from './firebase/config';
+import EditRecipe from './components/EditRecipe'
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        setIsAuthenticated(true);
+      } else {
+        setIsAuthenticated(false);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   return (
     <NavigationContainer>
       <Header />
@@ -47,21 +64,42 @@ export default function App() {
         }}
       >
 
-        <Tab.Screen name='Welcome' component={Welcome}
-          options={{tabBarStyle: { display: 'none' }, tabBarButton: (props) => null }} />
-        <Tab.Screen name='Login' component={Login}
-          options={{tabBarStyle: { display: 'none' }, tabBarButton: (props) => null }} /> 
-          <Tab.Screen name='Register' component={Register}
-            options={{tabBarStyle: { display: 'none' }, tabBarButton: (props) => null }} />
+        {/* <Tab.Screen name='Welcome' component={Welcome}
+          options={{tabBarStyle: { display: 'none' }, tabBarButton: (props) => null }} /> */}
 
-        <Tab.Screen name="Home" component={Home} options={{
+        {isAuthenticated ? (
+          <Tab.Screen
+            name="Home"
+            component={Home}
+            options={{
+              tabBarStyle: { display: 'none' },
+              tabBarIcon: ({ color }) => (
+                <MaterialCommunityIcons name="home-account" size={30} color={color} />
+              ),
+              tabBarActiveTintColor: '#61876E',
+              tabBarInActiveTintColor: 'gray'
+            }}
+          />
+        ) : (
+          <Tab.Screen
+            name="Welcome"
+            component={Welcome}
+            options={{ tabBarStyle: { display: 'none' }, tabBarButton: (props) => null }}
+          />
+        )}
+        <Tab.Screen name='Login' component={Login}
+          options={{ tabBarStyle: { display: 'none' }, tabBarButton: (props) => null }} />
+        <Tab.Screen name='Register' component={Register}
+          options={{ tabBarStyle: { display: 'none' }, tabBarButton: (props) => null }} />
+
+        {/* <Tab.Screen name="Home" component={Home} options={{
           tabBarStyle: { display: 'none' },
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="home-account" size={30} color={color} />
           ),
           tabBarActiveTintColor: '#61876E',
           tabBarInActiveTintColor: 'gray'
-        }} />
+        }} /> */}
         <Tab.Screen name='Recipes' component={CategoryPage}
           options={{
             tabBarIcon: ({ color }) => (
@@ -99,6 +137,8 @@ export default function App() {
         <Tab.Screen name='RecipeList' component={RecipeList}
           options={{ tabBarButton: (props) => null }} />
         <Tab.Screen name='Recipe' component={Recipe}
+          options={{ tabBarButton: (props) => null }} />
+          <Tab.Screen name='EditRecipe' component={EditRecipe}
           options={{ tabBarButton: (props) => null }} />
 
 
