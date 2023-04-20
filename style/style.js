@@ -253,6 +253,17 @@ export default StyleSheet.create({
     marginTop: 25,
     marginBottom: 5,
   },
+  navigateBack: {
+    flexDirection: 'row',
+    paddingTop: 15
+  },
+  navigateBackHeader: {
+    fontSize: 19,
+    fontFamily:'TenorSans',
+    color: '#4B702F',
+    paddingTop: 4,
+    paddingLeft: 8,
+  },
   recipeListItem: {
     backgroundColor: '#ffffff',
     width: 333,
