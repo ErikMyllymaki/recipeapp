@@ -15,6 +15,7 @@ export default function Recipe({ route, navigation }) {
   const [recipeData, setRecipeData] = useState(null);
   const [userKey, setUserKey] = useState('');
   const [isFavorite, setIsFavorite] = useState(false);
+  const [navigationKey, setNavigationKey] = useState(0);
 
   const category = route.params.category;
 
@@ -37,7 +38,7 @@ export default function Recipe({ route, navigation }) {
       });
     }
   }, [userKey, recipe?.key]);
-  
+
 
 
   useEffect(() => {
@@ -82,7 +83,15 @@ export default function Recipe({ route, navigation }) {
   return (
     <ScrollView>
       <View style={Styles.container}>
-        <Pressable style={Styles.navigateBack} onPress={() => navigation.navigate('RecipeList', { category: category })}>
+        <Pressable
+          style={Styles.navigateBack}
+          onPress={() => {
+            setNavigationKey((prevKey) => prevKey + 1);
+            navigation.navigate('RecipeList', { category: category, navigationKey: navigationKey });
+            console.log(category.title)
+          }}
+        >
+
           <AntDesign name='left' size={30} color='#4B702F' />
           <Text style={Styles.navigateBackHeader}>{category.title}</Text>
         </Pressable>
@@ -114,7 +123,7 @@ export default function Recipe({ route, navigation }) {
               )}
 
               {userKey === recipeData?.userKey && (
-                <TouchableWithoutFeedback onPress={() => {removeRecipe(recipe.key); navigation.navigate('RecipeList', { category: category })}}>
+                <TouchableWithoutFeedback onPress={() => { removeRecipe(recipe.key); navigation.navigate('RecipeList', { category: category }) }}>
                   <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <EvilIcons name="trash" size={40} />
                   </View>

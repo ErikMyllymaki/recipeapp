@@ -15,9 +15,10 @@ export default function RecipeList({ navigation, route }) {
   const [text, setText] = useState('');
   const [recipes, setRecipes] = useState([]);
   const category = route.params.category;
+  const navigationKey = route.params.navigationKey;
   const filteredRecipes = recipes.filter(recipe => recipe.category === category.title);
   const [userKey, setUserKey] = useState('');
-const [favoriteRecipes, setFavoriteRecipes] = useState([]);
+  const [favoriteRecipes, setFavoriteRecipes] = useState([]);
 
   function search(keyword) {
     // setText(keyword);
@@ -45,7 +46,7 @@ const [favoriteRecipes, setFavoriteRecipes] = useState([]);
   useEffect(() => {
     let refPath = RECIPES_REF;
     if (category.title === 'Favorites') {
-      console.log("favs")
+      console.log("categorytitle: favs")
       const favoritesRef = ref(db, FAVORITES_REF + userKey);
       const recipesRef = ref(db, RECIPES_REF);
       const favoriteRecipeKeys = [];
@@ -67,11 +68,13 @@ const [favoriteRecipes, setFavoriteRecipes] = useState([]);
         });
       });
     } else {
+      console.log("categorytitle: "+category.title)
       onValue(ref(db, refPath), (snapshot) => {
         const recipes = [];
         snapshot.forEach((childSnapshot) => {
           const key = childSnapshot.key;
           const data = childSnapshot.val();
+          // console.log(data.category)
           if (category.title === data.category) {
             recipes.push({ key, ...data });
           }
@@ -79,7 +82,7 @@ const [favoriteRecipes, setFavoriteRecipes] = useState([]);
         setRecipes(recipes);
       });
     }
-  }, [category.title, userKey]);
+  }, [category.title, userKey, navigationKey]);
   
 
 
