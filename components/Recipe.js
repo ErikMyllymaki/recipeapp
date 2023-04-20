@@ -12,6 +12,9 @@ import EditRecipe from './EditRecipe';
 export default function Recipe({ route, navigation }) {
 
   const { recipe } = route.params || {};
+  
+  const [recipeKey, setRecipeKey] = useState(recipe.key);
+
   const [recipeData, setRecipeData] = useState(null);
   const [userKey, setUserKey] = useState('');
   const [isFavorite, setIsFavorite] = useState(false);
@@ -112,8 +115,7 @@ export default function Recipe({ route, navigation }) {
               {userKey === recipeData?.userKey && (
                 <TouchableWithoutFeedback
                   onPress={() => {
-                    console.log(recipeData);
-                    navigation.navigate('EditRecipe', { recipeData });
+                    navigation.navigate('EditRecipe', { recipeData, recipeKey: recipe.key });
                   }}>
                   <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <EvilIcons name="pencil" size={40} />

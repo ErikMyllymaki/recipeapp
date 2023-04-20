@@ -4,16 +4,17 @@ import { Picker } from '@react-native-picker/picker';
 import Styles from '../style/style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ScrollView } from 'react-native-gesture-handler';
-import { child, push, ref, remove, update, onValue } from 'firebase/database';
+import { child, push, ref, remove, update, onValue, Database } from 'firebase/database';
 import { db, RECIPES_REF, USERS_REF } from '../firebase/config';
 import { auth } from '../firebase/config';
 import { AntDesign } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import NumericInput from 'react-native-numeric-input'
 
-export default function EditRecipe({ route }) {
+export default function EditRecipe({ route, key }) {
 
   const [recipeData, setRecipeData] = useState(route.params?.recipeData || {});
+  const [recipeKey, setRecipeKey] = useState(route.params?.recipeKey || '');
 
   useEffect(() => {
     setRecipeData(route.params?.recipeData || {});
@@ -56,8 +57,10 @@ export default function EditRecipe({ route }) {
       servingSize,
       category,
     };
-    // Do something with the new recipe data...
+    console.log(newRecipeData);
+    update(ref(db, RECIPES_REF + recipeKey), newRecipeData);
   };
+  
 
   return (
     <ScrollView style={{ backgroundColor: '#B5CFBB' }}>
