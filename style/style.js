@@ -4,7 +4,7 @@ export default StyleSheet.create({
     container: {
       backgroundColor: '#B5CFBB',
       flex: 1,
-      
+      paddingBottom: 65
     },
     header: {
         backgroundColor: '#eaece5',
@@ -230,7 +230,12 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-    paddingLeft: 20
+    paddingLeft: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.8,
+    shadowRadius: 4,
+    elevation: 5,
   },
   recipeBackground: {
     backgroundColor: '#E8E8E8',

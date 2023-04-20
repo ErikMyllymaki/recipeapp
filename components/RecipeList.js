@@ -36,7 +36,7 @@ export default function RecipeList({ navigation, route }) {
     };
 
     return (
-      <View key={item.key} style={Styles.recipeListItem}>
+      <View key={item.key}>
         <TouchableOpacity style={Styles.recipeListItem} onPress={navigateToRecipe}>
           <Image source={require('../images/breakfast.jpg')} style={Styles.recipeListImage} />
           <Text>{item.recipeName}</Text>
@@ -140,7 +140,7 @@ export default function RecipeList({ navigation, route }) {
         alignItems: 'center', flexDirection: 'row'
       }}>
         <TextInput value={text} onChangeText={search} style={Styles.searchInput} placeholder='Search' placeholderTextColor={'#3C6255'}/> 
-        <Entypo name="magnifying-glass" style={{position: 'absolute', right: 20, top: 15, padding: 20}} size={30} color={'grey'} />
+        <Entypo name="magnifying-glass" style={{position: 'absolute', right: 20, top: 15, padding: 20, zIndex: 1}} size={30} color={'grey'} />
       </View>
 
       <View style={Styles.recipeList}>
