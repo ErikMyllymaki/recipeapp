@@ -114,7 +114,7 @@ export default function Recipe({ route, navigation }) {
               )}
 
               {userKey === recipeData?.userKey && (
-                <TouchableWithoutFeedback onPress={() => removeRecipe(recipe.key)}>
+                <TouchableWithoutFeedback onPress={() => {removeRecipe(recipe.key); navigation.navigate('RecipeList', { category: category })}}>
                   <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <EvilIcons name="trash" size={40} />
                   </View>
