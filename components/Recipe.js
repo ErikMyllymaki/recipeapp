@@ -15,7 +15,7 @@ export default function Recipe({ route, navigation }) {
   const [recipeData, setRecipeData] = useState(null);
   const [userKey, setUserKey] = useState('');
   const [isFavorite, setIsFavorite] = useState(false);
-  const [navigationKey, setNavigationKey] = useState(0);
+  const [navigationKey, setNavigationKey] = useState(false);
 
   const category = route.params.category;
 
@@ -86,7 +86,7 @@ export default function Recipe({ route, navigation }) {
         <Pressable
           style={Styles.navigateBack}
           onPress={() => {
-            setNavigationKey((prevKey) => prevKey + 1);
+            setNavigationKey((prevKey) => !prevKey);
             navigation.navigate('RecipeList', { category: category, navigationKey: navigationKey });
             console.log(category.title)
           }}
