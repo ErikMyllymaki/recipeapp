@@ -88,7 +88,6 @@ export default function Recipe({ route, navigation }) {
           onPress={() => {
             setNavigationKey((prevKey) => !prevKey);
             navigation.navigate('RecipeList', { category: category, navigationKey: navigationKey });
-            console.log(category.title)
           }}
         >
 

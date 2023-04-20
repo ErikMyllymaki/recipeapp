@@ -46,7 +46,6 @@ export default function RecipeList({ navigation, route }) {
   useEffect(() => {
     let refPath = RECIPES_REF;
     if (category.title === 'Favorites') {
-      console.log("categorytitle: favs")
       const favoritesRef = ref(db, FAVORITES_REF + userKey);
       const recipesRef = ref(db, RECIPES_REF);
       const favoriteRecipeKeys = [];
@@ -68,7 +67,6 @@ export default function RecipeList({ navigation, route }) {
         });
       });
     } else {
-      console.log("categorytitle: "+category.title)
       onValue(ref(db, refPath), (snapshot) => {
         const recipes = [];
         snapshot.forEach((childSnapshot) => {
