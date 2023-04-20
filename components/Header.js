@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Styles from '../style/style';
 import { Text, View } from 'react-native';
 import { Image, Dimensions } from 'react-native';
-import { useState, useEffect } from 'react';
 import { auth } from '../firebase/config';
 import { db, USERS_REF } from '../firebase/config';
 import { onValue, ref } from 'firebase/database';

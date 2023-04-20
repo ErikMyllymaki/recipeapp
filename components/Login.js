@@ -3,7 +3,10 @@ import { View, Text, TextInput, Pressable, Alert, Button } from 'react-native';
 import { signIn, resetPassword } from './Auth';
 import { onAuthStateChanged } from 'firebase/auth';
 import styles from '../style/style';
+import { db, USERS_REF } from '../firebase/config';
 import { auth } from '../firebase/config';
+import { child, push, ref, remove, update, onValue } from 'firebase/database';
+
 
 export default Login = ( { navigation } ) => {
 
@@ -11,6 +14,7 @@ export default Login = ( { navigation } ) => {
   const [password, setPassword] = useState('');
   const [showForgotPw, setShowForgotPw] = useState(false);
   const [emailForgotPw, setEmailForgotPw] = useState('');
+  const [nickname, setNickname] = useState('');
 
   const handlePress = () => {
     if (!email) {
@@ -28,6 +32,20 @@ export default Login = ( { navigation } ) => {
       });
     }
   };
+
+  const horo = async () => {
+    const user = auth.currentUser;
+    if (user) {
+      const userRef = ref(db, USERS_REF + '/' + user.uid);
+      onValue(userRef, snapshot => {
+        const userData = snapshot.val();
+        if (userData) {
+          setNickname(userData.nickname);
+          console.log(nickname)
+        }
+      });
+    }
+  }
 
   const handlePressForgotPw = () => {
     setShowForgotPw(!showForgotPw);

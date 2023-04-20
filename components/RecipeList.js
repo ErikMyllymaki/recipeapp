@@ -11,28 +11,25 @@ import { Entypo } from '@expo/vector-icons';
 import { auth } from '../firebase/config';
 
 
-// Hakukentästä jos muuttaa hakusanaa, hakee vain filteredRecipes -> pitää hakea kaikista resepteistä
-
 export default function RecipeList({ navigation, route }) {
   const [text, setText] = useState('');
   const [recipes, setRecipes] = useState([]);
-
-  const category  = route.params.category;
+  const category = route.params.category;
   const filteredRecipes = recipes.filter(recipe => recipe.category === category.title);
-
   const [userKey, setUserKey] = useState('');
+const [favoriteRecipes, setFavoriteRecipes] = useState([]);
 
   function search(keyword) {
     // setText(keyword);
     // const filteredRecipes = recipes.filter(r => r.name.includes(keyword) && r.category === category.title);
     // setFilteredRecipes(filteredRecipes);
-    
+
   }
 
   const renderReceptItem = ({ item }) => {
     const navigateToRecipe = () => {
       navigation.navigate('Recipe', { recipe: item, category: category });
-      
+
     };
 
     return (
@@ -48,25 +45,44 @@ export default function RecipeList({ navigation, route }) {
   useEffect(() => {
     let refPath = RECIPES_REF;
     if (category.title === 'Favorites') {
-      refPath = FAVORITES_REF + userKey;
-    }
-    onValue(ref(db, refPath), (snapshot) => {
-      const recipes = [];
-      snapshot.forEach((childSnapshot) => {
-        console.log(childSnapshot.key)
-        const key = childSnapshot.key;
-        const data = childSnapshot.val();
-        // const recipe = { key, ...data };
-        // if (recipe.category === 'Favorites' && recipe.userKey === userKey && recipe[key]) {
-        //   favoriteRecipes.push(recipe);
-        // }
-        recipes.push({ key, ...data });
+      console.log("favs")
+      const favoritesRef = ref(db, FAVORITES_REF + userKey);
+      const recipesRef = ref(db, RECIPES_REF);
+      const favoriteRecipeKeys = [];
+      onValue(favoritesRef, (snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+          if (childSnapshot.val() === true) {
+            favoriteRecipeKeys.push(childSnapshot.key);
+          }
+        });
+        const favoriteRecipes = [];
+        onValue(recipesRef, (snapshot) => {
+          snapshot.forEach((childSnapshot) => {
+            const recipeKey = childSnapshot.key;
+            if (favoriteRecipeKeys.includes(recipeKey)) {
+              favoriteRecipes.push({ key: recipeKey, ...childSnapshot.val() });
+            }
+          });
+          setRecipes(favoriteRecipes);
+        });
       });
-      setRecipes(recipes);
-    });
-  }, [category.title]);
-
+    } else {
+      onValue(ref(db, refPath), (snapshot) => {
+        const recipes = [];
+        snapshot.forEach((childSnapshot) => {
+          const key = childSnapshot.key;
+          const data = childSnapshot.val();
+          if (category.title === data.category) {
+            recipes.push({ key, ...data });
+          }
+        });
+        setRecipes(recipes);
+      });
+    }
+  }, [category.title, userKey]);
   
+
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       if (user) {
@@ -75,7 +91,6 @@ export default function RecipeList({ navigation, route }) {
           const userData = snapshot.val();
           if (userData) {
             setUserKey(user.uid);
-            // console.log(userKey);
           }
         });
       }
@@ -85,62 +100,14 @@ export default function RecipeList({ navigation, route }) {
   }, []);
 
 
-  // useEffect(() => {
-  //   let refPath = RECIPES_REF;
-  //   if (category.title === 'Favorites') {
-  //     refPath = FAVORITES_REF + userKey;
-  //   }
-  
-  //   onValue(ref(db, refPath), (snapshot) => {
-  //     const recipes = [];
-  //     snapshot.forEach((childSnapshot) => {
-  //       // console.log(snapshot)
-  //       // console.log(childSnapshot)
-  //       console.log(childSnapshot.key)
-  //       const key = childSnapshot.key;
-  //       // console.log(key);
-  //       const data = childSnapshot.val();
-  //       if (key === RECIPES_REF) {
-  //         console.log("moi")
-  //         recipes.push({ key, ...data });
-  //       }
-  //     });
-  //     setRecipes(recipes);
-  //   });
-  // }, [category.title, userKey]);
-  
-  // useEffect(() => {
-  //   let refPath = RECIPES_REF;
-  //   if (category.title === 'Favorites') {
-  //     refPath = FAVORITES_REF + userKey;
-  //   }
-  
-  //   onValue(ref(db, refPath), (snapshot) => {
-  //     const recipes = [];
-  //     snapshot.forEach((childSnapshot) => {
-  //       const key = childSnapshot.key;
-  //       const data = childSnapshot.val();
-  //       if (key === RECIPES_REF) {
-  //         console.log('moi');
-  //         recipes.push({ key, ...data });
-  //       } else {
-
-  //       }
-  //     });
-  //     setRecipes(recipes);
-  //   });
-  // }, []);
-  
-  
-
   return (
     <View style={Styles.container}>
       <View style={{
         paddingTop: 20, justifyContent: 'center',
         alignItems: 'center', flexDirection: 'row'
       }}>
-        <TextInput value={text} onChangeText={search} style={Styles.searchInput} placeholder='Search' placeholderTextColor={'#3C6255'}/> 
-        <Entypo name="magnifying-glass" style={{position: 'absolute', right: 20, top: 15, padding: 20, zIndex: 1}} size={30} color={'grey'} />
+        <TextInput value={text} onChangeText={search} style={Styles.searchInput} placeholder='Search' placeholderTextColor={'#3C6255'} />
+        <Entypo name="magnifying-glass" style={{ position: 'absolute', right: 20, top: 15, padding: 20 }} size={30} color={'grey'} />
       </View>
 
       <View style={Styles.recipeList}>
@@ -149,9 +116,9 @@ export default function RecipeList({ navigation, route }) {
         </Pressable>
         <Text style={Styles.pageHeader}>{category.title}</Text>
       </View>
-      <Button title='press' onPress={() => console.log(recipes)}/>
+      {/* <Button title='press' onPress={() => console.log('recipes')} /> */}
       <FlatList
-        data={filteredRecipes}
+        data={recipes}
         renderItem={renderReceptItem}
         keyExtractor={(item) => item.key}
       />
