@@ -36,12 +36,12 @@ export default function EditRecipe({ route, navigation }) {
 
 
   useEffect(() => {
-    setRecipeName(recipeName);
-    setIngredients(ingredients);
-    setInstructions(instructions);
-    setServingSize(servingSize);
-    setCategory(category);
-    setuserKey(userKey);
+    setRecipeName(recipe.recipeName);
+    setIngredients(recipe.ingredients);
+    setInstructions(recipe.instructions);
+    setServingSize(recipe.servingSize);
+    setCategory(recipe.category);
+    setuserKey(recipe.userKey);
     // setNickName(nickname);
     // setImage(recipeData?.image || null);
   }, [recipe]);
@@ -86,7 +86,7 @@ export default function EditRecipe({ route, navigation }) {
             style={Styles.navigateBack}
             onPress={() => {
               // console.log(recipe)
-              navigation.navigate('RecipeList', { category: recipe.category });
+              // navigation.navigate('RecipeList', { category: recipe.category });
             }}
           >
             <AntDesign name='left' size={30} color='#4B702F' style={{marginRight:15}}/>
