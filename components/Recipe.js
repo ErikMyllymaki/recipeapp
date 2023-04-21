@@ -61,9 +61,10 @@ export default function Recipe({ route, navigation }) {
   }, []);
 
 
-  const removeRecipe = (recipeKey) => {
+  const removeRecipe = (recipeKey, userKey) => {
     const updates = {};
     updates[`${RECIPES_REF}/${recipeKey}`] = null;
+    updates[`${FAVORITES_REF}/${userKey}/${recipeKey}`] = null;
     update(ref(db), updates);
   };
 
