@@ -11,7 +11,7 @@ import { AntDesign } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import NumericInput from 'react-native-numeric-input'
 
-export default function EditRecipe({ route, key }) {
+export default function EditRecipe({ route }) {
 
   const [recipeData, setRecipeData] = useState(route.params?.recipeData || {});
   const [recipeKey, setRecipeKey] = useState(route.params?.recipeKey || '');

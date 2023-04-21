@@ -115,7 +115,7 @@ export default function Recipe({ route, navigation }) {
               {userKey === recipeData?.userKey && (
                 <TouchableWithoutFeedback
                   onPress={() => {
-                    navigation.navigate('EditRecipe', { recipeData, recipeKey: recipe.key });
+                    navigation.navigate('EditRecipe', { recipeData });
                   }}>
                   <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <EvilIcons name="pencil" size={40} />
