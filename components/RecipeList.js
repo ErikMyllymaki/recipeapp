@@ -9,6 +9,7 @@ import { child, push, ref, remove, update, onValue } from 'firebase/database';
 import { db, RECIPES_REF, FAVORITES_REF, USERS_REF } from '../firebase/config';
 import { Entypo } from '@expo/vector-icons';
 import { auth } from '../firebase/config';
+import _ from 'lodash';
 
 
 export default function RecipeList({ navigation, route }) {
@@ -19,6 +20,7 @@ export default function RecipeList({ navigation, route }) {
   const filteredRecipes = recipes.filter(recipe => recipe.category === category.title);
   const [userKey, setUserKey] = useState('');
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
+  const uniqueRecipes = _.uniqBy(recipes, 'key');
 
   function search(keyword) {
     // setText(keyword);
@@ -66,13 +68,11 @@ export default function RecipeList({ navigation, route }) {
         });
       });
     } else {
-      console.log("moi")
       onValue(ref(db, refPath), (snapshot) => {
         const recipes = [];
         snapshot.forEach((childSnapshot) => {
           const key = childSnapshot.key;
           const data = childSnapshot.val();
-          // console.log(data.category)
           if (category.title === data.category) {
             recipes.push({ key, ...data });
           }
@@ -81,7 +81,7 @@ export default function RecipeList({ navigation, route }) {
       });
     }
   }, [category.title, userKey, navigationKey]);
-  
+
 
 
   useEffect(() => {
@@ -117,9 +117,9 @@ export default function RecipeList({ navigation, route }) {
         </Pressable>
         <Text style={Styles.pageHeader}>{category.title}</Text>
       </View>
-      {/* <Button title='press' onPress={() => console.log('recipes')} /> */}
+
       <FlatList
-        data={recipes}
+        data={uniqueRecipes}
         renderItem={renderReceptItem}
         keyExtractor={(item) => item.key}
       />

@@ -23,14 +23,14 @@ export default function Recipe({ route, navigation }) {
   const category = route.params.category;
 
   useEffect(() => {
-    if (recipe) { // check if recipe is defined
+    if (recipe) {
+      setRecipeKey(recipe.key);
       const recipeRef = ref(db, `${RECIPES_REF}/${recipe.key}`);
       onValue(recipeRef, (snapshot) => {
         setRecipeData(snapshot.val());
       });
     }
-
-  }, [recipe?.key]);
+  }, [recipe]);
 
   useEffect(() => {
     if (userKey && recipe) {
@@ -138,6 +138,7 @@ export default function Recipe({ route, navigation }) {
               {userKey === recipeData?.userKey && (
                 <TouchableWithoutFeedback
                   onPress={() => {
+                    console.log(recipeKey)
                     navigation.navigate('EditRecipe', { recipe: recipe, recipeKey: recipeKey });
                   }}>
                   <View style={{ flexDirection: 'row', alignItems: 'center' }}>

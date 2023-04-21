@@ -11,40 +11,38 @@ import { AntDesign } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import NumericInput from 'react-native-numeric-input'
 
-export default function EditRecipe({ route, navigation }) {
+export default function EditRecipe({ route }) {
+
+  console.log("route.params: ", route.params);
 
   const [recipeData, setRecipeData] = useState(route.params?.recipeData || {});
-  const [recipeKey, setRecipeKey] = useState(route.params?.recipeKey);
-  const { recipe } = route.params || {};
+  const [recipeKey, setRecipeKey] = useState(route.params?.recipeKey || '');
 
   useEffect(() => {
-    setRecipeKey(route.params?.recipeKey);
-  }, [route.params?.recipeKey]);
+    setRecipeData(route.params?.recipeData || {});
+  }, [route.params?.recipeData]);
 
   const CATEGORIES_TITLES = ['Breakfast', 'Dinner', 'Drinks', 'Dessert', 'Snacks', 'Pastries'];
 
-  const [recipeName, setRecipeName] = useState(recipe.recipeName);
+  useEffect(() => {
+    console.log("recipeName:", recipeName);
+  }, [recipeName]);
+
+  const [recipeName, setRecipeName] = useState('');
   const [ingredient, setIngredient] = useState('');
-  const [ingredients, setIngredients] = useState(recipe.ingredients);
-  const [instructions, setInstructions] = useState(recipe.instructions);
-  const [image, setImage] = useState(recipe.image);
-  const [servingSize, setServingSize] = useState(recipe.servingSize)
-  const [category, setCategory] = useState(recipe.category);
-  const [userKey, setuserKey] = useState(recipe.userKey);
-  // const [nickname, setNickname] = useState(recipe.nickname);
-
-
+  const [ingredients, setIngredients] = useState(recipeData?.ingredients || []);
+  const [instructions, setInstructions] = useState(recipeData?.instructions || '');
+  const [image, setImage] = useState(recipeData?.image || null);
+  const [servingSize, setServingSize] = useState(recipeData?.servingSize || 0)
+  const [category, setCategory] = useState(recipeData?.category || '');
 
   useEffect(() => {
-    setRecipeName(recipe.recipeName);
-    setIngredients(recipe.ingredients);
-    setInstructions(recipe.instructions);
-    setServingSize(recipe.servingSize);
-    setCategory(recipe.category);
-    setuserKey(recipe.userKey);
-    // setNickName(nickname);
-    // setImage(recipeData?.image || null);
-  }, [recipe]);
+    setRecipeName(recipeData?.recipeName || '');
+    setIngredients(recipeData?.ingredients || []);
+    setInstructions(recipeData?.instructions || '');
+    setServingSize(recipeData?.servingSize || 0);
+    setCategory(recipeData?.category || '');
+  }, [recipeData]);
 
   const addIngredient = () => {
     if (ingredient) {
@@ -59,40 +57,21 @@ export default function EditRecipe({ route, navigation }) {
 
   const updateRecipe = () => {
     const newRecipeData = {
-      recipeName: recipeName,
-      servingSize: servingSize,
-      ingredients: ingredients,
-      instructions: instructions,
-      category: category,
-      // userKey: userKey,
-      // nickname: nickname,
-      // image: image
+      recipeName,
+      ingredients,
+      instructions,
+      servingSize,
+      category,
     };
-    if (recipeKey) {
-      update(ref(db, RECIPES_REF + recipeKey), newRecipeData);
-      alert("Recipe updated");
-    }
+    update(ref(db, RECIPES_REF + recipeKey), newRecipeData);
+    alert("Recipe updated");
   };
-
-  
-  
   
 
   return (
     <ScrollView style={{ backgroundColor: '#B5CFBB' }}>
-      <View style={[Styles.container]}>
-        <View style={{flexDirection:'row', justifyContent:'center'}}>
-        <Pressable
-            style={Styles.navigateBack}
-            onPress={() => {
-              // console.log(recipe)
-              // navigation.navigate('RecipeList', { category: recipe.category });
-            }}
-          >
-            <AntDesign name='left' size={30} color='#4B702F' style={{marginRight:15}}/>
-          </Pressable>
-          <Text style={Styles.pageHeader}>EDIT RECIPE</Text>
-        </View>
+      <View style={[Styles.container,]}>
+        <Text style={Styles.pageHeader}>EDIT RECIPE</Text>
         <Picker
           selectedValue={category}
           onValueChange={(itemValue) => setCategory(itemValue)}>

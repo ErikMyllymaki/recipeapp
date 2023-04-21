@@ -31,7 +31,6 @@ export default function CategoryPage({ navigation }) {
           style={Styles.categoryItem}
           onPress={() => {
             setNavigationKey((prevKey) => !prevKey);
-            console.log(navigationKey)
             navigation.navigate('RecipeList', { category: item, navigationKey: navigationKey });
           }}
         >
