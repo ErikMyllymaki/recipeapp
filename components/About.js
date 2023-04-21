@@ -6,9 +6,14 @@ import { FontAwesome } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
+import { useNavigation } from '@react-navigation/native';
 
 
-export default function App() {
+export default function About(props) {
+
+  const navigation = useNavigation();
+  const { isAuthenticated } = props.route.params;
+
   const [loaded] = useFonts({
     GeosansLight: require('../assets/fonts/GeosansLight.ttf'),
     TenorSans: require('../assets/fonts/TenorSans-Regular.ttf'),
@@ -59,10 +64,23 @@ export default function App() {
 
   return (
     <ScrollView>
+      {!isAuthenticated &&
+        <View style={{backgroundColor: '#B5CFBB'}}>
+        <Pressable
+          style={Styles.navigateBack}
+          onPress={() => {
+            navigation.navigate('Welcome');
+          }}
+        >
+          <AntDesign name='left' size={30} color='#4B702F' />
+          <Text style={Styles.navigateBackHeader}>Welcome</Text>
+        </Pressable>
+        </View>
+      }
       <View style={Styles.container}>
         <Text style={Styles.pageHeader}>ABOUT US</Text>
         <View style={Styles.textAreaBackground}>
-          <Image source={yourImage} style={{ resizeMode: 'contain', height: 85}}></Image>
+          <Image source={yourImage} style={{ resizeMode: 'contain', height: 85 }}></Image>
           <Text style={Styles.aboutUsIntroduction}>Welcome to our recipe app! We're a team of food lovers and tech experts who are passionate about making cooking and meal planning easy and enjoyable. Our app features a wide range of recipes for all dietary needs and preferences. Thanks for choosing us as your recipe app!</Text>
           <Text style={Styles.contactUsHeader}>Contact us</Text>
           <Text style={Styles.contactInformation}>Yliopistokatu 9</Text>
@@ -72,7 +90,7 @@ export default function App() {
           <View style={Styles.socialIcons}>
             <TikTokIcon />
             <InstagramIcon />
-            <FacebookIcon/>
+            <FacebookIcon />
           </View>
 
         </View>
