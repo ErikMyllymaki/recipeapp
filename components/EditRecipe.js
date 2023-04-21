@@ -57,8 +57,8 @@ export default function EditRecipe({ route, key }) {
       servingSize,
       category,
     };
-    console.log(newRecipeData);
     update(ref(db, RECIPES_REF + recipeKey), newRecipeData);
+    alert("Recipe updated");
   };
   
 
