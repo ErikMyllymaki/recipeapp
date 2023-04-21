@@ -67,6 +67,7 @@ export default function RecipeList({ navigation, route }) {
         });
       });
     } else {
+      console.log("moi")
       onValue(ref(db, refPath), (snapshot) => {
         const recipes = [];
         snapshot.forEach((childSnapshot) => {

@@ -51,14 +51,17 @@ export default function EditRecipe({ route }) {
 
   const updateRecipe = () => {
     const newRecipeData = {
-      recipeName,
-      ingredients,
-      instructions,
-      servingSize,
-      category,
+      recipeName: recipeName,
+      servingSize: servingSize,
+      ingredients: ingredients,
+      instructions: instructions,
+      category: category
     };
     update(ref(db, RECIPES_REF + recipeKey), newRecipeData);
-    alert("Recipe updated");
+    // alert("Recipe updated");
+    console.log(recipeName)
+    console.log(ingredients)
+    console.log(instructions)
   };
   
 
