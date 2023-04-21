@@ -25,20 +25,9 @@ export default function CategoryPage({ navigation }) {
 
 
   const renderCategoryItem = ({ item }) => {
-    if (item.title === 'Favorites') {
+  
       return (
         <TouchableOpacity 
-          style={Styles.categoryItem}
-          onPress={() => navigation.navigate('RecipeList', { category: item })}
-        >
-          <ImageBackground source={item.image} style={Styles.categoryTitle}>
-            <Text style={Styles.categoryName}>{item.title}</Text>
-          </ImageBackground>
-        </TouchableOpacity>
-      );
-    } else {
-      return (
-        <TouchableOpacity
           style={Styles.categoryItem}
           onPress={() => {
             setNavigationKey((prevKey) => !prevKey);
@@ -51,7 +40,7 @@ export default function CategoryPage({ navigation }) {
           </ImageBackground>
         </TouchableOpacity>
       );
-    }
+    
   };
   
 
