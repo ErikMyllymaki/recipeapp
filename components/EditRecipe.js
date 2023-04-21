@@ -70,7 +70,7 @@ export default function EditRecipe({ route, navigation }) {
     };
     if (recipeKey) {
       update(ref(db, RECIPES_REF + recipeKey), newRecipeData);
-      // alert("Recipe updated");
+      alert("Recipe updated");
     }
   };
 
