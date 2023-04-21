@@ -11,7 +11,7 @@ import { AntDesign } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import NumericInput from 'react-native-numeric-input'
 
-export default function EditRecipe({ route, key }) {
+export default function EditRecipe({ route }) {
 
   const [recipeData, setRecipeData] = useState(route.params?.recipeData || {});
   const [recipeKey, setRecipeKey] = useState(route.params?.recipeKey || '');
@@ -49,7 +49,7 @@ export default function EditRecipe({ route, key }) {
     setIngredients(ingredients.filter((ingredient) => ingredient !== ingredientToRemove));
   };
 
-  const addNewRecipe = () => {
+  const updateRecipe = () => {
     const newRecipeData = {
       recipeName,
       ingredients,
@@ -57,8 +57,8 @@ export default function EditRecipe({ route, key }) {
       servingSize,
       category,
     };
-    console.log(newRecipeData);
     update(ref(db, RECIPES_REF + recipeKey), newRecipeData);
+    alert("Recipe updated");
   };
   
 
@@ -126,10 +126,7 @@ export default function EditRecipe({ route, key }) {
         <TouchableOpacity
           style={Styles.addRecipeButton}
           onPress={() => {
-            addNewRecipe();
-            this.recipeName.clear();
-            this.textInput.clear();
-            this.instructions.clear();
+            updateRecipe();
           }}
 
 

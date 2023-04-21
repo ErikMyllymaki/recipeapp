@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Pressable, Image, ScrollView, Button, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, Pressable, Image, ScrollView, Button, TouchableWithoutFeedback, Alert } from 'react-native';
 import Styles from '../style/style';
 import { child, push, ref, remove, update, onValue, set, get } from 'firebase/database';
 import { db, RECIPES_REF, USERS_REF, FAVORITES_REF } from '../firebase/config';
@@ -12,7 +12,7 @@ import EditRecipe from './EditRecipe';
 export default function Recipe({ route, navigation }) {
 
   const { recipe } = route.params || {};
-  
+
   const [recipeKey, setRecipeKey] = useState(recipe.key);
 
   const [recipeData, setRecipeData] = useState(null);
@@ -64,8 +64,30 @@ export default function Recipe({ route, navigation }) {
   const removeRecipe = (recipeKey) => {
     const updates = {};
     updates[`${RECIPES_REF}/${recipeKey}`] = null;
+    updates[`favorites/${userKey}/${recipeKey}`] = null;
     update(ref(db), updates);
   };
+
+  const createTwoButtonAlert = () => Alert.alert(
+    "RecipeHub",
+    "Remove recipe?",
+    [
+      {
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel"
+      },
+      {
+        text: "OK",
+        onPress: () => {
+          removeRecipe(recipe.key);
+          navigation.navigate('RecipeList', { category: category });
+        }
+      }
+    ],
+    { cancelable: false }
+  );
+
 
   const addFavorite = (recipeKey, userKey) => {
     const userFavoritesRef = ref(db, `favorites/${userKey}/${recipeKey}`);
@@ -115,7 +137,7 @@ export default function Recipe({ route, navigation }) {
               {userKey === recipeData?.userKey && (
                 <TouchableWithoutFeedback
                   onPress={() => {
-                    navigation.navigate('EditRecipe', { recipeData, recipeKey: recipe.key });
+                    navigation.navigate('EditRecipe', { recipeData });
                   }}>
                   <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <EvilIcons name="pencil" size={40} />
@@ -124,7 +146,7 @@ export default function Recipe({ route, navigation }) {
               )}
 
               {userKey === recipeData?.userKey && (
-                <TouchableWithoutFeedback onPress={() => { removeRecipe(recipe.key); navigation.navigate('RecipeList', { category: category }) }}>
+                <TouchableWithoutFeedback onPress={() => { createTwoButtonAlert(); }}>
                   <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <EvilIcons name="trash" size={40} />
                   </View>
