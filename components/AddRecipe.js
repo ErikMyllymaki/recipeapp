@@ -26,16 +26,17 @@ export default function AddRecipe() {
   const [userKey, setUserKey] = useState('');
   const [nickname, setNickname] = useState('');
 
+  const [category, setCategory] = useState('Breakfast');
   const [recipeName, setRecipeName] = useState('');
+  const [image, setImage] = useState(null);
+  const [servingSize, setServingSize] = useState(0);
+  const [ingredientAmount, setIngredientAmount] = useState('');
+  const [unit, setUnit] = useState(null);
   const [ingredient, setIngredient] = useState('');
   const [ingredients, setIngredients] = useState([]);
   const [instructions, setInstructions] = useState('');
-  const [category, setCategory] = useState('Breakfast');
-  const [image, setImage] = useState(null);
-  const [servingSize, setServingSize] = useState(0)
 
   const [recipes, setRecipes] = useState([]);
-
 
   const [expanded, setExpanded] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
@@ -99,10 +100,17 @@ export default function AddRecipe() {
   }, []);
 
   const addIngredient = () => {
-    if (ingredient.trim() != "") {
-      setIngredients([...ingredients, ingredient]);
-      setIngredient("");
-    }
+
+    const newIngredient = ingredientAmount + ' ' + unit + ' ' + ingredient;
+    
+    if (!unit || ingredientAmount == '' || ingredient == '') {
+      alert('Amount, unit and ingredient required!');
+    } else if (newIngredient.trim() !== '') {
+      setIngredients([...ingredients, newIngredient]);
+      setIngredientAmount('');
+      setUnit(null);
+      setIngredient('');
+    } 
   }
 
   const pickImage = async () => {
@@ -161,17 +169,37 @@ export default function AddRecipe() {
         </View>
 
         <NumericInput
+          value={servingSize}
           onChange={setServingSize}
           rounded
         />
 
         <TextInput
+          value={ingredientAmount}
+          style={Styles.addRecipeInput}
+          type="text"
+          keyboardType='number-pad'
+          placeholder='amount'
+          onChangeText={(text) => setIngredientAmount(text)}
+        />
+
+        <Picker
+          selectedValue={unit}
+          type="text"
+          onValueChange={(value) => setUnit(value)}>
+          <Picker.Item label='Select unit' value={null} />
+          <Picker.Item label='dl' value="dl"/>
+          <Picker.Item label='kpl'value="kpl"/>
+        </Picker>
+
+        <TextInput
           value={ingredient}
+          type="text"
           ref={input => { this.textInput = input }}
           style={Styles.addRecipeInput}
           placeholder='+ Add ingredients'
           placeholderTextColor="#40793F"
-          onChangeText={ingredient => setIngredient(ingredient)}
+          onChangeText={(text) => setIngredient(text)}
         />
 
         <TouchableOpacity
