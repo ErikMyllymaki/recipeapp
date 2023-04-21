@@ -23,6 +23,8 @@ export default function EditRecipe({ route }) {
   const CATEGORIES_TITLES = ['Breakfast', 'Dinner', 'Drinks', 'Dessert', 'Snacks', 'Pastries'];
 
   const [recipeName, setRecipeName] = useState(recipeData?.recipeName || '');
+  const [ingredientAmount, setIngredientAmount] = useState('');
+  const [unit, setUnit] = useState(null);
   const [ingredient, setIngredient] = useState('');
   const [ingredients, setIngredients] = useState(recipeData?.ingredients || []);
   const [instructions, setInstructions] = useState(recipeData?.instructions || '');
@@ -39,10 +41,22 @@ export default function EditRecipe({ route }) {
   }, [recipeData]);
 
   const addIngredient = () => {
-    if (ingredient) {
-      setIngredients([...ingredients, ingredient]);
+
+    const newIngredient = ingredientAmount + ' ' + unit + ' ' + ingredient;
+    
+    if (!unit || ingredientAmount == '' || ingredient == '') {
+      alert('Amount, unit and ingredient required!');
+    } else if (newIngredient.trim() !== '') {
+      setIngredients([...ingredients, newIngredient]);
+      setIngredientAmount('');
+      setUnit(null);
       setIngredient('');
-    }
+    } 
+
+    // if (ingredient) {
+    //   setIngredients([...ingredients, ingredient]);
+    //   setIngredient('');
+    // }
   };
 
   const handleRemoveIngredient = (ingredientToRemove) => {
@@ -89,6 +103,25 @@ export default function EditRecipe({ route }) {
           rounded
           value={servingSize}
         />
+
+        <TextInput
+          value={ingredientAmount}
+          style={Styles.addRecipeInput}
+          type="text"
+          keyboardType='number-pad'
+          placeholder='amount'
+          onChangeText={(text) => setIngredientAmount(text)}
+        />
+
+        <Picker
+          selectedValue={unit}
+          type="text"
+          onValueChange={(value) => setUnit(value)}>
+          <Picker.Item label='Select unit' value={null} />
+          <Picker.Item label='dl' value="dl"/>
+          <Picker.Item label='kpl'value="kpl"/>
+        </Picker>
+
         <TextInput
           ref={input => { this.textInput = input }}
           style={Styles.addRecipeInput}
