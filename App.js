@@ -23,6 +23,7 @@ const Tab = createBottomTabNavigator();
 export default function App() {
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [navigationKey, setnavigationKey] = useState(false);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
@@ -34,7 +35,7 @@ export default function App() {
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [isAuthenticated]);
 
   return (
     <NavigationContainer>
@@ -81,29 +82,30 @@ export default function App() {
                 tabBarInActiveTintColor: 'gray'
               }}
             />
-                    <Tab.Screen name='Recipes' component={CategoryPage}
-          options={{
-            tabBarIcon: ({ color }) => (
-              <MaterialIcons name="list-alt" size={30} color={color} />
-            ),
-            tabBarActiveTintColor: '#61876E',
-            tabBarInActiveTintColor: 'gray'
-          }} />
-        <Tab.Screen name='Add recipes' component={AddRecipe}
-          options={{
-            tabBarIcon: ({ color }) => (
-              <MaterialIcons name="playlist-add" size={30} color={color} />
-            ),
-            tabBarActiveTintColor: '#61876E',
-            tabBarInActiveTintColor: 'gray'
-          }} />
-        <Tab.Screen name='RecipeList' component={RecipeList}
-          options={{ tabBarButton: (props) => null }} />
-        <Tab.Screen name='Recipe' component={Recipe}
-          options={{ tabBarButton: (props) => null }} />
-        <Tab.Screen name='EditRecipe' component={EditRecipe}
-          options={{ tabBarButton: (props) => null }} />
+            <Tab.Screen name='Recipes' component={CategoryPage}
+              options={{
+                tabBarIcon: ({ color }) => (
+                  <MaterialIcons name="list-alt" size={30} color={color} />
+                ),
+                tabBarActiveTintColor: '#61876E',
+                tabBarInActiveTintColor: 'gray'
+              }} />
+            <Tab.Screen name='Add recipes' component={AddRecipe}
+              options={{
+                tabBarIcon: ({ color }) => (
+                  <MaterialIcons name="playlist-add" size={30} color={color} />
+                ),
+                tabBarActiveTintColor: '#61876E',
+                tabBarInActiveTintColor: 'gray'
+              }} />
+            <Tab.Screen name='RecipeList' component={RecipeList}
+              options={{ tabBarButton: (props) => null }} />
+            <Tab.Screen name='Recipe' component={Recipe}
+              options={{ tabBarButton: (props) => null }} />
+            <Tab.Screen name='EditRecipe' component={EditRecipe}
+              options={{ tabBarButton: (props) => null }} />
             <Tab.Screen name='About' component={About}
+              initialParams={{isAuthenticated:isAuthenticated}}
               options={{
                 tabBarIcon: ({ color }) => (
                   <MaterialCommunityIcons name="information-variant" size={30} color={color} />
@@ -111,6 +113,11 @@ export default function App() {
                 tabBarActiveTintColor: '#61876E',
                 tabBarInActiveTintColor: 'gray'
               }} />
+            {/* <Tab.Screen
+              name="Welcome"
+              component={Welcome}
+              options={{ tabBarStyle: { display: 'none' }, tabBarButton: (props) => null }}
+            /> */}
           </>
         ) : (
           <>
@@ -129,10 +136,10 @@ export default function App() {
                 tabBarActiveTintColor: '#61876E',
                 tabBarInActiveTintColor: 'gray'
               }} />
-                      <Tab.Screen name='Login' component={Login}
-          options={{ tabBarStyle: { display: 'none' }, tabBarButton: (props) => null }} />
-        <Tab.Screen name='Register' component={Register}
-          options={{ tabBarStyle: { display: 'none' }, tabBarButton: (props) => null }} />
+            <Tab.Screen name='Login' component={Login}
+              options={{ tabBarStyle: { display: 'none' }, tabBarButton: (props) => null }} />
+            <Tab.Screen name='Register' component={Register}
+              options={{ tabBarStyle: { display: 'none' }, tabBarButton: (props) => null }} />
           </>
 
         )}
