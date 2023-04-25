@@ -70,6 +70,7 @@ export default function About(props) {
           style={Styles.navigateBack}
           onPress={() => {
             navigation.navigate('Welcome');
+            console.log(isAuthenticated)
           }}
         >
           <AntDesign name='left' size={30} color='#4B702F' />
