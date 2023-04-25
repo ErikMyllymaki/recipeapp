@@ -13,6 +13,11 @@ export default StyleSheet.create({
         height: 130,
         paddingTop: 25
     },
+    userNickname: {
+      color: '#13270593',
+      fontStyle: 'italic'
+      /* Add more styles as needed */
+    },
     // loginHeader: {
     //     fontSize: 25,
     //     fontFamily: 'TenorSans',
@@ -103,8 +108,9 @@ export default StyleSheet.create({
     fontFamily:'TenorSans',
     color: '#4B702F',
     textAlign: 'center',
-    paddingTop: 15,
-    paddingBottom: 15,
+    paddingTop: 40,
+    paddingBottom: 40,
+    paddingLeft: -50
   },
   contactUsHeader:{
     fontSize: 25,

@@ -13,24 +13,16 @@ import NumericInput from 'react-native-numeric-input'
 
 export default function EditRecipe({ route, navigation }) {
 
-  console.log("route.params: ", route.params);
-  // console.log(route.params.recipe.recipeName)
-
 
   const [recipeData, setRecipeData] = useState(route.params.recipe);
   const [recipeKey, setRecipeKey] = useState(route.params?.recipeKey || '');
-  console.log(route.params.recipeKey)
 
-  // useEffect(() => {
-  //   // setRecipeData(route.params || {});
-  //   // console.log("moi")
-  // }, [route.params?.recipeData]);
 
   const CATEGORIES_TITLES = ['Breakfast', 'Dinner', 'Drinks', 'Dessert', 'Snacks', 'Pastries'];
 
-  useEffect(() => {
-    console.log("recipeName:", route.params.recipe.recipeName);
-  }, [route.params]);
+  // useEffect(() => {
+  //   console.log("recipeName:", route.params.recipe.recipeName);
+  // }, [route.params]);
 
   const [ingredientAmount, setIngredientAmount] = useState('');   
   const [unit, setUnit] = useState(null);
@@ -44,14 +36,11 @@ export default function EditRecipe({ route, navigation }) {
 
   useEffect(() => {
     setRecipeKey(route.params.recipeKey);
-    console.log(route.params.recipe);
     setRecipeData(route.params.recipe);
-    // console.log(recipeData)
     setRecipeName(route.params.recipe.recipeName);
     setIngredients(route.params.recipe.ingredients);
     setInstructions(route.params.recipe.instructions);
     setServingSize(route.params.recipe.servingSize);
-    console.log(route.params.recipe.servingSize)
     setCategory(route.params.recipe.category);
   }, [route.params]);
 
