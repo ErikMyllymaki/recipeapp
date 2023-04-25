@@ -13,42 +13,46 @@ import NumericInput from 'react-native-numeric-input'
 
 export default function EditRecipe({ route }) {
 
-  // console.log("route.params: ", route.params);
+  console.log("route.params: ", route.params);
   // console.log(route.params.recipe.recipeName)
 
 
   const [recipeData, setRecipeData] = useState(route.params.recipe);
   const [recipeKey, setRecipeKey] = useState(route.params?.recipeKey || '');
+  console.log(route.params.recipeKey)
 
-  useEffect(() => {
-    // setRecipeData(route.params || {});
-    console.log("moi")
-  }, [route.params?.recipeData]);
+  // useEffect(() => {
+  //   // setRecipeData(route.params || {});
+  //   // console.log("moi")
+  // }, [route.params?.recipeData]);
 
   const CATEGORIES_TITLES = ['Breakfast', 'Dinner', 'Drinks', 'Dessert', 'Snacks', 'Pastries'];
 
   useEffect(() => {
-    console.log("recipeName:", recipeName);
-  }, [recipeName]);
+    console.log("recipeName:", route.params.recipe.recipeName);
+  }, [route.params]);
 
   const [ingredientAmount, setIngredientAmount] = useState('');   
   const [unit, setUnit] = useState(null);
-  const [recipeName, setRecipeName] = useState('');
+  const [recipeName, setRecipeName] = useState(route.params.recipe.recipeName);
   const [ingredient, setIngredient] = useState('');
-  const [ingredients, setIngredients] = useState(recipeData?.ingredients || []);
-  const [instructions, setInstructions] = useState(recipeData?.instructions || '');
-  const [image, setImage] = useState(recipeData?.image || null);
-  const [servingSize, setServingSize] = useState(recipeData?.servingSize || 0)
-  const [category, setCategory] = useState(recipeData?.category || '');
+  const [ingredients, setIngredients] = useState(route.params.recipe.ingredients);
+  const [instructions, setInstructions] = useState(route.params.recipe.instructions);
+  const [image, setImage] = useState(route.params.recipe.image || null);
+  const [servingSize, setServingSize] = useState(route.params.recipe.servingSize)
+  const [category, setCategory] = useState(route.params.recipe.category);
 
   useEffect(() => {
+    setRecipeKey(route.params.recipeKey);
+    console.log(route.params.recipe);
     setRecipeData(route.params.recipe);
-    console.log(recipeData)
-    setRecipeName(recipeData.recipeName);
-    setIngredients(recipeData.ingredients);
-    setInstructions(recipeData.instructions);
-    setServingSize(recipeData.servingSize);
-    setCategory(recipeData.category);
+    // console.log(recipeData)
+    setRecipeName(route.params.recipe.recipeName);
+    setIngredients(route.params.recipe.ingredients);
+    setInstructions(route.params.recipe.instructions);
+    setServingSize(route.params.recipe.servingSize);
+    console.log(route.params.recipe.servingSize)
+    setCategory(route.params.recipe.category);
   }, [route.params]);
 
   const addIngredient = () => {
