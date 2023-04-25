@@ -11,44 +11,37 @@ import { AntDesign } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import NumericInput from 'react-native-numeric-input'
 
-export default function EditRecipe({ route }) {
-
-  // console.log("route.params: ", route.params);
-  // console.log(route.params.recipe.recipeName)
+export default function EditRecipe({ route, navigation }) {
 
 
   const [recipeData, setRecipeData] = useState(route.params.recipe);
   const [recipeKey, setRecipeKey] = useState(route.params?.recipeKey || '');
 
-  useEffect(() => {
-    // setRecipeData(route.params || {});
-    console.log("moi")
-  }, [route.params?.recipeData]);
 
   const CATEGORIES_TITLES = ['Breakfast', 'Dinner', 'Drinks', 'Dessert', 'Snacks', 'Pastries'];
 
-  useEffect(() => {
-    console.log("recipeName:", recipeName);
-  }, [recipeName]);
+  // useEffect(() => {
+  //   console.log("recipeName:", route.params.recipe.recipeName);
+  // }, [route.params]);
 
   const [ingredientAmount, setIngredientAmount] = useState('');   
   const [unit, setUnit] = useState(null);
-  const [recipeName, setRecipeName] = useState('');
+  const [recipeName, setRecipeName] = useState(route.params.recipe.recipeName);
   const [ingredient, setIngredient] = useState('');
-  const [ingredients, setIngredients] = useState(recipeData?.ingredients || []);
-  const [instructions, setInstructions] = useState(recipeData?.instructions || '');
-  const [image, setImage] = useState(recipeData?.image || null);
-  const [servingSize, setServingSize] = useState(recipeData?.servingSize || 0)
-  const [category, setCategory] = useState(recipeData?.category || '');
+  const [ingredients, setIngredients] = useState(route.params.recipe.ingredients);
+  const [instructions, setInstructions] = useState(route.params.recipe.instructions);
+  const [image, setImage] = useState(route.params.recipe.image || null);
+  const [servingSize, setServingSize] = useState(route.params.recipe.servingSize)
+  const [category, setCategory] = useState(route.params.recipe.category);
 
   useEffect(() => {
+    setRecipeKey(route.params.recipeKey);
     setRecipeData(route.params.recipe);
-    console.log(recipeData)
-    setRecipeName(recipeData.recipeName);
-    setIngredients(recipeData.ingredients);
-    setInstructions(recipeData.instructions);
-    setServingSize(recipeData.servingSize);
-    setCategory(recipeData.category);
+    setRecipeName(route.params.recipe.recipeName);
+    setIngredients(route.params.recipe.ingredients);
+    setInstructions(route.params.recipe.instructions);
+    setServingSize(route.params.recipe.servingSize);
+    setCategory(route.params.recipe.category);
   }, [route.params]);
 
   const addIngredient = () => {
@@ -88,8 +81,19 @@ export default function EditRecipe({ route }) {
   
 
   return (
+
     <ScrollView style={{ backgroundColor: '#B5CFBB' }}>
       <View style={[Styles.container,]}>
+      <Pressable
+          style={Styles.navigateBack}
+          onPress={() => {
+            navigation.navigate('Recipe', { route });
+          }}
+        >
+
+          <AntDesign name='left' size={30} color='#4B702F' />
+          <Text style={Styles.navigateBackHeader}>{category.title}</Text>
+        </Pressable>
         <Text style={Styles.pageHeader}>EDIT RECIPE</Text>
         <Picker
           selectedValue={category}
