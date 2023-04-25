@@ -51,7 +51,7 @@ export default function Home( {navigation} ) {
             <Text style={Styles.homeButton}>Add Recipe</Text>
           </Pressable>
           <Pressable
-            onPress={() => navigation.navigate('About')}
+            onPress={() => navigation.navigate('About', { isAuthenticated: true })}
             style={{ paddingVertical: 30 }}
           >
             <Text style={Styles.homeButton}>About recipe app</Text>

@@ -21,30 +21,25 @@ export default function CategoryPage({ navigation }) {
   //   setSelectedCategory(category);
   // };
 
+  const [navigationKey, setNavigationKey] = useState(false);
+
+
   const renderCategoryItem = ({ item }) => {
-    if (item.title === 'Favorites') {
+  
       return (
         <TouchableOpacity 
           style={Styles.categoryItem}
-          onPress={() => navigation.navigate('RecipeList', { category: item })}
+          onPress={() => {
+            setNavigationKey((prevKey) => !prevKey);
+            navigation.navigate('RecipeList', { category: item, navigationKey: navigationKey });
+          }}
         >
           <ImageBackground source={item.image} style={Styles.categoryTitle}>
             <Text style={Styles.categoryName}>{item.title}</Text>
           </ImageBackground>
         </TouchableOpacity>
       );
-    } else {
-      return (
-        <TouchableOpacity
-          style={Styles.categoryItem}
-          onPress={() => navigation.navigate('RecipeList', { category: item })}
-        >
-          <ImageBackground source={item.image} style={Styles.categoryTitle}>
-            <Text style={Styles.categoryName}>{item.title}</Text>
-          </ImageBackground>
-        </TouchableOpacity>
-      );
-    }
+    
   };
   
 

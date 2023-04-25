@@ -23,14 +23,14 @@ export default function Recipe({ route, navigation }) {
   const category = route.params.category;
 
   useEffect(() => {
-    if (recipe) { // check if recipe is defined
+    if (recipe) {
+      setRecipeKey(recipe.key);
       const recipeRef = ref(db, `${RECIPES_REF}/${recipe.key}`);
       onValue(recipeRef, (snapshot) => {
         setRecipeData(snapshot.val());
       });
     }
-
-  }, [recipe?.key]);
+  }, [recipe]);
 
   useEffect(() => {
     if (userKey && recipe) {
@@ -124,6 +124,7 @@ export default function Recipe({ route, navigation }) {
             <Image source={recipeImage} style={Styles.recipeImage} />
           </View>
           <View style={Styles.recipeInfo}>
+          <Text style={Styles.pageHeader}>by: {recipeData?.nickname}</Text>
             <Text style={Styles.pageHeader}>{recipeData?.recipeName}</Text>
             <Text style={Styles.recipeSubtitle}>Serving size:</Text>
             <Text>{recipeData?.servingSize} serving(s)</Text>
@@ -137,7 +138,8 @@ export default function Recipe({ route, navigation }) {
               {userKey === recipeData?.userKey && (
                 <TouchableWithoutFeedback
                   onPress={() => {
-                    navigation.navigate('EditRecipe', { recipeData });
+                    console.log(recipeKey)
+                    navigation.navigate('EditRecipe', { recipe: recipe, recipeKey: recipeKey });
                   }}>
                   <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <EvilIcons name="pencil" size={40} />
