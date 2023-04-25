@@ -124,7 +124,7 @@ export default function Recipe({ route, navigation }) {
         </Pressable>
         <View style={Styles.recipeBackground}>
           <View style={{ alignItems: 'center' }}>
-            <Image source={recipeImage} style={Styles.recipeImage} />
+            <Image source={recipeData?.image} style={Styles.recipeImage} />
           </View>
           <View style={Styles.recipeInfo}>
           <Text style={Styles.pageHeader}>by: {recipeData?.nickname}</Text>

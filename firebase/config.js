@@ -4,6 +4,7 @@ import { getDatabase } from "firebase/database";
 import {initializeAuth,
         getReactNativePersistence } from "firebase/auth/react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { getStorage } from "firebase/storage";
 
 
         
@@ -30,3 +31,4 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
         export const RECIPES_REF = 'recipes/';
         export const USERS_REF = '/users/';
         export const FAVORITES_REF = '/favorites/';
+        export const storage = getStorage(app);
