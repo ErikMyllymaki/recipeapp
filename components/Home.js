@@ -30,15 +30,6 @@ export default function Home( {navigation} ) {
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <ImageBackground source={backgroundImage} style={{width: screenWidth, height: screenHeight, alignItems:'center', justifyContent: 'center', resizeMode: 'contain'}}>
           <Pressable
-            onPress={() => {
-              handlePress();
-              // navigation.navigate('Welcome');
-            }}
-            style={{ paddingVertical: 30 }}
-          >
-            <Text style={Styles.homeButton}>Logout</Text>
-          </Pressable>
-          <Pressable
             onPress={() => navigation.navigate('Recipes')}
             style={{ paddingVertical: 30}}
           >
@@ -55,6 +46,15 @@ export default function Home( {navigation} ) {
             style={{ paddingVertical: 30 }}
           >
             <Text style={Styles.homeButton}>About recipe app</Text>
+          </Pressable>
+          <Pressable
+            onPress={() => {
+              handlePress();
+              // navigation.navigate('Welcome');
+            }}
+            style={{ paddingVertical: 30 }}
+          >
+            <Text style={Styles.homeButton}>Logout</Text>
           </Pressable>
           </ImageBackground>
         </View>
