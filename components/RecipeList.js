@@ -23,10 +23,17 @@ export default function RecipeList({ navigation, route }) {
   const uniqueRecipes = _.uniqBy(recipes, 'key');
 
   function search(keyword) {
-    // setText(keyword);
-    // const filteredRecipes = recipes.filter(r => r.name.includes(keyword) && r.category === category.title);
-    // setFilteredRecipes(filteredRecipes);
-
+    setText(keyword);
+    if (keyword) {
+      const filteredRecipes = uniqueRecipes.filter(recipe => {
+        const recipeName = recipe.recipeName.toLowerCase();
+        const searchTerm = keyword.toLowerCase();
+        return recipeName.includes(searchTerm);
+      });
+      setRecipes(filteredRecipes);
+    } else {
+      setRecipes(uniqueRecipes);
+    }
   }
 
   const renderReceptItem = ({ item }) => {
