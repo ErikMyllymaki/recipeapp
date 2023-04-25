@@ -13,13 +13,16 @@ import NumericInput from 'react-native-numeric-input'
 
 export default function EditRecipe({ route }) {
 
-  console.log("route.params: ", route.params);
+  // console.log("route.params: ", route.params);
+  // console.log(route.params.recipe.recipeName)
 
-  const [recipeData, setRecipeData] = useState(route.params?.recipeData || {});
+
+  const [recipeData, setRecipeData] = useState(route.params.recipe);
   const [recipeKey, setRecipeKey] = useState(route.params?.recipeKey || '');
 
   useEffect(() => {
-    setRecipeData(route.params?.recipeData || {});
+    // setRecipeData(route.params || {});
+    console.log("moi")
   }, [route.params?.recipeData]);
 
   const CATEGORIES_TITLES = ['Breakfast', 'Dinner', 'Drinks', 'Dessert', 'Snacks', 'Pastries'];
@@ -28,7 +31,8 @@ export default function EditRecipe({ route }) {
     console.log("recipeName:", recipeName);
   }, [recipeName]);
 
-  const [ingredientAmount, setIngredientAmount] = useState('');   const [unit, setUnit] = useState(null);
+  const [ingredientAmount, setIngredientAmount] = useState('');   
+  const [unit, setUnit] = useState(null);
   const [recipeName, setRecipeName] = useState('');
   const [ingredient, setIngredient] = useState('');
   const [ingredients, setIngredients] = useState(recipeData?.ingredients || []);
@@ -38,12 +42,14 @@ export default function EditRecipe({ route }) {
   const [category, setCategory] = useState(recipeData?.category || '');
 
   useEffect(() => {
-    setRecipeName(recipeData?.recipeName || '');
-    setIngredients(recipeData?.ingredients || []);
-    setInstructions(recipeData?.instructions || '');
-    setServingSize(recipeData?.servingSize || 0);
-    setCategory(recipeData?.category || '');
-  }, [recipeData]);
+    setRecipeData(route.params.recipe);
+    console.log(recipeData)
+    setRecipeName(recipeData.recipeName);
+    setIngredients(recipeData.ingredients);
+    setInstructions(recipeData.instructions);
+    setServingSize(recipeData.servingSize);
+    setCategory(recipeData.category);
+  }, [route.params]);
 
   const addIngredient = () => {
 
