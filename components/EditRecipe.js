@@ -28,6 +28,7 @@ export default function EditRecipe({ route }) {
     console.log("recipeName:", recipeName);
   }, [recipeName]);
 
+  const [ingredientAmount, setIngredientAmount] = useState('');   const [unit, setUnit] = useState(null);
   const [recipeName, setRecipeName] = useState('');
   const [ingredient, setIngredient] = useState('');
   const [ingredients, setIngredients] = useState(recipeData?.ingredients || []);
