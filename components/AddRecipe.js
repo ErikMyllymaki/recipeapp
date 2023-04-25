@@ -10,6 +10,7 @@ import { auth } from '../firebase/config';
 import { AntDesign } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import NumericInput from 'react-native-numeric-input'
+import { getStorage, uploadString, getDownloadURL } from 'firebase/storage';
 
 
 const CATEGORIES_TITLES = [
@@ -28,7 +29,7 @@ export default function AddRecipe() {
 
   const [category, setCategory] = useState('Breakfast');
   const [recipeName, setRecipeName] = useState('');
-  const [image, setImage] = useState(null);
+  const [imageURL, setImageURL] = useState(null);
   const [servingSize, setServingSize] = useState(0);
   const [ingredientAmount, setIngredientAmount] = useState('');
   const [unit, setUnit] = useState(null);
@@ -41,8 +42,9 @@ export default function AddRecipe() {
   const [expanded, setExpanded] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
+  const storage = getStorage();
 
-  const addNewRecipe = () => {
+  const addNewRecipe = async () => {
     if (recipeName.trim() !== "" && ingredients.length > 0 && instructions.trim() !== "") {
       const newRecipeItem = {
         recipeName: recipeName,
@@ -52,8 +54,18 @@ export default function AddRecipe() {
         category: category,
         userKey: userKey,
         nickname: nickname,
-        image: image
+        imageURL: imageURL,
       };
+
+      if (imageURL) {
+        const imageRef = ref(storage, `recipe-images/${Date.now()}`);
+        await uploadString(imageURL, 'data_url').then(async (snapshot) => {
+          const downloadURL = await getDownloadURL(imageRef);
+          newRecipeItem.imageURL = downloadURL;
+          update(newRecipeItemRef, newRecipeItem);
+        });
+      }
+
       const newRecipeItemRef = push(ref(db, RECIPES_REF), newRecipeItem);
       const newRecipeItemKey = newRecipeItemRef.key;
       setRecipeName('');
@@ -61,6 +73,7 @@ export default function AddRecipe() {
       setInstructions('');
       setCategory('Breakfast');
       setServingSize(0);
+      setImageURL(null);
       return newRecipeItemKey;
     }
   };
@@ -125,7 +138,7 @@ export default function AddRecipe() {
     console.log(result);
 
     if (!result.canceled) {
-      setImage(result.assets[0].uri);
+      setImageURL(result.assets[0].uri);
     }
   };
 
@@ -165,7 +178,7 @@ export default function AddRecipe() {
 
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <Button title="Pick an image from camera roll" onPress={pickImage} />
-          {image && <Image source={{ uri: image }} style={{ width: 300, height: 200 }} />}
+          {imageURL && <Image source={{ uri: imageURL }} style={{ width: 300, height: 200 }} />}
         </View>
 
         <NumericInput
