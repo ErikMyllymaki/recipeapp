@@ -10,7 +10,9 @@ import { auth } from '../firebase/config';
 import { AntDesign } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import NumericInput from 'react-native-numeric-input'
-import { getStorage, uploadString, getDownloadURL } from 'firebase/storage';
+import {  uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { storage } from '../firebase/config.js';
+
 
 
 const CATEGORIES_TITLES = [
@@ -29,7 +31,8 @@ export default function AddRecipe() {
 
   const [category, setCategory] = useState('Breakfast');
   const [recipeName, setRecipeName] = useState('');
-  const [imageURL, setImageURL] = useState(null);
+  const [image, setImage] = useState(null)
+  const [uploading, setUploading] = useState(false)
   const [servingSize, setServingSize] = useState(0);
   const [ingredientAmount, setIngredientAmount] = useState('');
   const [unit, setUnit] = useState(null);
@@ -42,9 +45,8 @@ export default function AddRecipe() {
   const [expanded, setExpanded] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
-  const storage = getStorage();
 
-  const addNewRecipe = async () => {
+  const addNewRecipe = () => {
     if (recipeName.trim() !== "" && ingredients.length > 0 && instructions.trim() !== "") {
       const newRecipeItem = {
         recipeName: recipeName,
@@ -54,17 +56,8 @@ export default function AddRecipe() {
         category: category,
         userKey: userKey,
         nickname: nickname,
-        imageURL: imageURL,
+        image: image,
       };
-
-      if (imageURL) {
-        const imageRef = ref(storage, `recipe-images/${Date.now()}`);
-        await uploadString(imageURL, 'data_url').then(async (snapshot) => {
-          const downloadURL = await getDownloadURL(imageRef);
-          newRecipeItem.imageURL = downloadURL;
-          update(newRecipeItemRef, newRecipeItem);
-        });
-      }
 
       const newRecipeItemRef = push(ref(db, RECIPES_REF), newRecipeItem);
       const newRecipeItemKey = newRecipeItemRef.key;
@@ -73,7 +66,8 @@ export default function AddRecipe() {
       setInstructions('');
       setCategory('Breakfast');
       setServingSize(0);
-      setImageURL(null);
+      setImage(null);
+      uploadImage();
       return newRecipeItemKey;
     }
   };
@@ -115,7 +109,7 @@ export default function AddRecipe() {
   const addIngredient = () => {
 
     const newIngredient = ingredientAmount + ' ' + unit + ' ' + ingredient;
-    
+
     if (!unit || ingredientAmount == '' || ingredient == '') {
       alert('Amount, unit and ingredient required!');
     } else if (newIngredient.trim() !== '') {
@@ -123,8 +117,14 @@ export default function AddRecipe() {
       setIngredientAmount('');
       setUnit(null);
       setIngredient('');
-    } 
+    }
   }
+
+  // Create the file metadata
+  /** @type {any} */
+  const metadata = {
+    contentType: 'image/jpeg'
+  };
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -135,12 +135,65 @@ export default function AddRecipe() {
       quality: 1,
     });
 
-    console.log(result);
-
-    if (!result.canceled) {
-      setImageURL(result.assets[0].uri);
-    }
+    const source = { uri: result.assets[0].uri }
+    console.log(source)
+    setImage(source)
   };
+
+  const uploadImage = async () => {
+    setUploading(true);
+    const response = await fetch(image.uri);
+    const blob = response.blob();
+    const filename = image.uri.substring(image.uri.lastIndexOf('/') + 1);
+    const storageRef = ref(storage, 'images/' + filename);
+    const uploadTask = uploadBytesResumable(storageRef, blob, metadata);
+
+    // Listen for state changes, errors, and completion of the upload.
+    uploadTask.on('state_changed',
+      (snapshot) => {
+        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log('Upload is ' + progress + '% done');
+        switch (snapshot.state) {
+          case 'paused':
+            console.log('Upload is paused');
+            break;
+          case 'running':
+            console.log('Upload is running');
+            break;
+        }
+      },
+      (error) => {
+        // A full list of error codes is available at
+        // https://firebase.google.com/docs/storage/web/handle-errors
+        switch (error.code) {
+          case 'storage/unauthorized':
+            // User doesn't have permission to access the object
+            break;
+          case 'storage/canceled':
+            // User canceled the upload
+            break;
+          case 'storage/unknown':
+            // Unknown error occurred, inspect error.serverResponse
+            break;
+        }
+      },
+      () => {
+        // Upload completed successfully, now we can get the download URL
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          console.log('File available at', downloadURL);
+        });
+      }
+    );
+  }
+
+
+
+
+
+
+
+
 
   const handleRemoveIngredient = (ingredient) => {
     const newIngredients = ingredients.filter((item) => item !== ingredient);
@@ -176,9 +229,11 @@ export default function AddRecipe() {
         />
 
 
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <Button title="Pick an image from camera roll" onPress={pickImage} />
-          {imageURL && <Image source={{ uri: imageURL }} style={{ width: 300, height: 200 }} />}
+        <TouchableOpacity onPress={pickImage}>
+          <Text>Pick an Image</Text>
+        </TouchableOpacity>
+        <View>
+          {image && <Image source={{ uri: image.uri }} style={{ width: 300, height: 300 }} />}
         </View>
 
         <NumericInput
@@ -201,8 +256,8 @@ export default function AddRecipe() {
           type="text"
           onValueChange={(value) => setUnit(value)}>
           <Picker.Item label='Select unit' value={null} />
-          <Picker.Item label='dl' value="dl"/>
-          <Picker.Item label='kpl'value="kpl"/>
+          <Picker.Item label='dl' value="dl" />
+          <Picker.Item label='kpl' value="kpl" />
         </Picker>
 
         <TextInput
