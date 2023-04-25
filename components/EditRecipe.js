@@ -32,7 +32,7 @@ export default function EditRecipe({ route, navigation }) {
   const [instructions, setInstructions] = useState(route.params.recipe.instructions);
   const [image, setImage] = useState(route.params.recipe.image || null);
   const [servingSize, setServingSize] = useState(route.params.recipe.servingSize)
-  const [category, setCategory] = useState(route.params.recipe.category);
+  const [category, setCategory] = useState(route.params.category.title);
 
   useEffect(() => {
     setRecipeKey(route.params.recipeKey);
@@ -87,12 +87,12 @@ export default function EditRecipe({ route, navigation }) {
       <Pressable
           style={Styles.navigateBack}
           onPress={() => {
-            navigation.navigate('Recipe', { route });
+            navigation.navigate('Recipe', { recipe: route.params.recipe, category: route.params.category});
           }}
         >
 
           <AntDesign name='left' size={30} color='#4B702F' />
-          <Text style={Styles.navigateBackHeader}>{category.title}</Text>
+          {/* <Text style={Styles.navigateBackHeader}>{category.title}</Text> */}
         </Pressable>
         <Text style={Styles.pageHeader}>EDIT RECIPE</Text>
         <Picker
