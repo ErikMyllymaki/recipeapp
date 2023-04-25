@@ -11,7 +11,7 @@ import { AntDesign } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import NumericInput from 'react-native-numeric-input'
 
-export default function EditRecipe({ route }) {
+export default function EditRecipe({ route, navigation }) {
 
   console.log("route.params: ", route.params);
   // console.log(route.params.recipe.recipeName)
@@ -92,8 +92,19 @@ export default function EditRecipe({ route }) {
   
 
   return (
+
     <ScrollView style={{ backgroundColor: '#B5CFBB' }}>
       <View style={[Styles.container,]}>
+      <Pressable
+          style={Styles.navigateBack}
+          onPress={() => {
+            navigation.navigate('Recipe', { route });
+          }}
+        >
+
+          <AntDesign name='left' size={30} color='#4B702F' />
+          <Text style={Styles.navigateBackHeader}>{category.title}</Text>
+        </Pressable>
         <Text style={Styles.pageHeader}>EDIT RECIPE</Text>
         <Picker
           selectedValue={category}
