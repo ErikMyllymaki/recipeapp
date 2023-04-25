@@ -22,7 +22,7 @@ export default StyleSheet.create({
     fontStyle: 'italic'
   },
   userNickname: {
-    fontWeight: 'bold',
+    color: '#183007ff',
     fontStyle: 'italic'
   },
   // loginHeader: {
