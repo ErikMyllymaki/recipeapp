@@ -112,9 +112,6 @@ export default function Recipe({ route, navigation }) {
           style={Styles.navigateBack}
           onPress={() => {
             setNavigationKey((prevKey) => !prevKey);
-            // console.log("sadasd" + category)
-            // console.log(route.params.recipe.category)
-            console.log(category)
             navigation.navigate('RecipeList', { category: category, navigationKey: navigationKey });
           }}
         >

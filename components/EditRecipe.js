@@ -35,7 +35,6 @@ export default function EditRecipe({ route, navigation }) {
   const [category, setCategory] = useState(route.params.category.title);
 
   useEffect(() => {
-    console.log(route.params.category.title)
     setRecipeKey(route.params.recipeKey);
     setRecipeData(route.params.recipe);
     setRecipeName(route.params.recipe.recipeName);
@@ -88,7 +87,7 @@ export default function EditRecipe({ route, navigation }) {
       <Pressable
           style={Styles.navigateBack}
           onPress={() => {
-            navigation.navigate('Recipe', { recipe: route.params.recipe, category: category});
+            navigation.navigate('Recipe', { recipe: route.params.recipe, category: route.params.category});
           }}
         >
 
