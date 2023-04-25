@@ -1,99 +1,106 @@
 import { Platform, StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-    container: {
-      backgroundColor: '#B5CFBB',
-      flex: 1,
-      paddingBottom: 65
-    },
-    header: {
-        backgroundColor: '#eaece5',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: 130,
-        paddingTop: 25
-    },
-    userNickname: {
-      color: '#13270593',
-      fontStyle: 'italic'
-      /* Add more styles as needed */
-    },
-    // loginHeader: {
-    //     fontSize: 25,
-    //     fontFamily: 'TenorSans',
-    //     textAlign: 'center',
-    //     marginTop: -100,
-    //     marginLeft: 100,
-    //     marginBottom: 60,
-    //     marginRight: 100
-    // },
-    title: {
-        color: '#4B702F',
-        padding: 15,
-        fontSize: 23
-    },
-    pageTitle: {
-      fontSize: 30,
-      margin: 20,
-      
-    },
-    categoryItem: {
-      flex: 1,
-      padding: 10,
+  container: {
+    backgroundColor: '#B5CFBB',
+    flex: 1,
+    paddingBottom: 65
+  },
+  header: {
+    backgroundColor: '#eaece5',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 130,
+    paddingTop: 25
+  },
+  userNicknameContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  loggedInAsText: {
+    color: '#13270593',
+    fontStyle: 'italic'
+  },
+  userNickname: {
+    fontWeight: 'bold',
+    fontStyle: 'italic'
+  },
+  // loginHeader: {
+  //     fontSize: 25,
+  //     fontFamily: 'TenorSans',
+  //     textAlign: 'center',
+  //     marginTop: -100,
+  //     marginLeft: 100,
+  //     marginBottom: 60,
+  //     marginRight: 100
+  // },
+  title: {
+    color: '#4B702F',
+    padding: 15,
+    fontSize: 23
+  },
+  pageTitle: {
+    fontSize: 30,
+    margin: 20,
+
+  },
+  categoryItem: {
+    flex: 1,
+    padding: 10,
 
 
-      ...Platform.select({
-        ios: {
-          alignItems: "center",
-          shadowColor: '#717f6851',
+    ...Platform.select({
+      ios: {
+        alignItems: "center",
+        shadowColor: '#717f6851',
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.8,
         shadowRadius: 4,
-        },
-        android: {},
-      }),
-      
-    },
-    categoryTitle: {
-      backgroundColor: 'white',
-      padding: 20,
-      width: 150,
-      height: 150,
-      ...Platform.select({
-        ios: {
-          height: 170,
-          width: 170,
-        },
-        android: {}
-      }),
-      resizeMode: 'cover',
-      alignItems: 'center',
-      borderRadius: 15,
-      overflow: 'hidden',
+      },
+      android: {},
+    }),
 
-      shadowColor: '#000',
-      shadowOffset: { width: 0, height: 4 },
-      shadowOpacity: 0.8,
-      shadowRadius: 4,
-      elevation: 5,
-    },
-    categoryName: {
-      fontSize: 20,
-      position: 'absolute', 
-      bottom: 10
-    },
-    selectedCategoryTitle: {
-      fontSize: 20
-    },
-    textInput: {
-      padding: 10,
-      margin: 15,
-      borderRadius: 25,
-      backgroundColor: '#ffffff',
-    },
+  },
+  categoryTitle: {
+    backgroundColor: 'white',
+    padding: 20,
+    width: 150,
+    height: 150,
+    ...Platform.select({
+      ios: {
+        height: 170,
+        width: 170,
+      },
+      android: {}
+    }),
+    resizeMode: 'cover',
+    alignItems: 'center',
+    borderRadius: 15,
+    overflow: 'hidden',
 
-   //about us sivulla käytetyt tyylit. Voi käyttää muillakin sivuilla
-   textAreaBackground: {
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.8,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  categoryName: {
+    fontSize: 20,
+    position: 'absolute',
+    bottom: 10
+  },
+  selectedCategoryTitle: {
+    fontSize: 20
+  },
+  textInput: {
+    padding: 10,
+    margin: 15,
+    borderRadius: 25,
+    backgroundColor: '#ffffff',
+  },
+
+  //about us sivulla käytetyt tyylit. Voi käyttää muillakin sivuilla
+  textAreaBackground: {
     alignItems: 'center',
     backgroundColor: '#E8E8E8',
     marginBottom: 50,
@@ -105,14 +112,14 @@ export default StyleSheet.create({
   },
   pageHeader: {
     fontSize: 25,
-    fontFamily:'TenorSans',
+    fontFamily: 'TenorSans',
     color: '#4B702F',
     textAlign: 'center',
     paddingTop: 40,
     paddingBottom: 40,
     paddingLeft: -50
   },
-  contactUsHeader:{
+  contactUsHeader: {
     fontSize: 25,
     fontFamily: 'TenorSans',
     textAlign: 'center',
@@ -120,7 +127,7 @@ export default StyleSheet.create({
     paddingBottom: 15,
     color: '#4B702F'
   },
-  contactInformation:{
+  contactInformation: {
     fontSize: 19,
     fontFamily: 'GeosansLight',
     textAlign: 'center',
@@ -188,29 +195,29 @@ export default StyleSheet.create({
     color: '#ffffff',
     overflow: 'hidden'
   },
-  addRecipeInput:{
+  addRecipeInput: {
     fontSize: 20,
     marginTop: 10,
     marginBottom: 10,
     marginHorizontal: 30,
     backgroundColor: 'white',
-    padding: 10, 
+    padding: 10,
     borderRadius: 15,
     backgroundColor: '#E8E8E8',
   },
-  expandedAddRecipeInput:{
+  expandedAddRecipeInput: {
     fontSize: 15,
     marginTop: 10,
     marginBottom: 10,
     marginHorizontal: 10,
     backgroundColor: 'white',
-    padding: 10, 
+    padding: 10,
     borderRadius: 15,
     backgroundColor: '#E8E8E8',
     height: 100,
     textAlignVertical: 'top',
   },
-  addRecipeButton:{
+  addRecipeButton: {
     backgroundColor: '#E8E8E8',
     alignItems: 'center',
     padding: 5,
@@ -251,7 +258,7 @@ export default StyleSheet.create({
     borderRadius: 20,
   },
   recipeImage: {
-    height: 290, 
+    height: 290,
     width: '100%',
     borderRadius: 20,
   },
@@ -270,7 +277,7 @@ export default StyleSheet.create({
   },
   navigateBackHeader: {
     fontSize: 19,
-    fontFamily:'TenorSans',
+    fontFamily: 'TenorSans',
     color: '#4B702F',
     paddingTop: 4,
     paddingLeft: 8,
@@ -281,8 +288,8 @@ export default StyleSheet.create({
     height: 99,
     margin: 10,
     borderRadius: 15,
-    justifyContent: 'flex-start', 
-    alignItems: 'center', 
+    justifyContent: 'flex-start',
+    alignItems: 'center',
     flexDirection: 'row',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
@@ -291,7 +298,7 @@ export default StyleSheet.create({
     elevation: 5,
   },
   recipeListImage: {
-    width: 80, 
+    width: 80,
     height: 80,
     borderRadius: 15,
     marginLeft: 10,

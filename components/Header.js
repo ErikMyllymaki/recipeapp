@@ -15,7 +15,10 @@ export default function Header() {
         const userRef = ref(db, `${USERS_REF}/${user.uid}/nickname`);
         onValue(userRef, snapshot => {
           setUserNickname(
-            <Text style={Styles.userNickname}>Logged in as {snapshot.val() || ''}</Text>
+            <View style={Styles.userNicknameContainer}>
+              <Text style={Styles.loggedInAsText}>Logged in as </Text>
+              <Text style={Styles.userNickname}>{snapshot.val() || ''}</Text>
+            </View>
           );
         });
       } else {
