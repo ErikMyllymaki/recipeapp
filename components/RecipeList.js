@@ -44,7 +44,7 @@ export default function RecipeList({ navigation, route }) {
     };
 
     return (
-      <View key={item.key}>
+      <View style={{ alignItems: 'center' }} key={item.key}>
         <TouchableOpacity style={Styles.recipeListItem} onPress={navigateToRecipe}>
           <Image source={require('../images/breakfast.jpg')} style={Styles.recipeListImage} />
           <Text>{item.recipeName}</Text>
