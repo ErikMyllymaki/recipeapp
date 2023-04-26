@@ -47,11 +47,14 @@ export default function RecipeList({ navigation, route }) {
         <TouchableOpacity style={Styles.recipeListItem} onPress={navigateToRecipe}>
           <Image source={require('../images/breakfast.jpg')} style={Styles.recipeListImage} />
           <Text>{item.recipeName}</Text>
-          <FavoriteButton recipeKey={item.key} userKey={userKey} navigation={recipes} />
+          <View style={{ flex: 1, alignItems: 'flex-end', marginRight: 15 }}>
+            <FavoriteButton recipeKey={item.key} userKey={userKey} navigation={recipes} />
+          </View>
         </TouchableOpacity>
       </View>
     );
   };
+  
 
   useEffect(() => {
     let refPath = RECIPES_REF;
