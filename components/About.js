@@ -7,12 +7,25 @@ import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
 import { useNavigation } from '@react-navigation/native';
-
+import { useEffect, useState } from 'react';
+import { auth } from '../firebase/config';
 
 export default function About(props) {
 
   const navigation = useNavigation();
-  const { isAuthenticated } = props.route.params;
+const [isAuthenticated, setIsAuthenticated] = useState(props.route.params.isAuthenticated)
+
+useEffect(() => {
+  const unsubscribe = auth.onAuthStateChanged(user => {
+    if (user) {
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+    }
+  });
+
+  return () => unsubscribe();
+}, [isAuthenticated]);
 
   const [loaded] = useFonts({
     GeosansLight: require('../assets/fonts/GeosansLight.ttf'),
@@ -23,7 +36,7 @@ export default function About(props) {
   if (!loaded) {
     return null;
   }
-
+  console.log(props.route.params)
   const handlePressTiktok = () => {
     Linking.openURL('https://www.tiktok.com/@tariq.almazyad/video/7154381967306329345?lang=fi-FI');
   };
@@ -69,8 +82,8 @@ export default function About(props) {
         <Pressable
           style={Styles.navigateBack}
           onPress={() => {
-            navigation.navigate('Welcome');
-            console.log(isAuthenticated)
+            navigation.navigate('Welcome', { isAuthenticated: true});
+            // console.log("hoo"+isAuthenticated)
           }}
         >
           <AntDesign name='left' size={30} color='#4B702F' />

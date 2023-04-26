@@ -5,10 +5,10 @@ import { TextInput } from 'react-native-gesture-handler';
 import Styles from '../style/style';
 
 export const CATEGORIES = [
-  { id: '1', title: 'Breakfast', image: require('../images/breakfast.jpg') },
-  { id: '2', title: 'Dinner', image: require('../images/dinner.jpg') },
-  { id: '3', title: 'Drinks', image: require('../images/drink.jpg') },
-  { id: '4', title: 'Dessert', image: require('../images/dessert.jpg') },
+  { id: '1', title: 'Breakfast', image: require('../images/breakfast.png') },
+  { id: '2', title: 'Dinner', image: require('../images/dinner.png') },
+  { id: '3', title: 'Drinks', image: require('../images/drink.png') },
+  { id: '4', title: 'Dessert', image: require('../images/dessert.png') },
   { id: '5', title: 'Snacks', image: require('../images/snack.jpg') },
   { id: '6', title: 'Pastries', image: require('../images/pastry.jpg') },
   { id: '7', title: 'Favorites', image: require('../images/pastry.jpg') } // new object for favorites

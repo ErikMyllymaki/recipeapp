@@ -10,6 +10,7 @@ import { db, RECIPES_REF, FAVORITES_REF, USERS_REF } from '../firebase/config';
 import { Entypo } from '@expo/vector-icons';
 import { auth } from '../firebase/config';
 import _, { uniq } from 'lodash';
+import FavoriteButton from './FavoriteButton';
 
 
 export default function RecipeList({ navigation, route }) {
@@ -20,7 +21,6 @@ export default function RecipeList({ navigation, route }) {
   const navigationKey = route.params.navigationKey;
   // const filteredRecipes = recipes.filter(recipe => recipe.category === category.title);
   const [userKey, setUserKey] = useState('');
-  const [favoriteRecipes, setFavoriteRecipes] = useState([]);
   const uniqueRecipes = _.uniqBy(recipes, 'key');
 
   function search(keyword) {
@@ -42,16 +42,19 @@ export default function RecipeList({ navigation, route }) {
     const navigateToRecipe = () => {
       navigation.navigate('Recipe', { recipe: item, category: category });
     };
-
     return (
-      <View key={item.key}>
+      <View style={{ alignItems: 'center' }} key={item.key}>
         <TouchableOpacity style={Styles.recipeListItem} onPress={navigateToRecipe}>
           <Image source={require('../images/breakfast.jpg')} style={Styles.recipeListImage} />
           <Text>{item.recipeName}</Text>
+          <View style={{ flex: 1, alignItems: 'flex-end', marginRight: 15 }}>
+            <FavoriteButton recipeKey={item.key} userKey={userKey} navigation={recipes} />
+          </View>
         </TouchableOpacity>
       </View>
     );
   };
+  
 
   useEffect(() => {
     let refPath = RECIPES_REF;
