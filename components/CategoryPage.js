@@ -5,7 +5,7 @@ import { TextInput } from 'react-native-gesture-handler';
 import Styles from '../style/style';
 
 export const CATEGORIES = [
-  { id: '1', title: 'Breakfast', image: require('../images/breakfast.jpg') },
+  { id: '1', title: 'Breakfast', image: require('../images/breakfast.png') },
   { id: '2', title: 'Dinner', image: require('../images/dinner.jpg') },
   { id: '3', title: 'Drinks', image: require('../images/drink.jpg') },
   { id: '4', title: 'Dessert', image: require('../images/dessert.jpg') },
