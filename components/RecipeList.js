@@ -9,15 +9,16 @@ import { child, push, ref, remove, update, onValue } from 'firebase/database';
 import { db, RECIPES_REF, FAVORITES_REF, USERS_REF } from '../firebase/config';
 import { Entypo } from '@expo/vector-icons';
 import { auth } from '../firebase/config';
-import _ from 'lodash';
+import _, { uniq } from 'lodash';
 
 
 export default function RecipeList({ navigation, route }) {
   const [text, setText] = useState('');
   const [recipes, setRecipes] = useState([]);
+  const [allRecipes, setAllRecipes] = useState([]);
   const category = route.params.category;
   const navigationKey = route.params.navigationKey;
-  const filteredRecipes = recipes.filter(recipe => recipe.category === category.title);
+  // const filteredRecipes = recipes.filter(recipe => recipe.category === category.title);
   const [userKey, setUserKey] = useState('');
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
   const uniqueRecipes = _.uniqBy(recipes, 'key');
@@ -25,6 +26,7 @@ export default function RecipeList({ navigation, route }) {
   function search(keyword) {
     setText(keyword);
     if (keyword) {
+      console.log("if keyword")
       const filteredRecipes = uniqueRecipes.filter(recipe => {
         const recipeName = recipe.recipeName.toLowerCase();
         const searchTerm = keyword.toLowerCase();
@@ -32,7 +34,7 @@ export default function RecipeList({ navigation, route }) {
       });
       setRecipes(filteredRecipes);
     } else {
-      setRecipes(uniqueRecipes);
+      setRecipes(allRecipes);
     }
   }
 
@@ -72,6 +74,7 @@ export default function RecipeList({ navigation, route }) {
             }
           });
           setRecipes(favoriteRecipes);
+          setAllRecipes(favoriteRecipes);
         });
       });
     } else {
@@ -85,6 +88,7 @@ export default function RecipeList({ navigation, route }) {
           }
         });
         setRecipes(recipes);
+        setAllRecipes(recipes);
       });
     }
   }, [category.title, userKey, navigationKey]);
