@@ -23,7 +23,7 @@ export default function About(props) {
   if (!loaded) {
     return null;
   }
-
+  console.log(props.route.params)
   const handlePressTiktok = () => {
     Linking.openURL('https://www.tiktok.com/@tariq.almazyad/video/7154381967306329345?lang=fi-FI');
   };

@@ -105,8 +105,8 @@ export default function App() {
             <Tab.Screen name='EditRecipe' component={EditRecipe}
               options={{ tabBarButton: (props) => null }} />
             <Tab.Screen name='About' component={About}
-              initialParams={{isAuthenticated:isAuthenticated}}
               options={{
+                isAuthenticated: isAuthenticated,
                 tabBarIcon: ({ color }) => (
                   <MaterialCommunityIcons name="information-variant" size={30} color={color} />
                 ),
@@ -127,8 +127,8 @@ export default function App() {
               options={{ tabBarStyle: { display: 'none' }, tabBarButton: (props) => null }}
             />
             <Tab.Screen name='About' component={About}
-              initialParams={{ isAuthenticated: isAuthenticated }}
               options={{
+                isAuthenticated: isAuthenticated,
                 tabBarStyle: { display: 'none' },
                 tabBarIcon: ({ color }) => (
                   <MaterialCommunityIcons name="information-variant" size={30} color={color} />
