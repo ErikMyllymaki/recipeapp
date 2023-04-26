@@ -82,7 +82,7 @@ export default function EditRecipe({ route, navigation }) {
 
   return (
 
-    <ScrollView style={{ backgroundColor: '#B5CFBB' }}>
+    <ScrollView style={styles.scrollView}>
       <View style={[Styles.container,]}>
       <Pressable
           style={Styles.navigateBack}

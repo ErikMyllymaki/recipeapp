@@ -207,7 +207,7 @@ export default function AddRecipe() {
 
 
   return (
-    <ScrollView style={{ backgroundColor: '#B5CFBB' }}>
+    <ScrollView style={Styles.scrollView}>
       <View style={[Styles.container,]}>
         <Text style={Styles.pageHeader}>ADD RECIPE</Text>
 

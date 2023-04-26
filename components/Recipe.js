@@ -106,7 +106,7 @@ export default function Recipe({ route, navigation }) {
 
 
   return (
-    <ScrollView>
+    <ScrollView style={Styles.scrollView}>
       <View style={Styles.container}>
         <Pressable
           style={Styles.navigateBack}
@@ -124,7 +124,7 @@ export default function Recipe({ route, navigation }) {
             <Image source={recipeData?.image} style={Styles.recipeImage} />
           </View>
           <View style={Styles.recipeInfo}>
-          <Text style={Styles.pageHeader}>by: {recipeData?.nickname}</Text>
+          <Text style={Styles.madeByText}>by: {recipeData?.nickname}</Text>
             <Text style={Styles.pageHeader}>{recipeData?.recipeName}</Text>
             <Text style={Styles.recipeSubtitle}>Serving size:</Text>
             <Text>{recipeData?.servingSize} serving(s)</Text>

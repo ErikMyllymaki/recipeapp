@@ -13,6 +13,9 @@ export default StyleSheet.create({
     height: 130,
     paddingTop: 25
   },
+  scrollView: {
+    backgroundColor: '#B5CFBB'
+  },
   userNicknameContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -118,6 +121,12 @@ export default StyleSheet.create({
     paddingTop: 40,
     paddingBottom: 40,
     paddingLeft: -50
+  },
+  madeByText: {
+    fontSize: 15,
+    fontFamily: 'TenorSans',
+    color: '#4B702F',
+    textAlign: 'center'
   },
   contactUsHeader: {
     fontSize: 25,

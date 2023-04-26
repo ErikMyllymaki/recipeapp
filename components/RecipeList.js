@@ -118,8 +118,8 @@ export default function RecipeList({ navigation, route }) {
         paddingTop: 20, justifyContent: 'center',
         alignItems: 'center', flexDirection: 'row'
       }}>
-        <TextInput value={text} onChangeText={search} style={Styles.searchInput} />
-        <Entypo name="magnifying-glass" style={{ position: 'absolute', left: 35, top: 15, padding: 20 }} size={30} color={'grey'} />
+        <TextInput value={text} onChangeText={search} placeholder="Search" style={Styles.searchInput} />
+        {/* <Entypo name="magnifying-glass" style={{ position: 'absolute', left: 35, top: 15, padding: 20 }} size={30} color={'grey'} /> */}
       </View>
 
       <View style={Styles.recipeList}>
