@@ -63,7 +63,7 @@ export default function About(props) {
   const yourImage = require('../images/spoon-fork-knife.png');
 
   return (
-    <ScrollView style={styles.scrollView}>
+    <ScrollView style={Styles.scrollView}>
       {!isAuthenticated &&
         <View style={{backgroundColor: '#B5CFBB'}}>
         <Pressable
