@@ -142,7 +142,7 @@ export default function Recipe({ route, navigation }) {
                     navigation.navigate('EditRecipe', { recipe: recipe, recipeKey: recipeKey, category: category });
                   }}>
                   <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <EvilIcons name="pencil" size={40} />
+                    <EvilIcons name="pencil" size={40} style={Styles.recipeIcons}/>
                   </View>
                 </TouchableWithoutFeedback>
               )}
@@ -150,7 +150,7 @@ export default function Recipe({ route, navigation }) {
               {userKey === recipeData?.userKey && (
                 <TouchableWithoutFeedback onPress={() => { createTwoButtonAlert(); }}>
                   <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <EvilIcons name="trash" size={40} />
+                    <EvilIcons name="trash" size={40} style={Styles.recipeIcons}/>
                   </View>
                 </TouchableWithoutFeedback>
               )}
@@ -160,7 +160,7 @@ export default function Recipe({ route, navigation }) {
                     name="heart"
                     size={30}
                     color={isFavorite ? "#CA3433" : "gray"}
-                    style={Styles.addFavorite}
+                    style={Styles.recipeIcons}
                   />
                 </View>
               </TouchableWithoutFeedback>
