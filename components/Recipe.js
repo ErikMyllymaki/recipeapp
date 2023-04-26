@@ -159,7 +159,8 @@ export default function Recipe({ route, navigation }) {
                   <MaterialCommunityIcons
                     name="heart"
                     size={30}
-                    color={isFavorite ? "#CA3433" : "gray"} // Change color based on isFavorite state
+                    color={isFavorite ? "#CA3433" : "gray"}
+                    style={Styles.addFavorite}
                   />
                 </View>
               </TouchableWithoutFeedback>

@@ -128,6 +128,9 @@ export default StyleSheet.create({
     color: '#4B702F',
     textAlign: 'center'
   },
+  addFavorite: {
+    paddingTop: 15
+  },
   contactUsHeader: {
     fontSize: 25,
     fontFamily: 'TenorSans',
