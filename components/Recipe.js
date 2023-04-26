@@ -8,6 +8,7 @@ import { auth } from '../firebase/config';
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import EditRecipe from './EditRecipe';
+import { storage } from '../firebase/config.js';
 
 export default function Recipe({ route, navigation }) {
 
@@ -105,6 +106,7 @@ export default function Recipe({ route, navigation }) {
   const recipeImage = require('../images/dinner.jpg');
 
 
+
   return (
     <ScrollView style={Styles.scrollView}>
       <View style={Styles.container}>
@@ -121,10 +123,10 @@ export default function Recipe({ route, navigation }) {
         </Pressable>
         <View style={Styles.recipeBackground}>
           <View style={{ alignItems: 'center' }}>
-            <Image source={recipeData?.image} style={Styles.recipeImage} />
+            <Image source={{uri: recipeData?.image}} style={Styles.recipeImage} />
           </View>
           <View style={Styles.recipeInfo}>
-          <Text style={Styles.madeByText}>by: {recipeData?.nickname}</Text>
+            <Text style={Styles.madeByText}>by: {recipeData?.nickname}</Text>
             <Text style={Styles.pageHeader}>{recipeData?.recipeName}</Text>
             <Text style={Styles.recipeSubtitle}>Serving size:</Text>
             <Text>{recipeData?.servingSize} serving(s)</Text>
