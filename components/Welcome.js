@@ -31,7 +31,7 @@ export default Welcome = ({ navigation }) => {
             style={{ paddingVertical: 30 }}
             ><Text style={Styles.homeButton}>Login</Text></Pressable>
             <Pressable
-            onPress={() => navigation.navigate('About')}
+            onPress={() => navigation.navigate('About', { isAuthenticated: false })}
             style={{ paddingVertical: 30 }}
           >
             <Text style={Styles.homeButton}>About recipe app</Text>
