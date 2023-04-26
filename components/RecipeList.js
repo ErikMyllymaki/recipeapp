@@ -21,7 +21,6 @@ export default function RecipeList({ navigation, route }) {
   const navigationKey = route.params.navigationKey;
   // const filteredRecipes = recipes.filter(recipe => recipe.category === category.title);
   const [userKey, setUserKey] = useState('');
-  const [favoriteRecipes, setFavoriteRecipes] = useState([]);
   const uniqueRecipes = _.uniqBy(recipes, 'key');
 
   function search(keyword) {
