@@ -42,13 +42,12 @@ export default function RecipeList({ navigation, route }) {
     const navigateToRecipe = () => {
       navigation.navigate('Recipe', { recipe: item, category: category });
     };
-    console.log(item)
     return (
       <View style={{ alignItems: 'center' }} key={item.key}>
         <TouchableOpacity style={Styles.recipeListItem} onPress={navigateToRecipe}>
           <Image source={require('../images/breakfast.jpg')} style={Styles.recipeListImage} />
           <Text>{item.recipeName}</Text>
-          <FavoriteButton recipeKey={item.key} userKey={userKey} />
+          <FavoriteButton recipeKey={item.key} userKey={userKey} navigation={recipes} />
         </TouchableOpacity>
       </View>
     );

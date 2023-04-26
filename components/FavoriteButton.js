@@ -3,7 +3,7 @@ import { ref, get, remove, set } from 'firebase/database';
 import { db, FAVORITES_REF } from '../firebase/config';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-export default function FavoriteButton({ recipeKey, userKey }) {
+export default function FavoriteButton({ recipeKey, userKey, navigation }) {
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ export default function FavoriteButton({ recipeKey, userKey }) {
         setIsFavorite(favorites[recipeKey]);
       });
     }
-  }, [userKey, recipeKey]);
+  }, [userKey, recipeKey, navigation]);
 
   const handleFavorite = () => {
     const userFavoritesRef = ref(db, `${FAVORITES_REF}/${userKey}/${recipeKey}`);
