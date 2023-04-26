@@ -9,16 +9,16 @@ import { AntDesign } from '@expo/vector-icons';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import EditRecipe from './EditRecipe';
 import { storage } from '../firebase/config.js';
+import FavoriteButton from './FavoriteButton';
+
 
 export default function Recipe({ route, navigation }) {
 
   const recipe = route.params.recipe;
 
   const [recipeKey, setRecipeKey] = useState(recipe.key);
-
   const [recipeData, setRecipeData] = useState(null);
   const [userKey, setUserKey] = useState('');
-  const [isFavorite, setIsFavorite] = useState(false);
   const [navigationKey, setNavigationKey] = useState(false);
 
   const category = route.params.category;
@@ -32,16 +32,6 @@ export default function Recipe({ route, navigation }) {
       });
     }
   }, [recipe]);
-
-  useEffect(() => {
-    if (userKey && recipe) {
-      const userFavoritesRef = ref(db, `${FAVORITES_REF}/${userKey}`);
-      onValue(userFavoritesRef, snapshot => {
-        const favorites = snapshot.val() || {};
-        setIsFavorite(favorites[recipe.key]);
-      });
-    }
-  }, [userKey, recipe?.key]);
 
 
 
@@ -90,17 +80,6 @@ export default function Recipe({ route, navigation }) {
   );
 
 
-  const addFavorite = (recipeKey, userKey) => {
-    const userFavoritesRef = ref(db, `favorites/${userKey}/${recipeKey}`);
-
-    get(userFavoritesRef).then((snapshot) => {
-      if (snapshot.exists()) {
-        remove(userFavoritesRef).then(() => setIsFavorite(false));
-      } else {
-        set(userFavoritesRef, true).then(() => setIsFavorite(true));
-      }
-    });
-  };
 
 
   const recipeImage = require('../images/dinner.jpg');
@@ -156,16 +135,7 @@ export default function Recipe({ route, navigation }) {
                   </View>
                 </TouchableWithoutFeedback>
               )}
-              <TouchableWithoutFeedback onPress={() => addFavorite(recipe.key, userKey)}>
-                <View style={{ flexDirection: "row", alignItems: "center" }}>
-                  <MaterialCommunityIcons
-                    name="heart"
-                    size={30}
-                    color={isFavorite ? "#CA3433" : "gray"}
-                    style={Styles.recipeIcons}
-                  />
-                </View>
-              </TouchableWithoutFeedback>
+                      <FavoriteButton recipeKey={recipeKey} userKey={userKey} />
             </View>
           </View>
         </View>

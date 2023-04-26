@@ -10,6 +10,7 @@ import { db, RECIPES_REF, FAVORITES_REF, USERS_REF } from '../firebase/config';
 import { Entypo } from '@expo/vector-icons';
 import { auth } from '../firebase/config';
 import _, { uniq } from 'lodash';
+import FavoriteButton from './FavoriteButton';
 
 
 export default function RecipeList({ navigation, route }) {
@@ -42,12 +43,13 @@ export default function RecipeList({ navigation, route }) {
     const navigateToRecipe = () => {
       navigation.navigate('Recipe', { recipe: item, category: category });
     };
-
+    console.log(item)
     return (
       <View style={{ alignItems: 'center' }} key={item.key}>
         <TouchableOpacity style={Styles.recipeListItem} onPress={navigateToRecipe}>
           <Image source={require('../images/breakfast.jpg')} style={Styles.recipeListImage} />
           <Text>{item.recipeName}</Text>
+          <FavoriteButton recipeKey={item.key} userKey={userKey} />
         </TouchableOpacity>
       </View>
     );
