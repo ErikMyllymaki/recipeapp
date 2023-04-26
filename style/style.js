@@ -139,6 +139,67 @@ export default StyleSheet.create({
     paddingBottom: 15,
     color: '#4B702F'
   },
+  addRecipeLabel: {
+    marginTop: 10,
+    marginBottom: 3,
+    marginLeft: 5
+  },
+  dropdown: { 
+    backgroundColor: '#61876e73',
+    borderRadius: 15,
+    color: '#ffffff'
+  },
+  addRecipeTextInput: {
+    padding: 10,
+    borderRadius: 15,
+    backgroundColor: '#ffffff',
+  },
+  addButton: {
+    fontFamily: 'TenorSans',
+    backgroundColor: '#61876ee9',
+    height: 50,
+    textAlign: 'center',
+    fontSize: 16,
+    padding: 10,
+    textAlignVertical: 'center',
+    ...Platform.select({
+      ios: {
+        lineHeight: 50
+      },
+      android: {}
+    }),
+    borderRadius: 15,
+    color: '#ffffff',
+    overflow: 'hidden'
+  },
+  addImageButton: {
+    fontFamily: 'TenorSans',
+    backgroundColor: '#61876ee9',
+    width: 150,
+    height: 40,
+    textAlign: 'center',
+    fontSize: 14,
+    textAlignVertical: 'center',
+    ...Platform.select({
+      ios: {
+        lineHeight: 50
+      },
+      android: {}
+    }),
+    borderRadius: 15,
+    color: '#ffffff',
+    overflow: 'hidden',
+  },
+  rememberText: {
+    alignSelf: 'center',
+    margin: 10,
+    fontStyle: 'italic',
+  },
+  unitDropdown: {
+    backgroundColor: '#fff',
+    borderRadius: 15,
+    marginHorizontal: 2
+  },
   contactInformation: {
     fontSize: 19,
     fontFamily: 'GeosansLight',
@@ -323,6 +384,9 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 6,
-    paddingBottom: 0,
+    marginHorizontal: 40,
+    marginVertical: 1,
+    backgroundColor: '#61876e52',
+    borderRadius: 15
   }
 });
