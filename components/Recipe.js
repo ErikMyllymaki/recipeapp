@@ -106,7 +106,7 @@ export default function Recipe({ route, navigation }) {
 
 
   return (
-    <ScrollView>
+    <ScrollView style={Styles.scrollView}>
       <View style={Styles.container}>
         <Pressable
           style={Styles.navigateBack}

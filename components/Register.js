@@ -37,7 +37,7 @@ export default Register = ({ navigation }) => {
   };
 
   return (
-    <ScrollView>
+    <ScrollView style={styles.scrollView}>
       <View style={{ backgroundColor: '#B5CFBB' }}>
         <Pressable
           style={styles.navigateBack}

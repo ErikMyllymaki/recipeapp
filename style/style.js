@@ -13,6 +13,9 @@ export default StyleSheet.create({
     height: 130,
     paddingTop: 25
   },
+  scrollView: {
+    backgroundColor: '#B5CFBB'
+  },
   userNicknameContainer: {
     flexDirection: 'row',
     alignItems: 'center',
