@@ -119,6 +119,12 @@ export default StyleSheet.create({
     paddingBottom: 40,
     paddingLeft: -50
   },
+  madeByText: {
+    fontSize: 15,
+    fontFamily: 'TenorSans',
+    color: '#4B702F',
+    textAlign: 'center'
+  },
   contactUsHeader: {
     fontSize: 25,
     fontFamily: 'TenorSans',
