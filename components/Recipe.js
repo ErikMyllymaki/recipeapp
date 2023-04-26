@@ -135,7 +135,9 @@ export default function Recipe({ route, navigation }) {
                   </View>
                 </TouchableWithoutFeedback>
               )}
-                      <FavoriteButton recipeKey={recipeKey} userKey={userKey} navigation={recipe} />
+              <View style={{paddingTop: 15}}>
+              <FavoriteButton recipeKey={recipeKey} userKey={userKey} navigation={recipe} />
+              </View>
             </View>
           </View>
         </View>
