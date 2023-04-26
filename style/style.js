@@ -129,7 +129,7 @@ export default StyleSheet.create({
     textAlign: 'center'
   },
   addFavorite: {
-    padding: 15
+    paddingTop: 15
   },
   contactUsHeader: {
     fontSize: 25,
