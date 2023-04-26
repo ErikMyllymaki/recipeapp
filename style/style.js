@@ -128,7 +128,7 @@ export default StyleSheet.create({
     color: '#4B702F',
     textAlign: 'center'
   },
-  addFavorite: {
+  recipeIcons: {
     paddingTop: 15
   },
   contactUsHeader: {
