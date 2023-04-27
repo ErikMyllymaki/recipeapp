@@ -51,7 +51,12 @@ export default function App() {
             left: 15,
             right: 15,
             elevation: 0,
-            backgroundcolor: '#fff',
+            backgroundColor: '#fff',
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 4 },
+            shadowOpacity: 0.5,
+            shadowRadius: 4,
+            elevation: 5,
             borderRadius: 25,
             height: 50,
             ...Platform.select({
