@@ -113,7 +113,10 @@ export default function Recipe({ route, navigation }) {
             <Text style={Styles.madeByText}>by: {recipeData?.nickname}</Text>
             <Text style={Styles.pageHeader}>{recipeData?.recipeName}</Text>
             <Text style={Styles.recipeSubtitle}>Serving size:</Text>
-            <Text>{recipeData?.servingSize} serving(s)</Text>
+            {recipeData?.servingSize > 1 ? 
+            <Text>{recipeData?.servingSize} servings</Text>
+            : 
+            <Text>{recipeData?.servingSize} serving</Text>}
             <Text style={Styles.recipeSubtitle}>Ingredients:</Text>
             {recipeData?.ingredients.map((ingredient, index) => (
               <Text key={index}>{`\u2022 ${ingredient}`}</Text>
