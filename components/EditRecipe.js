@@ -24,7 +24,7 @@ export default function EditRecipe({ route, navigation }) {
   //   console.log("recipeName:", route.params.recipe.recipeName);
   // }, [route.params]);
 
-  const [ingredientAmount, setIngredientAmount] = useState('');   
+  const [ingredientAmount, setIngredientAmount] = useState('');
   const [unit, setUnit] = useState(null);
   const [recipeName, setRecipeName] = useState(route.params.recipe.recipeName);
   const [ingredient, setIngredient] = useState('');
@@ -47,7 +47,7 @@ export default function EditRecipe({ route, navigation }) {
   const addIngredient = () => {
 
     const newIngredient = ingredientAmount + ' ' + unit + ' ' + ingredient;
-    
+
     if (!unit || ingredientAmount == '' || ingredient == '') {
       alert('Amount, unit and ingredient required!');
     } else if (newIngredient.trim() !== '') {
@@ -55,7 +55,7 @@ export default function EditRecipe({ route, navigation }) {
       setIngredientAmount('');
       setUnit(null);
       setIngredient('');
-    } 
+    }
 
     // if (ingredient) {
     //   setIngredients([...ingredients, ingredient]);
@@ -78,16 +78,16 @@ export default function EditRecipe({ route, navigation }) {
     update(ref(db, RECIPES_REF + recipeKey), newRecipeData);
     alert("Recipe updated");
   };
-  
+
 
   return (
 
     <ScrollView style={Styles.scrollView}>
       <View style={[Styles.container,]}>
-      <Pressable
+        <Pressable
           style={Styles.navigateBack}
           onPress={() => {
-            navigation.navigate('Recipe', { recipe: route.params.recipe, category: route.params.category});
+            navigation.navigate('Recipe', { recipe: route.params.recipe, category: route.params.category });
           }}
         >
 
@@ -132,9 +132,18 @@ export default function EditRecipe({ route, navigation }) {
           selectedValue={unit}
           type="text"
           onValueChange={(value) => setUnit(value)}>
-          <Picker.Item label='Select unit' value={null} />
-          <Picker.Item label='dl' value="dl"/>
-          <Picker.Item label='kpl'value="kpl"/>
+          <Picker.Item style={{ fontSize: 14 }} label='Unit' value={null} />
+          <Picker.Item style={{ fontSize: 14 }} label='ml' value="ml" />
+          <Picker.Item style={{ fontSize: 14 }} label='dl' value="dl" />
+          <Picker.Item style={{ fontSize: 14 }} label='l' value="l" />
+          <Picker.Item style={{ fontSize: 14 }} label='tl' value="tl" />
+          <Picker.Item style={{ fontSize: 14 }} label='rkl' value="rkl" />
+          <Picker.Item style={{ fontSize: 14 }} label='g' value="g" />
+          <Picker.Item style={{ fontSize: 14 }} label='kg' value="kg" />
+          <Picker.Item style={{ fontSize: 14 }} label='kpl' value="kpl" />
+          <Picker.Item style={{ fontSize: 14 }} label='pkt' value="pkt" />
+          <Picker.Item style={{ fontSize: 14 }} label='tlk' value="tlk" />
+          <Picker.Item style={{ fontSize: 14 }} label='ps' value="ps" />
         </Picker>
 
         <TextInput

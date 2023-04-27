@@ -2,12 +2,12 @@ import { Platform, StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   container: {
-    backgroundColor: '#B5CFBB',
+    backgroundColor: '#cfe2c5',
     flex: 1,
     paddingBottom: 65
   },
   header: {
-    backgroundColor: '#eaece5',
+    backgroundColor: '#fcffec',
     justifyContent: 'center',
     alignItems: 'center',
     height: 130,

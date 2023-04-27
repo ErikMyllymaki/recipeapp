@@ -278,8 +278,17 @@ export default function AddRecipe() {
               style={{fontSize: 10}}
               >
               <Picker.Item style={{fontSize: 14}} label='Unit' value={null} />
+              <Picker.Item style={{fontSize: 14}} label='ml' value="ml" />
               <Picker.Item style={{fontSize: 14}} label='dl' value="dl" />
+              <Picker.Item style={{fontSize: 14}} label='l' value="l" />
+              <Picker.Item style={{fontSize: 14}} label='tl' value="tl" />
+              <Picker.Item style={{fontSize: 14}} label='rkl' value="rkl" />
+              <Picker.Item style={{fontSize: 14}} label='g' value="g" />
+              <Picker.Item style={{fontSize: 14}} label='kg' value="kg" />
               <Picker.Item style={{fontSize: 14}} label='kpl' value="kpl" />
+              <Picker.Item style={{fontSize: 14}} label='pkt' value="pkt" />
+              <Picker.Item style={{fontSize: 14}} label='tlk' value="tlk" />
+              <Picker.Item style={{fontSize: 14}} label='ps' value="ps" />
             </Picker>
           </View>
 

@@ -17,7 +17,7 @@ export default function Home( {navigation} ) {
     return null;
   }
 
-  const backgroundImage = require('../images/backgroundImage.jpg');
+  const backgroundImage = require('../images/background.png');
   const screenWidth = Dimensions.get('window').width;
   const screenHeight = Dimensions.get('window').height;
 
