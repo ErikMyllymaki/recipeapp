@@ -1,4 +1,4 @@
-import { View, Text, TextInput, TouchableOpacity, Image, Pressable, Button } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image, Pressable, Button, Alert } from 'react-native';
 import React, { useState, useEffect } from 'react'
 import { Picker } from '@react-native-picker/picker';
 import Styles from '../style/style';
@@ -79,6 +79,26 @@ export default function EditRecipe({ route, navigation }) {
     alert("Recipe updated");
   };
 
+  const showAlert = () => {
+    Alert.alert(
+      'Warning',
+      'Are you sure you want to go back without saving?',
+      [
+      {
+        text: 'Cancel',
+        style: 'cancel'
+      },
+      {
+        text: 'Yes',
+        onPress: () => {navigation.navigate('Recipe', { recipe: route.params.recipe, category: route.params.category })}
+      },
+    ],
+    {
+      cancelable: true
+    }
+    )
+  }
+
 
   return (
 
@@ -87,7 +107,8 @@ export default function EditRecipe({ route, navigation }) {
         <Pressable
           style={Styles.navigateBack}
           onPress={() => {
-            navigation.navigate('Recipe', { recipe: route.params.recipe, category: route.params.category });
+            showAlert();
+            // navigation.navigate('Recipe', { recipe: route.params.recipe, category: route.params.category });
           }}
         >
           <AntDesign name='left' size={30} color='#4B702F' />
