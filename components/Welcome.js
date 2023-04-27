@@ -13,7 +13,7 @@ export default Welcome = ({ navigation }) => {
     return null;
   }
 
-    const backgroundImage = require('../images/welcomebackground.png');
+    const backgroundImage = require('../images/background.png');
     const screenWidth = Dimensions.get('window').width;
     const screenHeight = Dimensions.get('window').height;
 
