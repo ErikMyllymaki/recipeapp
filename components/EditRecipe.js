@@ -136,14 +136,14 @@ export default function EditRecipe({ route, navigation }) {
           <Picker.Item style={{ fontSize: 14 }} label='ml' value="ml" />
           <Picker.Item style={{ fontSize: 14 }} label='dl' value="dl" />
           <Picker.Item style={{ fontSize: 14 }} label='l' value="l" />
-          <Picker.Item style={{ fontSize: 14 }} label='tl' value="tl" />
-          <Picker.Item style={{ fontSize: 14 }} label='rkl' value="rkl" />
+          <Picker.Item style={{ fontSize: 14 }} label='tsp' value="tsp" />
+          <Picker.Item style={{ fontSize: 14 }} label='tblsp' value="tblsp" />
           <Picker.Item style={{ fontSize: 14 }} label='g' value="g" />
           <Picker.Item style={{ fontSize: 14 }} label='kg' value="kg" />
-          <Picker.Item style={{ fontSize: 14 }} label='kpl' value="kpl" />
-          <Picker.Item style={{ fontSize: 14 }} label='pkt' value="pkt" />
-          <Picker.Item style={{ fontSize: 14 }} label='tlk' value="tlk" />
-          <Picker.Item style={{ fontSize: 14 }} label='ps' value="ps" />
+          <Picker.Item style={{ fontSize: 14 }} label='pcs' value="pcs" />
+          <Picker.Item style={{ fontSize: 14 }} label='cup' value="cup" />
+          <Picker.Item style={{ fontSize: 14 }} label='cups' value="cups" />
+          <Picker.Item style={{ fontSize: 14 }} label='pound' value="pound" />
         </Picker>
 
         <TextInput

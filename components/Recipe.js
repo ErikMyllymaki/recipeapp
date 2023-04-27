@@ -20,6 +20,11 @@ export default function Recipe({ route, navigation }) {
   const [recipeData, setRecipeData] = useState(null);
   const [userKey, setUserKey] = useState('');
   const [navigationKey, setNavigationKey] = useState(false);
+  const [refresh, setRefresh] = useState(false);
+
+  const handleRefresh = () => {
+    setRefresh(true);
+  };
 
   const category = route.params.category;
 
@@ -119,7 +124,6 @@ export default function Recipe({ route, navigation }) {
               {userKey === recipeData?.userKey && (
                 <TouchableWithoutFeedback
                   onPress={() => {
-                    console.log(recipeKey)
                     navigation.navigate('EditRecipe', { recipe: recipe, recipeKey: recipeKey, category: category });
                   }}>
                   <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -136,7 +140,7 @@ export default function Recipe({ route, navigation }) {
                 </TouchableWithoutFeedback>
               )}
               <View style={{paddingTop: 15}}>
-              <FavoriteButton recipeKey={recipeKey} userKey={userKey} navigation={recipe} />
+              <FavoriteButton recipeKey={recipeKey} userKey={userKey} navigation={recipe} handleRefresh={handleRefresh}/>
               </View>
             </View>
           </View>

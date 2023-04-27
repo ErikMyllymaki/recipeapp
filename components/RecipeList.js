@@ -22,11 +22,15 @@ export default function RecipeList({ navigation, route }) {
   // const filteredRecipes = recipes.filter(recipe => recipe.category === category.title);
   const [userKey, setUserKey] = useState('');
   const uniqueRecipes = _.uniqBy(recipes, 'key');
+  const [refresh, setRefresh] = useState(false);
+
+  const handleRefresh = () => {
+    setRefresh(true);
+  };
 
   function search(keyword) {
     setText(keyword);
     if (keyword) {
-      console.log("if keyword")
       const filteredRecipes = uniqueRecipes.filter(recipe => {
         const recipeName = recipe.recipeName.toLowerCase();
         const searchTerm = keyword.toLowerCase();
@@ -48,7 +52,7 @@ export default function RecipeList({ navigation, route }) {
           <Image source={require('../images/breakfast.jpg')} style={Styles.recipeListImage} />
           <Text>{item.recipeName}</Text>
           <View style={{ flex: 1, alignItems: 'flex-end', marginRight: 15 }}>
-            <FavoriteButton recipeKey={item.key} userKey={userKey} navigation={recipes} />
+            <FavoriteButton recipeKey={item.key} userKey={userKey} navigation={recipes} handleRefresh={handleRefresh}/>
           </View>
         </TouchableOpacity>
       </View>
@@ -57,6 +61,7 @@ export default function RecipeList({ navigation, route }) {
   
 
   useEffect(() => {
+    setRefresh(false)
     let refPath = RECIPES_REF;
     if (category.title === 'Favorites') {
       const favoritesRef = ref(db, FAVORITES_REF + userKey);
@@ -94,7 +99,7 @@ export default function RecipeList({ navigation, route }) {
         setAllRecipes(recipes);
       });
     }
-  }, [category.title, userKey, navigationKey]);
+  }, [category.title, userKey, navigationKey, refresh]);
 
 
 
