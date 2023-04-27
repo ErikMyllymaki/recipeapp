@@ -143,6 +143,7 @@ export default function RecipeList({ navigation, route }) {
         data={uniqueRecipes}
         renderItem={renderReceptItem}
         keyExtractor={(item) => item.key}
+        contentContainerStyle={{paddingBottom: 65}}
       />
     </View>
   )

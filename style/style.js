@@ -4,7 +4,6 @@ export default StyleSheet.create({
   container: {
     backgroundColor: '#cfe2c5',
     flex: 1,
-    paddingBottom: 65
   },
   header: {
     backgroundColor: '#fcffec',
@@ -327,7 +326,8 @@ export default StyleSheet.create({
   recipeBackground: {
     backgroundColor: 'rgb(251, 252, 245)',
     paddingBottom: 30,
-    marginVertical: 30,
+    marginTop: 30, 
+    marginBottom: 70,
     marginHorizontal: 18,
     borderRadius: 20,
   },
