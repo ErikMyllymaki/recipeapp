@@ -100,7 +100,8 @@ export default function EditRecipe({ route, navigation }) {
         <View style={Styles.dropdown}>
           <Picker
           selectedValue={category}
-          onValueChange={(itemValue) => setCategory(itemValue)}>
+          onValueChange={(itemValue) => setCategory(itemValue)}
+          itemStyle={{ height: 45 }}>
           {CATEGORIES_TITLES.map((category) => (
             <Picker.Item
               key={category}
@@ -149,6 +150,7 @@ export default function EditRecipe({ route, navigation }) {
               selectedValue={unit}
               type="text"
               onValueChange={(value) => setUnit(value)}
+              itemStyle={{ height: 50 }}
               style={{fontSize: 10}}
               >
               <Picker.Item style={{fontSize: 14}} label='Unit' value="" />
@@ -210,7 +212,7 @@ export default function EditRecipe({ route, navigation }) {
 
 
         <Pressable
-          style={{ alignItems: 'center' }}
+          style={{ alignItems: 'center', marginTop: 15 }}
           onPress={() => {
             updateRecipe();
           }}
