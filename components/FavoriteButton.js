@@ -13,14 +13,14 @@ export default function FavoriteButton({ recipeKey, userKey, navigation, handleR
 
   useEffect(() => {
     if (userKey && recipeKey) {
-        // console.log('nyt se tekee')
+        console.log('nyt se tekee')
       const userFavoritesRef = ref(db, `${FAVORITES_REF}/${userKey}`);
       get(userFavoritesRef).then(snapshot => {
         const favorites = snapshot.val() || {};
         setIsFavorite(favorites[recipeKey]);
       });
     }
-  }, [userKey, recipeKey, navigation]);
+  }, [userKey, recipeKey, navigation, handleRefresh]);
 
   const handleFavorite = () => {
     const userFavoritesRef = ref(db, `${FAVORITES_REF}/${userKey}/${recipeKey}`);
