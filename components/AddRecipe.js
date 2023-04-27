@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Image, View, Text, TextInput, Button, TouchableOpacity, Pressable } from 'react-native';
+import { Image, View, Text, TextInput, Button, TouchableOpacity, Pressable, Alert } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import Styles from '../style/style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -68,7 +68,20 @@ export default function AddRecipe() {
       setCategory('Breakfast');
       setServingSize(0);
       setImage(null);
+      this.recipeName.clear();
+      this.textInput.clear();
+      this.instructions.clear();
       return newRecipeItemKey;
+    } else if (recipeName.trim() == "") {
+      Alert.alert("Please give a name to your recipe.");
+      return;
+    }
+    else if (ingredients.length <= 0) {
+      Alert.alert("Please add ingredients to your recipe.");
+      return;
+    } else if (instructions.trim() == "") {
+      Alert.alert("Please add instructions to your recipe.");
+      return;
     }
   };
 
@@ -281,14 +294,14 @@ export default function AddRecipe() {
               <Picker.Item style={{fontSize: 14}} label='ml' value="ml" />
               <Picker.Item style={{fontSize: 14}} label='dl' value="dl" />
               <Picker.Item style={{fontSize: 14}} label='l' value="l" />
-              <Picker.Item style={{fontSize: 14}} label='tl' value="tl" />
-              <Picker.Item style={{fontSize: 14}} label='rkl' value="rkl" />
+              <Picker.Item style={{fontSize: 14}} label='tsp' value="tsp" />
+              <Picker.Item style={{fontSize: 14}} label='tblsp' value="tblsp" />
               <Picker.Item style={{fontSize: 14}} label='g' value="g" />
               <Picker.Item style={{fontSize: 14}} label='kg' value="kg" />
-              <Picker.Item style={{fontSize: 14}} label='kpl' value="kpl" />
-              <Picker.Item style={{fontSize: 14}} label='pkt' value="pkt" />
-              <Picker.Item style={{fontSize: 14}} label='tlk' value="tlk" />
-              <Picker.Item style={{fontSize: 14}} label='ps' value="ps" />
+              <Picker.Item style={{fontSize: 14}} label='pcs' value="pcs" />
+              <Picker.Item style={{fontSize: 14}} label='cup' value="cup" />
+              <Picker.Item style={{fontSize: 14}} label='cups' value="cups" />
+              <Picker.Item style={{fontSize: 14}} label='pound' value="pound" />
             </Picker>
           </View>
 
@@ -355,9 +368,6 @@ export default function AddRecipe() {
           style={{ alignItems: 'center' }}
           onPress={() => {
             addNewRecipe();
-            this.recipeName.clear();
-            this.textInput.clear();
-            this.instructions.clear();
           }}
         >
           <Text style={Styles.buttonStyle}>Save recipe</Text>
