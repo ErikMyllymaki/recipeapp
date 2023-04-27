@@ -219,7 +219,7 @@ export default function AddRecipe() {
       <View style={[Styles.container, {paddingBottom: 65}]}>
         <Text style={Styles.pageHeader}>ADD RECIPE</Text>
 
-        <View style={{margin: 8}}>
+        <View style={{marginHorizontal: 8}}>
         <Text style={Styles.addRecipeLabel}>Choose category</Text>
         <View style={Styles.dropdown}>
           <Picker

@@ -356,7 +356,8 @@ export default StyleSheet.create({
   },
   navigateBack: {
     flexDirection: 'row',
-    paddingTop: 15
+    paddingTop: 15,
+    paddingLeft: 15
   },
   navigateBackHeader: {
     fontSize: 19,
@@ -387,7 +388,6 @@ export default StyleSheet.create({
     marginLeft: 10,
     marginRight: 30,
   },
-
   ingredient: {
     display: 'flex',
     flexDirection: 'row',
