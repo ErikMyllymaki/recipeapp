@@ -310,7 +310,7 @@ export default StyleSheet.create({
     marginLeft: -100
   },
   searchInput: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#fbfcf5',
     height: 62,
     width: 333,
     borderRadius: 25,
@@ -357,7 +357,7 @@ export default StyleSheet.create({
     paddingLeft: 8,
   },
   recipeListItem: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#fbfcf5',
     width: 333,
     height: 99,
     margin: 10,
