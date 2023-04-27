@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Image, View, Text, TextInput, Button, TouchableOpacity, Pressable } from 'react-native';
+import { Image, View, Text, TextInput, Button, TouchableOpacity, Pressable, Alert } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import Styles from '../style/style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -68,7 +68,20 @@ export default function AddRecipe() {
       setCategory('Breakfast');
       setServingSize(0);
       setImage(null);
+      this.recipeName.clear();
+      this.textInput.clear();
+      this.instructions.clear();
       return newRecipeItemKey;
+    } else if (recipeName.trim() == "") {
+      Alert.alert("Please give a name to your recipe.");
+      return;
+    }
+    else if (ingredients.length <= 0) {
+      Alert.alert("Please add ingredients to your recipe.");
+      return;
+    } else if (instructions.trim() == "") {
+      Alert.alert("Please add instructions to your recipe.");
+      return;
     }
   };
 
@@ -355,9 +368,6 @@ export default function AddRecipe() {
           style={{ alignItems: 'center' }}
           onPress={() => {
             addNewRecipe();
-            this.recipeName.clear();
-            this.textInput.clear();
-            this.instructions.clear();
           }}
         >
           <Text style={Styles.buttonStyle}>Save recipe</Text>
