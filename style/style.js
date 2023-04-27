@@ -14,7 +14,7 @@ export default StyleSheet.create({
     paddingTop: 25
   },
   scrollView: {
-    backgroundColor: '#B5CFBB'
+    backgroundColor: '#cfe2c5'
   },
   userNicknameContainer: {
     flexDirection: 'row',
@@ -126,7 +126,8 @@ export default StyleSheet.create({
     fontSize: 15,
     fontFamily: 'TenorSans',
     color: '#4B702F',
-    textAlign: 'center'
+    textAlign: 'center',
+    paddingTop: 15
   },
   recipeIcons: {
     paddingTop: 15
@@ -152,7 +153,7 @@ export default StyleSheet.create({
   addRecipeTextInput: {
     padding: 10,
     borderRadius: 15,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#ffffff'
   },
   addButton: {
     fontFamily: 'TenorSans',
@@ -324,7 +325,7 @@ export default StyleSheet.create({
     elevation: 5,
   },
   recipeBackground: {
-    backgroundColor: '#E8E8E8',
+    backgroundColor: 'rgb(251, 252, 245)',
     paddingBottom: 30,
     marginVertical: 30,
     marginHorizontal: 18,

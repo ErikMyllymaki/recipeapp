@@ -215,7 +215,7 @@ export default function AddRecipe() {
         <View style={Styles.dropdown}>
           <Picker
             selectedValue={category}
-            onValueChange={(itemValue) => setCategory(itemValue)}
+            onValueChange={(itemValue) => setCategory(itemValue)} itemStyle={{ height: 45 }}
           >
             {CATEGORIES_TITLES.map((category) => (
               <Picker.Item
@@ -274,7 +274,7 @@ export default function AddRecipe() {
             <Picker
               selectedValue={unit}
               type="text"
-              onValueChange={(value) => setUnit(value)}
+              onValueChange={(value) => setUnit(value)} itemStyle={{ height: 50 }}
               style={{fontSize: 10}}
               >
               <Picker.Item style={{fontSize: 14}} label='Unit' value={null} />
@@ -330,7 +330,7 @@ export default function AddRecipe() {
           multiline={true}
           style={Styles.addRecipeTextInput}
           placeholder='Instructions'
-          onChangeText={text => setInstructions(text)}
+          onChangeText={text => setInstructions(text)} 
         />
 
         <Pressable onPress={pickImage} style={{ alignItems: 'center', marginTop: 20, marginBottom: 6 }}>
