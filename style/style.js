@@ -104,7 +104,7 @@ export default StyleSheet.create({
   //about us sivulla käytetyt tyylit. Voi käyttää muillakin sivuilla
   textAreaBackground: {
     alignItems: 'center',
-    backgroundColor: '#E8E8E8',
+    backgroundColor: '#fbfcf5',
     marginBottom: 50,
     paddingTop: 15,
     paddingHorizontal: 15,
@@ -324,7 +324,7 @@ export default StyleSheet.create({
     elevation: 5,
   },
   recipeBackground: {
-    backgroundColor: 'rgb(251, 252, 245)',
+    backgroundColor: '#fbfcf5',
     paddingBottom: 30,
     marginTop: 30, 
     marginBottom: 70,
