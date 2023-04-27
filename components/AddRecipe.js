@@ -40,6 +40,7 @@ export default function AddRecipe() {
   const [ingredient, setIngredient] = useState('');
   const [ingredients, setIngredients] = useState([]);
   const [instructions, setInstructions] = useState('');
+  const [imgUploadCheck, setImgUploadCheck] = useState(false);
 
   const [recipes, setRecipes] = useState([]);
 
@@ -68,6 +69,7 @@ export default function AddRecipe() {
       setCategory('Breakfast');
       setServingSize(0);
       setImage(null);
+      setImgUploadCheck(false);
       this.recipeName.clear();
       this.textInput.clear();
       this.instructions.clear();
@@ -198,6 +200,7 @@ export default function AddRecipe() {
           console.log('File available at', downloadURL);
           setImage(downloadURL);
           setUploading(false);
+          setImgUploadCheck(true);
         }
       );
     }
@@ -360,6 +363,14 @@ export default function AddRecipe() {
           <Text style={Styles.addImageButton}>Upload image</Text>
         </Pressable>
         </>
+        ) : (
+          <></>
+        )}
+
+        {imgUploadCheck == true ? (
+          <View>
+            <Text style={Styles.rememberText}>Image uploaded succesfully!</Text>
+          </View>
         ) : (
           <></>
         )}
