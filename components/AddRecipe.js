@@ -40,6 +40,7 @@ export default function AddRecipe() {
   const [ingredient, setIngredient] = useState('');
   const [ingredients, setIngredients] = useState([]);
   const [instructions, setInstructions] = useState('');
+  const [imgUploadCheck, setImgUploadCheck] = useState(false);
 
   const [recipes, setRecipes] = useState([]);
 
@@ -68,6 +69,7 @@ export default function AddRecipe() {
       setCategory('Breakfast');
       setServingSize(0);
       setImage(null);
+      setImgUploadCheck(false);
       this.recipeName.clear();
       this.textInput.clear();
       this.instructions.clear();
@@ -198,6 +200,7 @@ export default function AddRecipe() {
           console.log('File available at', downloadURL);
           setImage(downloadURL);
           setUploading(false);
+          setImgUploadCheck(true);
         }
       );
     }
@@ -221,7 +224,7 @@ export default function AddRecipe() {
         <View style={Styles.dropdown}>
           <Picker
             selectedValue={category}
-            onValueChange={(itemValue) => setCategory(itemValue)}
+            onValueChange={(itemValue) => setCategory(itemValue)} itemStyle={{ height: 45 }}
           >
             {CATEGORIES_TITLES.map((category) => (
               <Picker.Item
@@ -280,7 +283,7 @@ export default function AddRecipe() {
             <Picker
               selectedValue={unit}
               type="text"
-              onValueChange={(value) => setUnit(value)}
+              onValueChange={(value) => setUnit(value)} itemStyle={{ height: 50 }}
               style={{fontSize: 10}}
               >
               <Picker.Item style={{fontSize: 14}} label='Unit' value="" />
@@ -336,7 +339,7 @@ export default function AddRecipe() {
           multiline={true}
           style={Styles.addRecipeTextInput}
           placeholder='Instructions'
-          onChangeText={text => setInstructions(text)}
+          onChangeText={text => setInstructions(text)} 
         />
 
         <Pressable onPress={pickImage} style={{ alignItems: 'center', marginTop: 20, marginBottom: 6 }}>
@@ -353,6 +356,14 @@ export default function AddRecipe() {
           <Text style={Styles.addImageButton}>Upload image</Text>
         </Pressable>
         </>
+        ) : (
+          <></>
+        )}
+
+        {imgUploadCheck == true ? (
+          <View>
+            <Text style={Styles.rememberText}>Image uploaded succesfully!</Text>
+          </View>
         ) : (
           <></>
         )}

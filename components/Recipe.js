@@ -20,6 +20,11 @@ export default function Recipe({ route, navigation }) {
   const [recipeData, setRecipeData] = useState(null);
   const [userKey, setUserKey] = useState('');
   const [navigationKey, setNavigationKey] = useState(false);
+  const [refresh, setRefresh] = useState(false);
+
+  const handleRefresh = () => {
+    setRefresh(true);
+  };
 
   const category = route.params.category;
 
@@ -108,7 +113,10 @@ export default function Recipe({ route, navigation }) {
             <Text style={Styles.madeByText}>by: {recipeData?.nickname}</Text>
             <Text style={Styles.pageHeader}>{recipeData?.recipeName}</Text>
             <Text style={Styles.recipeSubtitle}>Serving size:</Text>
-            <Text>{recipeData?.servingSize} serving(s)</Text>
+            {recipeData?.servingSize > 1 ? 
+            <Text>{recipeData?.servingSize} servings</Text>
+            : 
+            <Text>{recipeData?.servingSize} serving</Text>}
             <Text style={Styles.recipeSubtitle}>Ingredients:</Text>
             {recipeData?.ingredients.map((ingredient, index) => (
               <Text key={index}>{`\u2022 ${ingredient}`}</Text>
@@ -119,7 +127,6 @@ export default function Recipe({ route, navigation }) {
               {userKey === recipeData?.userKey && (
                 <TouchableWithoutFeedback
                   onPress={() => {
-                    console.log(recipeKey)
                     navigation.navigate('EditRecipe', { recipe: recipe, recipeKey: recipeKey, category: category });
                   }}>
                   <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -136,7 +143,7 @@ export default function Recipe({ route, navigation }) {
                 </TouchableWithoutFeedback>
               )}
               <View style={{paddingTop: 15}}>
-              <FavoriteButton recipeKey={recipeKey} userKey={userKey} navigation={recipe} />
+              <FavoriteButton recipeKey={recipeKey} userKey={userKey} navigation={recipe} handleRefresh={handleRefresh}/>
               </View>
             </View>
           </View>

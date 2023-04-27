@@ -31,7 +31,6 @@ export default function RecipeList({ navigation, route }) {
   function search(keyword) {
     setText(keyword);
     if (keyword) {
-      console.log("if keyword")
       const filteredRecipes = uniqueRecipes.filter(recipe => {
         const recipeName = recipe.recipeName.toLowerCase();
         const searchTerm = keyword.toLowerCase();
@@ -65,7 +64,6 @@ export default function RecipeList({ navigation, route }) {
     setRefresh(false)
     let refPath = RECIPES_REF;
     if (category.title === 'Favorites') {
-      console.log("favs")
       const favoritesRef = ref(db, FAVORITES_REF + userKey);
       const recipesRef = ref(db, RECIPES_REF);
       const favoriteRecipeKeys = [];
@@ -88,8 +86,6 @@ export default function RecipeList({ navigation, route }) {
         });
       });
     } else {
-      console.log("muut")
-
       onValue(ref(db, refPath), (snapshot) => {
         const recipes = [];
         snapshot.forEach((childSnapshot) => {
