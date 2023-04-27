@@ -36,7 +36,7 @@ export default function AddRecipe() {
   const [uploading, setUploading] = useState(false)
   const [servingSize, setServingSize] = useState('');
   const [ingredientAmount, setIngredientAmount] = useState('');
-  const [unit, setUnit] = useState(null);
+  const [unit, setUnit] = useState('');
   const [ingredient, setIngredient] = useState('');
   const [ingredients, setIngredients] = useState([]);
   const [instructions, setInstructions] = useState('');
@@ -123,12 +123,12 @@ export default function AddRecipe() {
 
     const newIngredient = ingredientAmount + ' ' + unit + ' ' + ingredient;
 
-    if (!unit || ingredientAmount == '' || ingredient == '') {
-      alert('Amount, unit and ingredient required!');
+    if (ingredient == '') {
+      alert('Ingredient required!');
     } else if (newIngredient.trim() !== '') {
       setIngredients([...ingredients, newIngredient]);
       setIngredientAmount('');
-      setUnit(null);
+      setUnit('');
       setIngredient('');
     }
   }
@@ -202,13 +202,6 @@ export default function AddRecipe() {
       );
     }
   }
-
-
-
-
-
-
-
 
 
   const handleRemoveIngredient = (ingredient) => {
@@ -290,7 +283,7 @@ export default function AddRecipe() {
               onValueChange={(value) => setUnit(value)}
               style={{fontSize: 10}}
               >
-              <Picker.Item style={{fontSize: 14}} label='Unit' value={null} />
+              <Picker.Item style={{fontSize: 14}} label='Unit' value="" />
               <Picker.Item style={{fontSize: 14}} label='ml' value="ml" />
               <Picker.Item style={{fontSize: 14}} label='dl' value="dl" />
               <Picker.Item style={{fontSize: 14}} label='l' value="l" />

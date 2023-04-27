@@ -7,7 +7,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { child, push, ref, remove, update, onValue, Database } from 'firebase/database';
 import { db, RECIPES_REF, USERS_REF } from '../firebase/config';
 import { auth } from '../firebase/config';
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign, EvilIcons } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import NumericInput from 'react-native-numeric-input'
 
@@ -25,7 +25,7 @@ export default function EditRecipe({ route, navigation }) {
   // }, [route.params]);
 
   const [ingredientAmount, setIngredientAmount] = useState('');
-  const [unit, setUnit] = useState(null);
+  const [unit, setUnit] = useState('');
   const [recipeName, setRecipeName] = useState(route.params.recipe.recipeName);
   const [ingredient, setIngredient] = useState('');
   const [ingredients, setIngredients] = useState(route.params.recipe.ingredients);
@@ -48,12 +48,12 @@ export default function EditRecipe({ route, navigation }) {
 
     const newIngredient = ingredientAmount + ' ' + unit + ' ' + ingredient;
 
-    if (!unit || ingredientAmount == '' || ingredient == '') {
-      alert('Amount, unit and ingredient required!');
+    if (ingredient == '') {
+      alert('Ingredient required!');
     } else if (newIngredient.trim() !== '') {
       setIngredients([...ingredients, newIngredient]);
       setIngredientAmount('');
-      setUnit(null);
+      setUnit('');
       setIngredient('');
     }
 
@@ -83,19 +83,22 @@ export default function EditRecipe({ route, navigation }) {
   return (
 
     <ScrollView style={Styles.scrollView}>
-      <View style={[Styles.container,]}>
+      <View style={Styles.container}>
         <Pressable
           style={Styles.navigateBack}
           onPress={() => {
             navigation.navigate('Recipe', { recipe: route.params.recipe, category: route.params.category });
           }}
         >
-
           <AntDesign name='left' size={30} color='#4B702F' />
-          {/* <Text style={Styles.navigateBackHeader}>{category.title}</Text> */}
+          <Text style={Styles.navigateBackHeader}>Recipe</Text>
         </Pressable>
         <Text style={Styles.pageHeader}>EDIT RECIPE</Text>
-        <Picker
+
+        <View style={{margin: 8}}>
+        <Text style={Styles.addRecipeLabel}>Choose category</Text>
+        <View style={Styles.dropdown}>
+          <Picker
           selectedValue={category}
           onValueChange={(itemValue) => setCategory(itemValue)}>
           {CATEGORIES_TITLES.map((category) => (
@@ -106,90 +109,115 @@ export default function EditRecipe({ route, navigation }) {
             />
           ))}
         </Picker>
+        </View>
+        
+        <Text style={Styles.addRecipeLabel}>Recipe name</Text>
+
         <TextInput
           ref={input => { this.recipeName = input }}
-          placeholderTextColor="#40793F"
-          style={Styles.addRecipeInput}
+          placeholder='Name'
+          style={Styles.addRecipeTextInput}
           onChangeText={setRecipeName}
           value={recipeName}
         />
-        <NumericInput
-          onChange={setServingSize}
-          rounded
-          value={servingSize}
-        />
+
+        <Text style={Styles.addRecipeLabel}>Amount of portions:</Text>  
 
         <TextInput
-          value={ingredientAmount}
-          style={Styles.addRecipeInput}
+          value={servingSize}
+          style={Styles.addRecipeTextInput}
           type="text"
           keyboardType='number-pad'
-          placeholder='amount'
-          onChangeText={(text) => setIngredientAmount(text)}
+          placeholder='0'
+          onChangeText={(text) => setServingSize(text)}
         />
 
-        <Picker
-          selectedValue={unit}
-          type="text"
-          onValueChange={(value) => setUnit(value)}>
-          <Picker.Item style={{ fontSize: 14 }} label='Unit' value={null} />
-          <Picker.Item style={{ fontSize: 14 }} label='ml' value="ml" />
-          <Picker.Item style={{ fontSize: 14 }} label='dl' value="dl" />
-          <Picker.Item style={{ fontSize: 14 }} label='l' value="l" />
-          <Picker.Item style={{ fontSize: 14 }} label='tsp' value="tsp" />
-          <Picker.Item style={{ fontSize: 14 }} label='tblsp' value="tblsp" />
-          <Picker.Item style={{ fontSize: 14 }} label='g' value="g" />
-          <Picker.Item style={{ fontSize: 14 }} label='kg' value="kg" />
-          <Picker.Item style={{ fontSize: 14 }} label='pcs' value="pcs" />
-          <Picker.Item style={{ fontSize: 14 }} label='cup' value="cup" />
-          <Picker.Item style={{ fontSize: 14 }} label='cups' value="cups" />
-          <Picker.Item style={{ fontSize: 14 }} label='pound' value="pound" />
-        </Picker>
+        <Text style={Styles.addRecipeLabel}>Add ingredients</Text>
 
+        <View style={{ flex: 1, flexDirection: 'row', marginBottom: 10 }}>
         <TextInput
-          ref={input => { this.textInput = input }}
-          style={Styles.addRecipeInput}
-          placeholder='+ Add ingredients'
-          placeholderTextColor="#40793F"
-          onChangeText={ingredient => setIngredient(ingredient)}
-          value={ingredient}
-        />
-        <TouchableOpacity
-          style={Styles.addRecipeButton}
-          onPress={addIngredient}
-        >
-          <Text style={Styles.addRecipeButtonText}>Add ingredient</Text>
-        </TouchableOpacity>
+            value={ingredientAmount}
+            style={[Styles.addRecipeTextInput, { flex: 0.5, height: 50 }]}
+            type="text"
+            keyboardType='number-pad'
+            placeholder='0'
+            onChangeText={(text) => setIngredientAmount(text)}
+          />
+
+<View style={[Styles.unitDropdown, {flex: 2.5}]}>
+            <Picker
+              selectedValue={unit}
+              type="text"
+              onValueChange={(value) => setUnit(value)}
+              style={{fontSize: 10}}
+              >
+              <Picker.Item style={{fontSize: 14}} label='Unit' value="" />
+              <Picker.Item style={{fontSize: 14}} label='ml' value="ml" />
+              <Picker.Item style={{fontSize: 14}} label='dl' value="dl" />
+              <Picker.Item style={{fontSize: 14}} label='l' value="l" />
+              <Picker.Item style={{fontSize: 14}} label='tsp' value="tsp" />
+              <Picker.Item style={{fontSize: 14}} label='tblsp' value="tblsp" />
+              <Picker.Item style={{fontSize: 14}} label='g' value="g" />
+              <Picker.Item style={{fontSize: 14}} label='kg' value="kg" />
+              <Picker.Item style={{fontSize: 14}} label='pcs' value="pcs" />
+              <Picker.Item style={{fontSize: 14}} label='cup' value="cup" />
+              <Picker.Item style={{fontSize: 14}} label='cups' value="cups" />
+              <Picker.Item style={{fontSize: 14}} label='pound' value="pound" />
+            </Picker>
+          </View>
+
+          <TextInput
+            value={ingredient}
+            type="text"
+            ref={input => { this.textInput = input }}
+            style={[Styles.addRecipeTextInput, { flex: 3 }]}
+            placeholder='Ingredient'
+            onChangeText={(text) => setIngredient(text)}
+          />
+
+<Pressable
+            style={{ alignItems: 'center', flex: 1.5 }}
+            onPress={() => {
+              addIngredient();
+            }} >
+            <Text style={Styles.addButton}>Add</Text>
+          </Pressable>
+        </View>
+
         {ingredients.map((ingredient, index) => (
           <View style={Styles.ingredient} key={index}>
-            <Text style={{ fontSize: 23 }}>{ingredient}</Text>
+            <Text style={{ fontSize: 16 }}>{ingredient}</Text>
             <Pressable
-              style={{ marginLeft: 15 }}
+              style={{ marginLeft: 10 }}
               onPress={() => handleRemoveIngredient(ingredient)}
             >
-              <AntDesign name='close' size={23} />
+              <EvilIcons name='trash' size={30} />
             </Pressable>
           </View>
         ))}
-        <TextInput
+
+<Text style={Styles.addRecipeLabel}>Add instructions</Text>
+
+<TextInput
           ref={input => { this.instructions = input }}
           multiline={true}
-          style={Styles.addRecipeInput}
-          placeholder='+ Add instructions'
-          placeholderTextColor="#40793F"
+          style={Styles.addRecipeTextInput}
+          placeholder='Instructions'
           onChangeText={text => setInstructions(text)}
           value={instructions}
         />
-        <TouchableOpacity
-          style={Styles.addRecipeButton}
+
+
+
+        <Pressable
+          style={{ alignItems: 'center' }}
           onPress={() => {
             updateRecipe();
           }}
-
-
         >
-          <Text style={[Styles.addRecipeButtonText, { paddingBottom: 60 }]}>Update recipe</Text>
-        </TouchableOpacity>
+          <Text style={Styles.buttonStyle}>Update recipe</Text>
+        </Pressable>
+        </View>
       </View>
     </ScrollView>
   );
