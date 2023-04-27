@@ -1,4 +1,4 @@
-import { View, Text, TextInput, TouchableOpacity, Image, Pressable, Button } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image, Pressable, Button, Alert } from 'react-native';
 import React, { useState, useEffect } from 'react'
 import { Picker } from '@react-native-picker/picker';
 import Styles from '../style/style';
@@ -79,15 +79,36 @@ export default function EditRecipe({ route, navigation }) {
     alert("Recipe updated");
   };
 
+  const showAlert = () => {
+    Alert.alert(
+      'Warning',
+      'Are you sure you want to go back without saving?',
+      [
+      {
+        text: 'Cancel',
+        style: 'cancel'
+      },
+      {
+        text: 'Yes',
+        onPress: () => {navigation.navigate('Recipe', { recipe: route.params.recipe, category: route.params.category })}
+      },
+    ],
+    {
+      cancelable: true
+    }
+    )
+  }
+
 
   return (
 
     <ScrollView style={Styles.scrollView}>
-      <View style={Styles.container}>
+      <View style={[Styles.container, { paddingBottom: 65 }]}>
         <Pressable
           style={Styles.navigateBack}
           onPress={() => {
-            navigation.navigate('Recipe', { recipe: route.params.recipe, category: route.params.category });
+            showAlert();
+            // navigation.navigate('Recipe', { recipe: route.params.recipe, category: route.params.category });
           }}
         >
           <AntDesign name='left' size={30} color='#4B702F' />
@@ -95,130 +116,130 @@ export default function EditRecipe({ route, navigation }) {
         </Pressable>
         <Text style={Styles.pageHeader}>EDIT RECIPE</Text>
 
-        <View style={{margin: 8}}>
-        <Text style={Styles.addRecipeLabel}>Choose category</Text>
-        <View style={Styles.dropdown}>
-          <Picker
-          selectedValue={category}
-          onValueChange={(itemValue) => setCategory(itemValue)}
-          itemStyle={{ height: 45 }}>
-          {CATEGORIES_TITLES.map((category) => (
-            <Picker.Item
-              key={category}
-              label={category}
-              value={category}
-            />
-          ))}
-        </Picker>
-        </View>
-        
-        <Text style={Styles.addRecipeLabel}>Recipe name</Text>
-
-        <TextInput
-          ref={input => { this.recipeName = input }}
-          placeholder='Name'
-          style={Styles.addRecipeTextInput}
-          onChangeText={setRecipeName}
-          value={recipeName}
-        />
-
-        <Text style={Styles.addRecipeLabel}>Amount of portions:</Text>  
-
-        <TextInput
-          value={servingSize}
-          style={Styles.addRecipeTextInput}
-          type="text"
-          keyboardType='number-pad'
-          placeholder='0'
-          onChangeText={(text) => setServingSize(text)}
-        />
-
-        <Text style={Styles.addRecipeLabel}>Add ingredients</Text>
-
-        <View style={{ flex: 1, flexDirection: 'row', marginBottom: 10 }}>
-        <TextInput
-            value={ingredientAmount}
-            style={[Styles.addRecipeTextInput, { flex: 0.5, height: 50 }]}
-            type="text"
-            keyboardType='number-pad'
-            placeholder='0'
-            onChangeText={(text) => setIngredientAmount(text)}
-          />
-
-<View style={[Styles.unitDropdown, {flex: 2.5}]}>
+        <View style={{ margin: 8 }}>
+          <Text style={Styles.addRecipeLabel}>Choose category</Text>
+          <View style={Styles.dropdown}>
             <Picker
-              selectedValue={unit}
-              type="text"
-              onValueChange={(value) => setUnit(value)}
-              itemStyle={{ height: 50 }}
-              style={{fontSize: 10}}
-              >
-              <Picker.Item style={{fontSize: 14}} label='Unit' value="" />
-              <Picker.Item style={{fontSize: 14}} label='ml' value="ml" />
-              <Picker.Item style={{fontSize: 14}} label='dl' value="dl" />
-              <Picker.Item style={{fontSize: 14}} label='l' value="l" />
-              <Picker.Item style={{fontSize: 14}} label='tsp' value="tsp" />
-              <Picker.Item style={{fontSize: 14}} label='tblsp' value="tblsp" />
-              <Picker.Item style={{fontSize: 14}} label='g' value="g" />
-              <Picker.Item style={{fontSize: 14}} label='kg' value="kg" />
-              <Picker.Item style={{fontSize: 14}} label='pcs' value="pcs" />
-              <Picker.Item style={{fontSize: 14}} label='cup' value="cup" />
-              <Picker.Item style={{fontSize: 14}} label='cups' value="cups" />
-              <Picker.Item style={{fontSize: 14}} label='pound' value="pound" />
+              selectedValue={category}
+              onValueChange={(itemValue) => setCategory(itemValue)}
+              itemStyle={{ height: 45 }}>
+              {CATEGORIES_TITLES.map((category) => (
+                <Picker.Item
+                  key={category}
+                  label={category}
+                  value={category}
+                />
+              ))}
             </Picker>
           </View>
 
+          <Text style={Styles.addRecipeLabel}>Recipe name</Text>
+
           <TextInput
-            value={ingredient}
-            type="text"
-            ref={input => { this.textInput = input }}
-            style={[Styles.addRecipeTextInput, { flex: 3 }]}
-            placeholder='Ingredient'
-            onChangeText={(text) => setIngredient(text)}
+            ref={input => { this.recipeName = input }}
+            placeholder='Name'
+            style={Styles.addRecipeTextInput}
+            onChangeText={setRecipeName}
+            value={recipeName}
           />
 
-<Pressable
-            style={{ alignItems: 'center', flex: 1.5 }}
-            onPress={() => {
-              addIngredient();
-            }} >
-            <Text style={Styles.addButton}>Add</Text>
-          </Pressable>
-        </View>
+          <Text style={Styles.addRecipeLabel}>Amount of portions:</Text>
 
-        {ingredients.map((ingredient, index) => (
-          <View style={Styles.ingredient} key={index}>
-            <Text style={{ fontSize: 16 }}>{ingredient}</Text>
+          <TextInput
+            value={servingSize}
+            style={Styles.addRecipeTextInput}
+            type="text"
+            keyboardType='number-pad'
+            placeholder='0'
+            onChangeText={(text) => setServingSize(text)}
+          />
+
+          <Text style={Styles.addRecipeLabel}>Add ingredients</Text>
+
+          <View style={{ flex: 1, flexDirection: 'row', marginBottom: 10 }}>
+            <TextInput
+              value={ingredientAmount}
+              style={[Styles.addRecipeTextInput, { flex: 0.5, height: 50 }]}
+              type="text"
+              keyboardType='number-pad'
+              placeholder='0'
+              onChangeText={(text) => setIngredientAmount(text)}
+            />
+
+            <View style={[Styles.unitDropdown, { flex: 2.5 }]}>
+              <Picker
+                selectedValue={unit}
+                type="text"
+                onValueChange={(value) => setUnit(value)}
+                itemStyle={{ height: 50 }}
+                style={{ fontSize: 10 }}
+              >
+                <Picker.Item style={{ fontSize: 14 }} label='Unit' value="" />
+                <Picker.Item style={{ fontSize: 14 }} label='ml' value="ml" />
+                <Picker.Item style={{ fontSize: 14 }} label='dl' value="dl" />
+                <Picker.Item style={{ fontSize: 14 }} label='l' value="l" />
+                <Picker.Item style={{ fontSize: 14 }} label='tsp' value="tsp" />
+                <Picker.Item style={{ fontSize: 14 }} label='tblsp' value="tblsp" />
+                <Picker.Item style={{ fontSize: 14 }} label='g' value="g" />
+                <Picker.Item style={{ fontSize: 14 }} label='kg' value="kg" />
+                <Picker.Item style={{ fontSize: 14 }} label='pcs' value="pcs" />
+                <Picker.Item style={{ fontSize: 14 }} label='cup' value="cup" />
+                <Picker.Item style={{ fontSize: 14 }} label='cups' value="cups" />
+                <Picker.Item style={{ fontSize: 14 }} label='pound' value="pound" />
+              </Picker>
+            </View>
+
+            <TextInput
+              value={ingredient}
+              type="text"
+              ref={input => { this.textInput = input }}
+              style={[Styles.addRecipeTextInput, { flex: 3 }]}
+              placeholder='Ingredient'
+              onChangeText={(text) => setIngredient(text)}
+            />
+
             <Pressable
-              style={{ marginLeft: 10 }}
-              onPress={() => handleRemoveIngredient(ingredient)}
-            >
-              <EvilIcons name='trash' size={30} />
+              style={{ alignItems: 'center', flex: 1.5 }}
+              onPress={() => {
+                addIngredient();
+              }} >
+              <Text style={Styles.addButton}>Add</Text>
             </Pressable>
           </View>
-        ))}
 
-<Text style={Styles.addRecipeLabel}>Add instructions</Text>
+          {ingredients.map((ingredient, index) => (
+            <View style={Styles.ingredient} key={index}>
+              <Text style={{ fontSize: 16 }}>{ingredient}</Text>
+              <Pressable
+                style={{ marginLeft: 10 }}
+                onPress={() => handleRemoveIngredient(ingredient)}
+              >
+                <EvilIcons name='trash' size={30} />
+              </Pressable>
+            </View>
+          ))}
 
-<TextInput
-          ref={input => { this.instructions = input }}
-          multiline={true}
-          style={Styles.addRecipeTextInput}
-          placeholder='Instructions'
-          onChangeText={text => setInstructions(text)}
-          value={instructions}
-        />
+          <Text style={Styles.addRecipeLabel}>Add instructions</Text>
+
+          <TextInput
+            ref={input => { this.instructions = input }}
+            multiline={true}
+            style={Styles.addRecipeTextInput}
+            placeholder='Instructions'
+            onChangeText={text => setInstructions(text)}
+            value={instructions}
+          />
 
 
 
-        <Pressable
-          style={{ alignItems: 'center', marginTop: 15 }}
-          onPress={() => {
-            updateRecipe();
-          }}
-        >
-          <Text style={Styles.buttonStyle}>Update recipe</Text>
-        </Pressable>
+          <Pressable
+            style={{ alignItems: 'center', marginTop: 15 }}
+            onPress={() => {
+              updateRecipe();
+            }}
+          >
+            <Text style={Styles.buttonStyle}>Update recipe</Text>
+          </Pressable>
         </View>
       </View>
     </ScrollView>

@@ -129,7 +129,7 @@ export default StyleSheet.create({
     paddingTop: 15
   },
   recipeIcons: {
-    paddingTop: 15
+    paddingTop: 25
   },
   contactUsHeader: {
     fontSize: 25,
@@ -309,7 +309,7 @@ export default StyleSheet.create({
     marginLeft: -100
   },
   searchInput: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#fbfcf5',
     height: 62,
     width: 333,
     borderRadius: 25,
@@ -331,13 +331,22 @@ export default StyleSheet.create({
     marginHorizontal: 18,
     borderRadius: 20,
   },
+  recipeImageView: {
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.8,
+    shadowRadius: 4,
+    elevation: 5,
+    borderRadius: 20
+  },
   recipeImage: {
     height: 290,
     width: '100%',
     borderRadius: 20,
   },
   recipeInfo: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 26,
     borderRadius: 20,
   },
   recipeSubtitle: {
@@ -357,7 +366,7 @@ export default StyleSheet.create({
     paddingLeft: 8,
   },
   recipeListItem: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#fbfcf5',
     width: 333,
     height: 99,
     margin: 10,

@@ -216,7 +216,7 @@ export default function AddRecipe() {
 
   return (
     <ScrollView style={Styles.scrollView}>
-      <View style={Styles.container}>
+      <View style={[Styles.container, {paddingBottom: 65}]}>
         <Text style={Styles.pageHeader}>ADD RECIPE</Text>
 
         <View style={{margin: 8}}>

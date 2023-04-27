@@ -106,7 +106,7 @@ export default function Recipe({ route, navigation }) {
           <Text style={Styles.navigateBackHeader}>{category.title}</Text>
         </Pressable>
         <View style={Styles.recipeBackground}>
-          <View style={{ alignItems: 'center' }}>
+          <View style={Styles.recipeImageView}>
             <Image source={{uri: recipeData?.image}} style={Styles.recipeImage} />
           </View>
           <View style={Styles.recipeInfo}>
@@ -123,7 +123,7 @@ export default function Recipe({ route, navigation }) {
             ))}
             <Text style={Styles.recipeSubtitle}>Instructions:</Text>
             <Text>{recipeData?.instructions}</Text>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: -5 }}>
               {userKey === recipeData?.userKey && (
                 <TouchableWithoutFeedback
                   onPress={() => {
@@ -142,7 +142,7 @@ export default function Recipe({ route, navigation }) {
                   </View>
                 </TouchableWithoutFeedback>
               )}
-              <View style={{paddingTop: 15}}>
+              <View style={{paddingTop: 25, paddingLeft: 4}}>
               <FavoriteButton recipeKey={recipeKey} userKey={userKey} navigation={recipe} handleRefresh={handleRefresh}/>
               </View>
             </View>
