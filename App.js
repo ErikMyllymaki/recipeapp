@@ -42,6 +42,7 @@ export default function App() {
       <Header />
       <Tab.Navigator
         screenOptions={{
+          tabBarHideOnKeyboard: true,
           headerShown: false,
           tabBarShowLabel: false,
           tabBarStyle: {
