@@ -124,7 +124,6 @@ export default function Recipe({ route, navigation }) {
               {userKey === recipeData?.userKey && (
                 <TouchableWithoutFeedback
                   onPress={() => {
-                    console.log(recipeKey)
                     navigation.navigate('EditRecipe', { recipe: recipe, recipeKey: recipeKey, category: category });
                   }}>
                   <View style={{ flexDirection: 'row', alignItems: 'center' }}>
