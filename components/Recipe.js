@@ -20,6 +20,11 @@ export default function Recipe({ route, navigation }) {
   const [recipeData, setRecipeData] = useState(null);
   const [userKey, setUserKey] = useState('');
   const [navigationKey, setNavigationKey] = useState(false);
+  const [refresh, setRefresh] = useState(false);
+
+  const handleRefresh = () => {
+    setRefresh(true);
+  };
 
   const category = route.params.category;
 
@@ -136,7 +141,7 @@ export default function Recipe({ route, navigation }) {
                 </TouchableWithoutFeedback>
               )}
               <View style={{paddingTop: 15}}>
-              <FavoriteButton recipeKey={recipeKey} userKey={userKey} navigation={recipe} />
+              <FavoriteButton recipeKey={recipeKey} userKey={userKey} navigation={recipe} handleRefresh={handleRefresh}/>
               </View>
             </View>
           </View>
