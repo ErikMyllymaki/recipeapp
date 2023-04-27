@@ -66,7 +66,8 @@ export default function CategoryPage({ navigation }) {
         renderItem={renderCategoryItem}
         keyExtractor={(item) => item.id}
         contentContainerStyle={{
-          flexGrow: 1, paddingHorizontal: 20, paddingTop: 10, ...Platform.select({
+          flexGrow: 1, paddingHorizontal: 20, paddingTop: 10, paddingBottom: 65, 
+          ...Platform.select({
             ios: {
               paddingHorizontal: 20,
               paddingTop: 30

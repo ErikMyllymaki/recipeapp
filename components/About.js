@@ -91,7 +91,7 @@ useEffect(() => {
         </Pressable>
         </View>
       }
-      <View style={Styles.container}>
+      <View style={[Styles.container, {paddingBottom: 35}]}>
         <Text style={Styles.pageHeader}>ABOUT US</Text>
         <View style={Styles.textAreaBackground}>
           <Image source={yourImage} style={{ resizeMode: 'contain', height: 85 }}></Image>

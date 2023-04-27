@@ -49,7 +49,7 @@ export default function RecipeList({ navigation, route }) {
     return (
       <View style={{ alignItems: 'center' }} key={item.key}>
         <TouchableOpacity style={Styles.recipeListItem} onPress={navigateToRecipe}>
-          <Image source={require('../images/breakfast.jpg')} style={Styles.recipeListImage} />
+          <Image source={{uri: item.image}} style={Styles.recipeListImage} />
           <Text>{item.recipeName}</Text>
           <View style={{ flex: 1, alignItems: 'flex-end', marginRight: 15 }}>
             <FavoriteButton recipeKey={item.key} userKey={userKey} navigation={recipes} handleRefresh={handleRefresh}/>
@@ -143,6 +143,7 @@ export default function RecipeList({ navigation, route }) {
         data={uniqueRecipes}
         renderItem={renderReceptItem}
         keyExtractor={(item) => item.key}
+        contentContainerStyle={{paddingBottom: 65}}
       />
     </View>
   )
