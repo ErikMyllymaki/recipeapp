@@ -248,19 +248,14 @@ export default function AddRecipe() {
         <Text style={Styles.addRecipeLabel}>Amount of portions:</Text>
 
         <TextInput
-          value={servingSize}
+          value={servingSize.toString()}
           style={Styles.addRecipeTextInput}
-          type="text"
+          // type="text"
           keyboardType='number-pad'
           placeholder='0'
           onChangeText={(text) => setServingSize(text)}
         />
 
-        {/* <NumericInput
-          value={servingSize}
-          onChange={setServingSize}
-          rounded
-        /> */}
 
         <Text style={Styles.addRecipeLabel}>Add ingredients</Text>
 
