@@ -68,6 +68,7 @@ export default function EditRecipe({ route, navigation }) {
   };
 
   const updateRecipe = () => {
+    if(recipeName.trim() !== "" && ingredients.length > 0 && instructions.trim() !== "" ) {
     const newRecipeData = {
       recipeName,
       ingredients,
@@ -75,8 +76,20 @@ export default function EditRecipe({ route, navigation }) {
       servingSize,
       category,
     };
+    
     update(ref(db, RECIPES_REF + recipeKey), newRecipeData);
     alert("Recipe updated");
+    }else if (recipeName.trim() == "") {
+    Alert.alert("Please give a name to your recipe.");
+    return;
+  }
+  else if (ingredients.length <= 0) {
+    Alert.alert("Please add ingredients to your recipe.");
+    return;
+  } else if (instructions.trim() == "") {
+    Alert.alert("Please add instructions to your recipe.");
+    return;
+  }
   };
 
   const showAlert = () => {
