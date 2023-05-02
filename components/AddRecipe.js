@@ -69,7 +69,7 @@ export default function AddRecipe() {
       setIngredients([]);
       setInstructions('');
       setCategory('Breakfast');
-      setServingSize(0);
+      setServingSize('');
       setImage(null);
       setImgUploadCheck(false);
       setRecipeAdded(true);
