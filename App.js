@@ -51,8 +51,8 @@ export default function App() {
             left: 15,
             right: 15,
             elevation: 0,
-            backgroundColor: '#fff',
-            shadowColor: '#000',
+            backgroundColor: '#fefffc',
+            shadowColor: '#2c3126',
             shadowOffset: { width: 0, height: 4 },
             shadowOpacity: 0.5,
             shadowRadius: 4,
@@ -85,7 +85,9 @@ export default function App() {
                   <Ionicons name="home-sharp" size={25} color={color} />
                 ),
                 tabBarActiveTintColor: '#61876E',
-                tabBarInActiveTintColor: 'gray'
+                tabBarInActiveTintColor: 'gray',
+                tabBarInactiveBackgroundColor: 'blue'
+                
               }}
             />
             <Tab.Screen name='Recipes' component={CategoryPage}
@@ -94,7 +96,7 @@ export default function App() {
                   <FontAwesome5 name="list" size={23} color={color} />
                 ),
                 tabBarActiveTintColor: '#61876E',
-                tabBarInActiveTintColor: 'gray'
+                tabBarInActiveTintColor: 'gray',
               }} />
             <Tab.Screen name='Add recipes' component={AddRecipe}
               options={{

@@ -54,7 +54,7 @@ export default StyleSheet.create({
     ...Platform.select({
       ios: {
         alignItems: "center",
-        shadowColor: '#717f6851',
+        shadowColor: '#2c3126',
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.8,
         shadowRadius: 4,
@@ -80,7 +80,7 @@ export default StyleSheet.create({
     borderRadius: 15,
     overflow: 'hidden',
 
-    shadowColor: '#000',
+    shadowColor: '#2c3126',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.8,
     shadowRadius: 4,
@@ -318,7 +318,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     paddingLeft: 20,
-    shadowColor: '#000',
+    shadowColor: '#2c3126',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.8,
     shadowRadius: 4,
@@ -334,7 +334,7 @@ export default StyleSheet.create({
   },
   recipeImageView: {
     alignItems: 'center',
-    shadowColor: '#000',
+    shadowColor: '#2c3126',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.8,
     shadowRadius: 4,
@@ -378,7 +378,7 @@ export default StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     flexDirection: 'row',
-    shadowColor: '#000',
+    shadowColor: '#2c3126',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.8,
     shadowRadius: 4,
