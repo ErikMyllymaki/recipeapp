@@ -92,25 +92,39 @@ export default function EditRecipe({ route, navigation }) {
   }
   };
 
+
   const showAlert = () => {
-    Alert.alert(
-      'Warning',
-      'Are you sure you want to go back without saving?',
-      [
-      {
-        text: 'Cancel',
-        style: 'cancel'
-      },
-      {
-        text: 'Yes',
-        onPress: () => {navigation.navigate('Recipe', { recipe: route.params.recipe, category: route.params.category })}
-      },
-    ],
-    {
-      cancelable: true
-    }
-    )
-  }
+    if (
+      recipeName === route.params.recipe.recipeName &&
+      ingredients === route.params.recipe.ingredients &&
+      instructions === route.params.recipe.instructions &&
+      servingSize === route.params.recipe.servingSize &&
+      category === route.params.recipe.category
+    ) {
+      Alert.alert(
+        'Warning',
+        'Are you sure you want to go back without saving?',
+        [
+          {
+            text: 'Cancel',
+            style: 'cancel',
+          },
+          {
+            text: 'Yes',
+            onPress: () => {
+              navigation.navigate('Recipe', { recipe: route.params.recipe, category: route.params.category });
+            },
+          },
+        ],
+        {
+          cancelable: true,
+        },
+      );
+    } else {
+      navigation.navigate('Recipe', { recipe: route.params.recipe, category: route.params.category });   
+     }
+  };
+  
 
 
   return (
