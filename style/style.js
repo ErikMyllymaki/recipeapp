@@ -87,7 +87,7 @@ export default StyleSheet.create({
     elevation: 5,
   },
   categoryName: {
-    fontSize: 20,
+    fontSize: 18,
     position: 'absolute',
     bottom: 10
   },

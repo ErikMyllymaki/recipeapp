@@ -21,7 +21,7 @@ const CATEGORIES_TITLES = [
   'Drinks',
   'Dessert',
   'Snacks',
-  'Pastries'
+  'Baked goods'
 ];
 
 export default function AddRecipe() {

@@ -18,7 +18,7 @@ export default function EditRecipe({ route, navigation }) {
   const [recipeKey, setRecipeKey] = useState(route.params?.recipeKey || '');
 
 
-  const CATEGORIES_TITLES = ['Breakfast', 'Dinner', 'Drinks', 'Dessert', 'Snacks', 'Pastries'];
+  const CATEGORIES_TITLES = ['Breakfast', 'Dinner', 'Drinks', 'Dessert', 'Snacks', 'Baked goods'];
 
   // useEffect(() => {
   //   console.log("recipeName:", route.params.recipe.recipeName);
