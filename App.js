@@ -11,7 +11,7 @@ import CategoryPage from './components/CategoryPage';
 import AddRecipe from './components/AddRecipe';
 import RecipeList from './components/RecipeList';
 import About from './components/About';
-import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons, MaterialIcons, Ionicons, FontAwesome5, Entypo } from '@expo/vector-icons';
 import Welcome from './components/Welcome';
 import Login from './components/Login';
 import Register from './components/Register';
@@ -82,7 +82,7 @@ export default function App() {
               options={{
                 tabBarStyle: { display: 'none' },
                 tabBarIcon: ({ color }) => (
-                  <MaterialCommunityIcons name="home-account" size={30} color={color} />
+                  <Ionicons name="home-sharp" size={25} color={color} />
                 ),
                 tabBarActiveTintColor: '#61876E',
                 tabBarInActiveTintColor: 'gray'
@@ -91,7 +91,7 @@ export default function App() {
             <Tab.Screen name='Recipes' component={CategoryPage}
               options={{
                 tabBarIcon: ({ color }) => (
-                  <MaterialIcons name="list-alt" size={30} color={color} />
+                  <FontAwesome5 name="list" size={23} color={color} />
                 ),
                 tabBarActiveTintColor: '#61876E',
                 tabBarInActiveTintColor: 'gray'
@@ -99,7 +99,7 @@ export default function App() {
             <Tab.Screen name='Add recipes' component={AddRecipe}
               options={{
                 tabBarIcon: ({ color }) => (
-                  <MaterialIcons name="playlist-add" size={30} color={color} />
+                  <MaterialIcons name="playlist-add" size={33} color={color} />
                 ),
                 tabBarActiveTintColor: '#61876E',
                 tabBarInActiveTintColor: 'gray'
@@ -115,7 +115,7 @@ export default function App() {
               options={{
                 
                 tabBarIcon: ({ color }) => (
-                  <MaterialCommunityIcons name="information-variant" size={30} color={color} />
+                  <Ionicons name="information" size={30} color={color} />
                 ),
                 tabBarActiveTintColor: '#61876E',
                 tabBarInActiveTintColor: 'gray'

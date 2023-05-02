@@ -50,8 +50,11 @@ export default function RecipeList({ navigation, route }) {
       <View style={{ alignItems: 'center' }} key={item.key}>
         <TouchableOpacity style={Styles.recipeListItem} onPress={navigateToRecipe}>
           <Image source={{uri: item.image}} style={Styles.recipeListImage} />
-          <Text>{item.recipeName}</Text>
-          <View style={{ flex: 1, alignItems: 'flex-end', marginRight: 15 }}>
+          <View style={{width: 140}}>
+            <Text style={Styles.recipeListName}>{item.recipeName}</Text>
+          </View>
+          
+          <View style={{ flex: 1, alignItems: 'flex-end', marginRight: 20}}>
             <FavoriteButton recipeKey={item.key} userKey={userKey} navigation={recipes} handleRefresh={handleRefresh}/>
           </View>
         </TouchableOpacity>

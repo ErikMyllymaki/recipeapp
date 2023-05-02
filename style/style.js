@@ -89,7 +89,8 @@ export default StyleSheet.create({
   categoryName: {
     fontSize: 18,
     position: 'absolute',
-    bottom: 10
+    bottom: 10,
+    color: '#3e532d',
   },
   selectedCategoryTitle: {
     fontSize: 20
@@ -369,7 +370,9 @@ export default StyleSheet.create({
   recipeListItem: {
     backgroundColor: '#fbfcf5',
     width: 333,
-    height: 99,
+    height: 'auto',
+    paddingTop: 10,
+    paddingBottom: 10,
     margin: 10,
     borderRadius: 15,
     justifyContent: 'flex-start',
@@ -388,6 +391,9 @@ export default StyleSheet.create({
     marginLeft: 10,
     marginRight: 30,
   },
+  recipeListName: {
+    fontSize: 15,
+  },
   ingredient: {
     display: 'flex',
     flexDirection: 'row',
@@ -398,5 +404,23 @@ export default StyleSheet.create({
     marginVertical: 1,
     backgroundColor: '#61876e52',
     borderRadius: 15
-  }
+  },
+  SaveRecipeButton: {
+    fontFamily: 'TenorSans',
+    backgroundColor: '#61876ee9',
+    width: 200,
+    height: 50,
+    textAlign: 'center',
+    fontSize: 18,
+    textAlignVertical: 'center',
+    ...Platform.select({
+      ios: {
+        lineHeight: 50
+      },
+      android: {}
+    }),
+    borderRadius: 15,
+    color: '#ffffff',
+    overflow: 'hidden',
+  },
 });

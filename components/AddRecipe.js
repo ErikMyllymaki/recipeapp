@@ -243,6 +243,7 @@ export default function AddRecipe() {
           placeholder='Name'
           style={Styles.addRecipeTextInput}
           onChangeText={setRecipeName}
+          maxLength={55}
         />
 
         <Text style={Styles.addRecipeLabel}>Amount of portions:</Text>
@@ -380,7 +381,7 @@ export default function AddRecipe() {
             addNewRecipe();
           }}
         >
-          <Text style={Styles.buttonStyle}>Save recipe</Text>
+          <Text style={Styles.SaveRecipeButton}>Save recipe</Text>
         </Pressable>
         </View>
       </View>
