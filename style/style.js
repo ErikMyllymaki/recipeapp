@@ -105,7 +105,7 @@ export default StyleSheet.create({
   //about us sivulla käytetyt tyylit. Voi käyttää muillakin sivuilla
   textAreaBackground: {
     alignItems: 'center',
-    backgroundColor: '#fbfcf5',
+    backgroundColor: '#fefff6',
     marginBottom: 50,
     paddingTop: 15,
     paddingHorizontal: 15,
@@ -146,7 +146,7 @@ export default StyleSheet.create({
     marginLeft: 5
   },
   dropdown: { 
-    backgroundColor: '#61876e73',
+    backgroundColor: '#61876170',
     borderRadius: 15,
     color: '#ffffff'
   },
@@ -157,7 +157,7 @@ export default StyleSheet.create({
   },
   addButton: {
     fontFamily: 'TenorSans',
-    backgroundColor: '#61876ee9',
+    backgroundColor: '#618761e9',
     height: 50,
     textAlign: 'center',
     fontSize: 16,
@@ -175,7 +175,7 @@ export default StyleSheet.create({
   },
   addImageButton: {
     fontFamily: 'TenorSans',
-    backgroundColor: '#61876ee9',
+    backgroundColor: '#618761e9',
     width: 150,
     height: 40,
     textAlign: 'center',
@@ -229,7 +229,7 @@ export default StyleSheet.create({
   },
   buttonStyle: {
     fontFamily: 'TenorSans',
-    backgroundColor: '#61876ee9',
+    backgroundColor: '#618761e9',
     width: 200,
     height: 50,
     textAlign: 'center',
@@ -253,7 +253,7 @@ export default StyleSheet.create({
   },
   homeButton: {
     fontFamily: 'TenorSans',
-    backgroundColor: '#61876ee9',
+    backgroundColor: '#618761e9',
     width: 300,
     height: 100,
     textAlign: 'center',
@@ -266,7 +266,7 @@ export default StyleSheet.create({
       android: {}
     }),
     borderRadius: 15,
-    color: '#ffffff',
+    color: '#fefff6',
     overflow: 'hidden'
   },
   addRecipeInput: {
@@ -407,7 +407,7 @@ export default StyleSheet.create({
   },
   SaveRecipeButton: {
     fontFamily: 'TenorSans',
-    backgroundColor: '#61876ee9',
+    backgroundColor: '#618761e9',
     width: 200,
     height: 50,
     textAlign: 'center',
