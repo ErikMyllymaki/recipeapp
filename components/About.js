@@ -78,7 +78,7 @@ useEffect(() => {
   return (
     <ScrollView style={Styles.scrollView}>
       {!isAuthenticated &&
-        <View style={{backgroundColor: '#B5CFBB'}}>
+        <View style={{backgroundColor: '#cfe2c5'}}>
         <Pressable
           style={Styles.navigateBack}
           onPress={() => {
