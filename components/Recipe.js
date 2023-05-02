@@ -87,7 +87,6 @@ export default function Recipe({ route, navigation }) {
 
 
 
-  const recipeImage = require('../images/dinner.jpg');
 
 
 
