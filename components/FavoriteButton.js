@@ -34,7 +34,7 @@ export default function FavoriteButton({ recipeKey, userKey, navigation, handleR
     <MaterialCommunityIcons
       name={isFavorite ? 'heart' : 'heart-outline'}
       size={30}
-      color={isFavorite ? 'red' : 'black'}
+      color={isFavorite ? '#d75e5e' : '#cbb4b4'}
       onPress={() => {
         handleFavorite();
         handleClick();

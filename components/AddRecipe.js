@@ -21,7 +21,7 @@ const CATEGORIES_TITLES = [
   'Drinks',
   'Dessert',
   'Snacks',
-  'Pastries'
+  'Baked goods'
 ];
 
 export default function AddRecipe() {
@@ -41,6 +41,7 @@ export default function AddRecipe() {
   const [ingredients, setIngredients] = useState([]);
   const [instructions, setInstructions] = useState('');
   const [imgUploadCheck, setImgUploadCheck] = useState(false);
+  const [recipeAdded, setRecipeAdded] = useState(false);
 
   const [recipes, setRecipes] = useState([]);
 
@@ -63,6 +64,7 @@ export default function AddRecipe() {
 
       const newRecipeItemRef = push(ref(db, RECIPES_REF), newRecipeItem);
       const newRecipeItemKey = newRecipeItemRef.key;
+      setRecipeAdded(false);
       setRecipeName('');
       setIngredients([]);
       setInstructions('');
@@ -70,6 +72,7 @@ export default function AddRecipe() {
       setServingSize(0);
       setImage(null);
       setImgUploadCheck(false);
+      setRecipeAdded(true);
       this.recipeName.clear();
       this.textInput.clear();
       this.instructions.clear();
@@ -368,6 +371,12 @@ export default function AddRecipe() {
         ) : (
           <></>
         )}
+
+        {recipeAdded == true &&
+          <View>
+            <Text style={Styles.rememberText}>Recipe added succesfully!</Text>
+          </View>
+        }
 
         <Pressable
           style={{ alignItems: 'center' }}

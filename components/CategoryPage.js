@@ -10,7 +10,7 @@ export const CATEGORIES = [
   { id: '3', title: 'Drinks', image: require('../images/drink.png') },
   { id: '4', title: 'Dessert', image: require('../images/dessert.png') },
   { id: '5', title: 'Snacks', image: require('../images/snacks.png') },
-  { id: '6', title: 'Pastries', image: require('../images/bakedgoods.png') },
+  { id: '6', title: 'Baked goods', image: require('../images/bakedgoods.png') },
   { id: '7', title: 'Favorites', image: require('../images/dinner.png') } // new object for favorites
 ];
 
