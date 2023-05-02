@@ -11,7 +11,7 @@ export const CATEGORIES = [
   { id: '4', title: 'Dessert', image: require('../images/dessert.png') },
   { id: '5', title: 'Snacks', image: require('../images/snacks.png') },
   { id: '6', title: 'Baked goods', image: require('../images/bakedgoods.png') },
-  { id: '7', title: 'Favorites', image: require('../images/dinner.png') } // new object for favorites
+  { id: '7', title: 'Favorites', image: require('../images/favorites.png') } // new object for favorites
 ];
 
 export default function CategoryPage({ navigation }) {
