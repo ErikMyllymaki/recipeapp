@@ -14,6 +14,7 @@ export default Login = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showForgotPw, setShowForgotPw] = useState(false);
+  const [emailSent, setEmailSent] = useState(false);
   const [emailForgotPw, setEmailForgotPw] = useState('');
   const [nickname, setNickname] = useState('');
 
@@ -45,6 +46,7 @@ export default Login = ({ navigation }) => {
     }
     else {
       resetPassword(emailForgotPw);
+      setEmailSent(true);
       setShowForgotPw(false);
     }
   }
@@ -86,6 +88,11 @@ export default Login = ({ navigation }) => {
         <Pressable style={{ paddingVertical: 30, alignItems: 'center', paddingTop: 0 }}>
           <Text onPress={handlePressForgotPw} style={styles.buttonStyle}>Forgot password</Text>
         </Pressable>
+        {emailSent == true &&
+              <View>
+                <Text style={[styles.infoText, {fontSize: 15, fontStyle: 'italic'}]}>Password reset email has been sent!</Text>
+              </View>
+        }
         {showForgotPw &&
           <>
             <TextInput

@@ -68,6 +68,7 @@ export default function EditRecipe({ route, navigation }) {
   };
 
   const updateRecipe = () => {
+    if(recipeName.trim() !== "" && ingredients.length > 0 && instructions.trim() !== "" ) {
     const newRecipeData = {
       recipeName,
       ingredients,
@@ -75,29 +76,55 @@ export default function EditRecipe({ route, navigation }) {
       servingSize,
       category,
     };
+    
     update(ref(db, RECIPES_REF + recipeKey), newRecipeData);
     alert("Recipe updated");
+    }else if (recipeName.trim() == "") {
+    Alert.alert("Please give a name to your recipe.");
+    return;
+  }
+  else if (ingredients.length <= 0) {
+    Alert.alert("Please add ingredients to your recipe.");
+    return;
+  } else if (instructions.trim() == "") {
+    Alert.alert("Please add instructions to your recipe.");
+    return;
+  }
   };
 
+
   const showAlert = () => {
-    Alert.alert(
-      'Warning',
-      'Are you sure you want to go back without saving?',
-      [
-      {
-        text: 'Cancel',
-        style: 'cancel'
-      },
-      {
-        text: 'Yes',
-        onPress: () => {navigation.navigate('Recipe', { recipe: route.params.recipe, category: route.params.category })}
-      },
-    ],
-    {
-      cancelable: true
-    }
-    )
-  }
+    if (
+      recipeName === route.params.recipe.recipeName &&
+      ingredients === route.params.recipe.ingredients &&
+      instructions === route.params.recipe.instructions &&
+      servingSize === route.params.recipe.servingSize &&
+      category === route.params.recipe.category
+    ) {
+      Alert.alert(
+        'Warning',
+        'Are you sure you want to go back without saving?',
+        [
+          {
+            text: 'Cancel',
+            style: 'cancel',
+          },
+          {
+            text: 'Yes',
+            onPress: () => {
+              navigation.navigate('Recipe', { recipe: route.params.recipe, category: route.params.category });
+            },
+          },
+        ],
+        {
+          cancelable: true,
+        },
+      );
+    } else {
+      navigation.navigate('Recipe', { recipe: route.params.recipe, category: route.params.category });   
+     }
+  };
+  
 
 
   return (

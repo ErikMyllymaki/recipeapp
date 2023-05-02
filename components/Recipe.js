@@ -56,13 +56,26 @@ export default function Recipe({ route, navigation }) {
     return () => unsubscribe();
   }, []);
 
-
-  const removeRecipe = (recipeKey) => {
+  const getUserKeys = async () => {
+    const snapshot = await get(child(ref(db), 'users'));
+    const userKeys = [];
+    snapshot.forEach((childSnapshot) => {
+      const key = childSnapshot.key;
+      userKeys.push(key);
+    });
+    return userKeys;
+  };
+  
+  const removeRecipe = async (recipeKey) => {
+    const userKeys = await getUserKeys();
     const updates = {};
     updates[`${RECIPES_REF}/${recipeKey}`] = null;
-    updates[`favorites/${userKey}/${recipeKey}`] = null;
+    userKeys.forEach((userKey) => {
+      updates[`favorites/${userKey}/${recipeKey}`] = null;
+    });
     update(ref(db), updates);
   };
+  
 
   const createTwoButtonAlert = () => Alert.alert(
     "RecipeHub",
