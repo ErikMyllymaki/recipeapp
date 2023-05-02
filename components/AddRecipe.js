@@ -360,6 +360,12 @@ export default function AddRecipe() {
           <></>
         )}
 
+        {uploading == true &&
+          <View>
+            <Text style={Styles.rememberText}>Uploading image...</Text>
+          </View>
+        }
+
         {imgUploadCheck == true ? (
           <View>
             <Text style={Styles.rememberText}>Image uploaded succesfully!</Text>
